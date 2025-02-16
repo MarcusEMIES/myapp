@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Mi Aplicación{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Bienvenido a Mi Aplicación</h1>
+    <p>Inicia sesión o regístrate para acceder a más funciones.</p>
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Iniciar Sesión</a>
+    <a href="{{ url_for('register') }}" class="btn btn-success">Registrarse</a>
+</div>
+{% endblock %}

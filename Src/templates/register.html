@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro de Usuario{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Registrarse</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Nombre de Usuario:</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Correo Electrónico:</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Registrarse</button>
+    </form>
+</div>
+{% endblock %}
