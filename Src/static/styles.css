@@ -1,0 +1,19 @@
+/* Cambiar fondo y texto globalmente */
+body {
+    background-color: black;
+    color: white;
+}
+
+/* Cambiar color de los enlaces para que sean visibles sobre el fondo negro */
+a {
+    color: white;
+}
+
+/* Opcional: Si quieres cambiar los colores del navbar, puedes añadir lo siguiente */
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-dark .navbar-brand {
+    color: white;
+}
