@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Mi Aplicación{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Bienvenido a Mi Aplicación</h1>
+    <p>Inicia sesión o regístrate para acceder a más funciones.</p>
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Iniciar Sesión</a>
+    <a href="{{ url_for('register') }}" class="btn btn-success">Registrarse</a>
+    <!-- Añadir la imagen -->
+   
+</div>
+
+<div>
+    <img src="{{ url_for('static', filename='images/FOTO (2).png') }}" alt="FOTO (2)" class="img-fluid content-image rounded mx-auto d-block m-3">
+</div>
+
+<div>
+      <!-- Añadir el video -->
+      <video controls class="img-fluid content-video rounded mx-auto d-block m-3">
+        <source src="{{ url_for('static', filename='video/ejemplo.mp4') }}" type="video/mp4">
+        Tu navegador no soporta el formato de video.
+    </video>
+</div>
+{% endblock %}
