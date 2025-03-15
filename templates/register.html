@@ -3,22 +3,40 @@
 {% block title %}Registro de Usuario{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center">Registrarse</h2>
+<main class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card w-50 p-4 shadow-lg" style="transition: transform 0.3s ease-in-out;">
+    <div class="text-center">
+      <img class="mb-4" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" width="72" height="57">
+    </div>
+
+    <h1 class="h3 mb-3 fw-normal text-center">Registrarse</h1>
+
     <form method="POST">
-        <div class="mb-3">
-            <label class="form-label">Nombre de Usuario:</label>
-            <input type="text" name="username" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Correo Electrónico:</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Contraseña:</label>
-            <input type="password" name="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-success w-100">Registrarse</button>
+      <div class="form-floating mb-3">
+        <input type="text" name="username" class="form-control" id="floatingUsername" placeholder="Nombre de Usuario" required>
+        <label for="floatingUsername">Nombre de Usuario</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Correo Electrónico" required>
+        <label for="floatingEmail">Correo Electrónico</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Contraseña" required>
+        <label for="floatingPassword">Contraseña</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="password" name="confirm_password" class="form-control" id="floatingConfirmPassword" placeholder="Confirmar Contraseña" required>
+        <label for="floatingConfirmPassword">Confirmar Contraseña</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2">Registrarse</button>
+
+      <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2017–2024</p>
     </form>
-</div>
+  </div>
+</main>
+
 {% endblock %}

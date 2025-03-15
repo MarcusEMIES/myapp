@@ -3,18 +3,43 @@
 {% block title %}Iniciar Sesión{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center">Iniciar Sesión</h2>
+<main class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card w-50 p-4 shadow-lg" style="transition: transform 0.3s ease-in-out;">
+    <div class="text-center">
+      <img class="mb-4" 
+           src="{{ url_for('static', filename='images/logo.jpg') }}" 
+           alt="Logo" width="72" height="57">
+    </div>
+
+    <h1 class="h3 mb-3 fw-normal text-center">Iniciar Sesión</h1>
+
     <form method="POST">
-        <div class="mb-3">
-            <label class="form-label">Correo Electrónico:</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Contraseña:</label>
-            <input type="password" name="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
+        <label for="floatingInput">Correo Electrónico</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+        <label for="floatingPassword">Contraseña</label>
+      </div>
+
+      <div class="form-check text-start my-3">
+        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Recordarme
+        </label>
+      </div>
+
+      <button class="btn btn-outline-secondary w-100 py-2" type="submit">Ingresar</button>
+
+      <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2017–2024</p>
     </form>
-</div>
+  </div>
+</main>
+
+<style>
+
+</style>
+
 {% endblock %}

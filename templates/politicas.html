@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block title %}Politicas{%
+    endblock %} {% block content %}
+    
+    <div class="container text-center mt-5">
+      <h1>Bienvenido, Administrador</h1>
+      <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
+    
+      <a href="{{ url_for('listar_usuarios') }}" class="btn btn-info"
+        >Ver Usuarios</a
+      >
+      <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+    </div>
+    {% endblock %}
+    

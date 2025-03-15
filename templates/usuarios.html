@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+{% block title %}Lista de Usuarios{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center">Lista de Usuarios</h1>
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <!-- Columna de Foto -->
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th style="display: none">ID</th>
+        <!-- Ocultar la columna de ID -->
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuario in usuarios %}
+        <tr>
+          <!-- Mostrar la foto de perfil -->
+          <td>
+            {% if usuario.foto %}
+              <img
+                src="{{ url_for('uploaded_file', filename=usuario.foto) }}"
+                width="50"
+                height="50"
+                class="rounded-circle"
+              />
+            {% else %}
+              <span>No disponible</span>
+            {% endif %}
+          </td>
+
+          <td>{{ usuario.username }}</td>
+          <td>{{ usuario.email }}</td>
+          <td style="display: none">{{ usuario.id }}</td>
+          <!-- Ocultar la celda del ID -->
+
+          <td>
+            <a href="{{ url_for('editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm">✏️ Editar</a>
+            <form action="{{ url_for('borrar_usuario', user_id=usuario.id) }}" method="POST" style="display: inline">
+              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">🗑️ Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
