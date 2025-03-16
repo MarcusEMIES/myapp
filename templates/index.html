@@ -3,24 +3,107 @@
 {% block title %}Inicio - Mi Aplicación{% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <h1>Bienvenido a Mi Aplicación</h1>
-    <p>Inicia sesión o regístrate para acceder a más funciones.</p>
-    <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Iniciar Sesión</a>
-    <a href="{{ url_for('auth.register') }}" class="btn btn-success">Registrarse</a>
-    <!-- Añadir la imagen -->
-   
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/Carrousel3.jpeg') }}" class="d-fluid w-100 img-fluid" alt="Carrousel3" style="object-position: 50% 75%; object-fit: cover; height: 400px;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/Carrousel4.jpeg') }}" class="d-fluid w-100 img-fluid" alt="Carrousel4" style="object-position: 50% 70%; object-fit: cover; height: 400px;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/Port1.jpeg') }}" class="d-fluid w-100 img-fluid" alt="Port1" style="object-position: 0 80%;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/Port.jpeg') }}" class="d-fluid w-100 img-fluid" alt="Port" style="object-position: 50% 20%; object-fit: cover; height: 400px;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/Port9.jpeg') }}" class="d-fluid w-100 img-fluid" alt="Port5" style="object-position: 50% 50%; object-fit: cover; height: 400px;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/Port7.jpeg') }}" class="d-fluid w-100 img-fluid" alt="Port8" style="object-position: 50% 50%; object-fit: cover; height: 400px;">
+        </div>
+    </div>
 </div>
 
-<div>
-    <img src="{{ url_for('static', filename='images/FOTO (2).png') }}" alt="FOTO (2)" class="img-fluid content-image rounded mx-auto d-block m-3">
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Contenedor lateral izquierdo -->
+        <div class="col-md-3">
+            <div class="side-container">
+                <h2>Lateral Izquierdo</h2>
+                <p>Contenido adicional en el lado izquierdo. Puede incluir más información, enlaces o imágenes.</p>
+                <!-- Pinterest lateral izquierdo -->
+                <div class="pinterest-container">
+                    <iframe src="https://assets.pinterest.com/ext/embed.html?id=5348093303298980" height="800" width="300" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor central -->
+        <div class="col-md-6">
+            <div class="main-container">
+                <!-- Sección con Imagen -->
+                <div class="section-container">
+                    <h2>Galería de Imágenes</h2>
+                    <div class="text-center">
+                        <img src="{{ url_for('static', filename='images/FOTO (2).png') }}" alt="FOTO (2)" class="img-fluid content-image rounded mx-auto d-block m-3">
+                    </div>
+                </div>
+
+                <!-- Sección con Video -->
+                <div class="section-container">
+                    <h2>Video Destacado</h2>
+                    <div class="text-center">
+                        <video controls class="content-video rounded mx-auto d-block m-3">
+                            <source src="{{ url_for('static', filename='video/Carrouselv.jpg') }}" type="video/mp4">
+                            Tu navegador no soporta el formato de video.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Sección con IA -->
+                <div class="section-container">
+                    <h2>Inspiración IA</h2>
+                    <div class="text-center">
+                        <iframe src="https://assets.pinterest.com/ext/embed.html?id=5348093303298980" height="800" width="100%" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+
+                <!-- Sección con IA Mujer Modelando -->
+                <div class="section-container">
+                    <h2>IA Mujer Modelando</h2>
+                    <div class="text-center">
+                        <iframe src="https://assets.pinterest.com/ext/embed.html?id=260575528434613456" height="800" width="100%" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+
+                <!-- Sección con IA Viuda Negra -->
+                <div class="section-container">
+                    <h2>IA Viuda Negra</h2>
+                    <div class="text-center">
+                        <iframe src="https://assets.pinterest.com/ext/embed.html?id=357262182959874477" height="400" width="100%" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor lateral derecho -->
+        <div class="col-md-3">
+            <div class="side-container">
+                <h2>Lateral Derecho</h2>
+                <p>Contenido adicional en el lado derecho. Puede incluir más información, enlaces o imágenes.</p>
+                <!-- Pinterest lateral derecho -->
+                <div class="pinterest-container">
+                    <iframe src="https://assets.pinterest.com/ext/embed.html?id=5348093303298980" height="800" width="300" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div>
-      <!-- Añadir el video -->
-      <video controls class="img-fluid content-video rounded mx-auto d-block m-3">
-        <source src="{{ url_for('static', filename='video/ejemplo.mp4') }}" type="video/mp4">
-        Tu navegador no soporta el formato de video.
-    </video>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 {% endblock %}

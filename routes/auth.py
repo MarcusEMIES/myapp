@@ -1,10 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+#Configuracion de autenticacion routes/auth.py
+from models.users import User
+from models import db # Ahora puedes importar db y User sin problemas
 from flask_login import login_user, login_required, logout_user
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash
-# Cambiar esta línea:
-from models import db  
-from models import User
-# from models.users import User
 
 
 
