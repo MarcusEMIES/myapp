@@ -23,10 +23,12 @@ def login():
         # Busca el usuario en la base de datos por el email
         user = User.query.filter_by(email=email).first()
 
+
         # Si el usuario existe y la contraseña es correcta
         if user and user.check_password(password):
             login_user(user)  # Inicia la sesión
             flash("Inicio de sesión exitoso", "success")
+            login_required
             return redirect(url_for('dashboard'))  # Redirige al dashboard
         else:
             flash("Credenciales incorrectas.", "danger")
@@ -35,6 +37,8 @@ def login():
 # -------------------------
 # Ruta de registro
 # -------------------------
+
+
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -50,6 +54,7 @@ def register():
 
         if User.query.filter_by(username=username).first():
             flash("El nombre de usuario ya existe.", "danger")
+            print("El nombre de usuario ya existe.")
             return redirect(url_for('auth.register'))
 
         if User.query.filter_by(email=email).first():
@@ -63,15 +68,19 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        flash("Registro exitoso. Ahora puedes iniciar sesión.", "success")
-        return redirect(url_for('auth.login'))
+        # Iniciar sesión automáticamente después del registro
+        login_user(new_user)
+
+        flash("Registro exitoso. Ahora estás logueado.", "success")
+        return redirect(url_for('dashboard'))  # Redirige a la página principal o al panel del usuario después del registro
+
     return render_template('register.html')
 
 # -------------------------
 # Ruta de logout
 # -------------------------
 @auth.route('/logout')
-@login_required
+
 def logout():
     logout_user()
     flash("Sesión cerrada exitosamente", "success")
