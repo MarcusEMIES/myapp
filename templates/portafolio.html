@@ -1,41 +1,10 @@
-{% extends 'base.html' %} 
-
-{% block title %}Portafolio{% endblock %}
-
-{% block content %}
-
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{ url_for('static', filename='images/Carrousel.jpg') }}" class="d-block w-100 img-fluid" alt="Carrousel">
-    </div>
-    <div class="carousel-item">
-      <img src="{{ url_for('static', filename='images/Seat.jpg') }}" class="d-block w-100 img-fluid" alt="Carrousel">
-    </div>
-    <div class="carousel-item">
-      <img src="{{ url_for('static', filename='images/gun.jpg') }}" class="d-block w-100 img-fluid" alt="Carrousel">
-    </div>
+{% extends 'base.html' %} {% block title %}Presets{%
+  endblock %} {% block content %}
+  
+  <div class="container text-center mt-5">
+    <h1>Portafolio</h1>
+    <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
+  
   </div>
-</div>
-
-<br />
-<!-- Contenido adicional -->
-<div class=" col-12 text-center ">
-  <h1>HOLA</h1>
-  <p>Inicia sesión o regístrate para acceder a más funciones.</p>
-</div>
-
-<div class="d-flex justify-content-center ">
-  <div class="btn-group " role="group" aria-label="Basic outlined example">
-    {% if current_user.is_authenticated %}
-      <!-- Si el usuario está autenticado, mostrar botón de Cerrar Sesión -->
-      <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary position-relative text-white-50">Cerrar Sesión</a>
-    {% else %}
-      <!-- Si el usuario no está autenticado, mostrar botones de Iniciar Sesión y Registrarse -->
-      <a href="{{ url_for('login') }}" class="btn btn-outline-secondary position-relative text-white-50">Iniciar Sesión</a>
-      <a href="{{ url_for('register') }}" class="btn btn-outline-secondary position-relative text-white-50">Registrarse</a>
-    {% endif %}
-  </div>
-</div>
-
-{% endblock %}
+  {% endblock %}
+  

@@ -14,14 +14,6 @@ def admin_dashboard():
         return redirect(url_for('tasks.dashboard'))
     return render_template('admin.html')
 
-# Ruta para "admin_dashboard"
-@admin.route('/admin_dashboard')
-@login_required
-def admin_dashboard_page():
-    if current_user.role != 'admin':
-        flash("Acceso denegado.", "danger")
-        return redirect(url_for('tasks.dashboard'))
-    return render_template('admin_dashboard.html')
 
 # Ruta para "usuarios"
 @admin.route('/usuarios')

@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
+
 db = SQLAlchemy()  # Instancia de la base de datos
 
 class User(db.Model, UserMixin):
@@ -27,3 +29,4 @@ class User(db.Model, UserMixin):
 
     def is_admin(self):
         return self.role == 'admin'
+    

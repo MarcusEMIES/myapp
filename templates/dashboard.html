@@ -1,11 +1,70 @@
 {% extends 'base.html' %}
-
-{% block title %}Dashboard{% endblock %}
-
+{% block title %}Home{% endblock %}
 {% block content %}
-<div class="container">
-    <h2>Bienvenido al Dashboard</h2>
-    <p>Aquí puedes ver contenido exclusivo para usuarios registrados.</p>
-    <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+<div class="container mt-5">
+  <h2 class="text-center mb-4" style="font-family: 'Georgia', serif; font-size: 2rem">
+    Bienvenido, {{ current_user.nombre }}!
+  </h2>
+
+  <div class="row justify-content-center">
+    {% if current_user.foto %}
+    <!-- Foto de Perfil -->
+    <img 
+      src="{{ url_for('uploads', user_id=current_user.id, filename=current_user.foto) }}" 
+      width="150" 
+      height="150" 
+      class="rounded-circle" 
+      alt="Foto de Perfil"
+    />
+  {% else %}
+    <!-- Foto predeterminada -->
+    <img
+      class="mb-4"
+      src="{{ url_for('static', filename='images/logo.jpg') }}"
+      alt="Logo"
+      width="72"
+      height="57"
+    />
+  {% endif %}
+  
+    </div>
+
+    <!-- Información del Usuario -->
+    <div class="col-md-6">
+      <div class="card shadow-lg mb-4" style="background-color: #f5f5dc; border-radius: 10px;">
+        <div class="card-header text-white" style="background-color: #003366;">
+          <h5>Información de Perfil</h5>
+        </div>
+        <div class="card-body" style="font-family: 'Times New Roman', serif; font-size: 1.1rem;">
+          <p><strong>Nombre:</strong> {{ current_user.nombre }} {{ current_user.apellidos }}</p>
+          <p><strong>Correo:</strong> {{ current_user.email }}</p>
+          <p><strong>Teléfono:</strong> {{ current_user.telefono or 'No disponible' }}</p>
+          <p><strong>Dirección:</strong> {{ current_user.direccion or 'No disponible' }}</p>
+          <p><strong>Ciudad:</strong> {{ current_user.ciudad or 'No disponible' }}</p>
+          <p><strong>País:</strong> {{ current_user.pais or 'No disponible' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de Acción -->
+  <div class="mt-5 text-center d-flex justify-content-center gap-4">
+    <!-- Botón para editar el perfil -->
+    <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}" class="btn btn-outline-secondary mb-3" style="width: 200px; font-size: 1.1rem; padding: 12px 20px;">
+      <i class="bi bi-pencil-square"></i> Editar mi Perfil
+    </a>
+
+    {% if current_user.role == 'admin' %}
+    <!-- Botón de gestión de usuarios (solo para admin) -->
+    <a href="{{ url_for('admin.usuarios') }}" class="btn btn-outline-secondary mb-3" style="width: 200px; font-size: 1.1rem; padding: 12px 20px;">
+      <i class="bi bi-person-badge"></i> Gestionar Usuarios
+    </a>
+    {% else %}
+    <!-- Botón para cerrar sesión -->
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger mb-3" style="width: 200px; font-size: 1.1rem; padding: 12px 20px;">
+      <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+    </a>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}
