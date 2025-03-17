@@ -3,15 +3,14 @@
 {% block title %}Portafolio{% endblock %}
 
 {% block content %}
-
-<div class="row py-lg-5">
+<div class="row py-lg-0">
   <!-- Imagen de fondo que cubre todo el ancho -->
-  <div class="col-12 px-0">
+  <div class="col-12 px-0 pt-0">
     <img
       src="{{ url_for('static', filename='images/Carrousel7.jpeg') }}"
       class="img-fluid w-100"
       alt="Album image"
-      style="object-fit: cover; height: 600px; object-position: center;"
+      style="object-fit: cover; height: 1000px; object-position: center;"
     >
   </div>
 
@@ -58,7 +57,7 @@
               alt="Imagen 1"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Carrousel7.jpeg') }}" 
+              data-bs-image="{{ url_for('static', filename='images/Carrousel7.jpeg') }}"
               style="object-fit: cover; height: 225px;"
             />
             <div class="card-body">
@@ -76,7 +75,7 @@
               alt="Imagen 2"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Carrousel6.jpeg') }}" 
+              data-bs-image="{{ url_for('static', filename='images/Carrousel6.jpeg') }}"
               style="object-fit: cover; height: 225px;"
             />
             <div class="card-body">
@@ -163,7 +162,7 @@
             <img
               src="{{ url_for('static', filename='images/Carrousel10.jpeg') }}"
               class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 6"
+              alt="Imagen 7"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
               data-bs-image="{{ url_for('static', filename='images/Carrousel10.jpeg') }}"
@@ -181,7 +180,7 @@
             <img
               src="{{ url_for('static', filename='images/Carrousel11.jpeg') }}"
               class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 6"
+              alt="Imagen 8"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
               data-bs-image="{{ url_for('static', filename='images/Carrousel11.jpeg') }}"
@@ -199,7 +198,7 @@
             <img
               src="{{ url_for('static', filename='images/Carrousel12.jpeg') }}"
               class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 6"
+              alt="Imagen 9"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
               data-bs-image="{{ url_for('static', filename='images/Carrousel12.jpeg') }}"
@@ -217,7 +216,7 @@
             <img
               src="{{ url_for('static', filename='images/Carrousel13.jpeg') }}"
               class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 6"
+              alt="Imagen 10"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
               data-bs-image="{{ url_for('static', filename='images/Carrousel13.jpeg') }}"
@@ -235,7 +234,7 @@
             <img
               src="{{ url_for('static', filename='images/Carrousel14.jpeg') }}"
               class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 6"
+              alt="Imagen 11"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
               data-bs-image="{{ url_for('static', filename='images/Carrousel14.jpeg') }}"
@@ -253,7 +252,7 @@
             <img
               src="{{ url_for('static', filename='images/Carrousel15.jpeg') }}"
               class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 7"
+              alt="Imagen 12"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
               data-bs-image="{{ url_for('static', filename='images/Carrousel15.jpeg') }}"
@@ -268,7 +267,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <!-- Modal para ver la imagen -->
@@ -283,14 +281,15 @@
   </div>
 </div>
 
-
-
-  <!-- /*El <img> tiene los siguientes atributos:
-
-id="modalImage": Este id es importante porque se usa en el script de JavaScript para identificar este <img> y actualizar su atributo src (la URL de la imagen que se va a mostrar en el modal).
-class="img-fluid": Esta clase es parte de Bootstrap y asegura que la imagen dentro del modal sea responsiva. Es decir, la imagen se adapta al tamaño de su contenedor y no se desborda. Se ajustará al tamaño de la ventana del modal mientras mantiene sus proporciones.
-src="": El atributo src está vacío al principio. Este atributo es donde se define la URL de la imagen que se mostrará en el modal. El valor de este atributo se actualiza dinámicamente a través del JavaScript cuando el usuario hace clic en una de las imágenes de las tarjetas.
-alt="Imagen ampliada": Este atributo es utilizado para accesibilidad. Si por alguna razón la imagen no se carga, se mostrará este texto como descripción de la imagen.*/-->
+<script>
+  const modalImage = document.getElementById('modalImage');
+  const imageModal = document.getElementById('imageModal');
+  
+  imageModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const imageUrl = button.getAttribute('data-bs-image');
+    modalImage.src = imageUrl;
+  });
+</script>
 
 {% endblock %}
-
