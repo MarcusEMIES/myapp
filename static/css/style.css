@@ -443,3 +443,11 @@ footer a:hover {
 .card:hover img {
   transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen al pasar el ratón */
 }
+
+/* Estilo para el logo del pie de pagina de empresa  */
+.footer-logo-container img {
+  height: 30rem; /* Ocupa el 65% de la altura del viewport */
+   /* Mantiene la proporción original */
+  object-fit: contain; /* Asegura que la imagen no se recorte */
+  transition: transform 0.3s ease-in-out;
+}

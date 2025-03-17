@@ -3,107 +3,106 @@
 {% block title %}Editar Usuario{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5" style="position: relative; z-index: 1;">
+
+  <!-- Fondo de video -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+    <video autoplay loop muted style="object-fit: cover; width: 100%; height: 100%;">
+      <source src="{{ url_for('static', filename='videos/fondo.mp4') }}" type="video/mp4">
+      Tu navegador no soporta videos.
+    </video>
+  </div>
+
   {% if current_user.is_authenticated %}
-    <h2 class="text-center">Editar Usuario</h2>
-
-    <!-- Formulario para editar el usuario -->
-    <form action="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" method="POST" enctype="multipart/form-data">
-
-        
-        <!-- Si el usuario es admin, puede editar el nombre de usuario -->
-        {% if current_user.role == 'admin' %}
-        <div class="mb-3">
-            <label for="username" class="form-label">Usuario</label>
-            <input type="text" name="username" class="form-control" placeholder="Introduce el nombre de usuario" 
-                   value="{{ usuario.username or '' }}" required>
-        </div>
+    <div class="card shadow-lg mx-auto" style="max-width: 600px; margin-top: 80px; border-radius: 10px; overflow: hidden;">
+      
+      <!-- Foto de perfil -->
+      <div class="card-header text-center">
+        {% if usuario.foto %}
+        <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="rounded-circle mb-3" width="150" height="150">
         {% else %}
-        <!-- Si el usuario no es admin, no puede editar el nombre de usuario -->
-        <div class="mb-3">
-            <label for="username" class="form-label">Usuario</label>
-            <input type="text" name="username" class="form-control" placeholder="Introduce el nombre de usuario" 
-                   value="{{ usuario.username or '' }}" disabled>
-        </div>
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="rounded-circle mb-3" width="150" height="150">
         {% endif %}
+        
+        <!-- Nombre de usuario con efecto aerógrafo -->
+        <h3 class="text-dark" style="font-family: 'Permanent Marker', cursive; font-size: 3rem; font-weight: bold; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);">
+          {{ usuario.username }}
+        </h3>
+      </div>
 
-        <!-- Campo de nombre real -->
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" name="nombre" class="form-control" placeholder="Introduce el nombre del usuario" 
-                   value="{{ usuario.nombre or '' }}">
-        </div>
+      <!-- Formulario de edición -->
+      <div class="card-body" style="background-color: rgba(255, 255, 255, 0.8);">
+        <form action="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" method="POST" enctype="multipart/form-data">
+          
+          <!-- Campo de nombre de usuario (solo admin puede editar) -->
+          {% if current_user.role == 'admin' %}
+          <div class="mb-3">
+            <label for="username" class="form-label" style="font-weight: bold;">Usuario</label>
+            <input type="text" name="username" class="form-control" value="{{ usuario.username }}" required>
+          </div>
+          {% else %}
+          <div class="mb-3">
+            <label for="username" class="form-label" style="font-weight: bold;">Usuario</label>
+            <input type="text" name="username" class="form-control" value="{{ usuario.username }}" disabled>
+          </div>
+          {% endif %}
 
-        <!-- Campo de apellidos -->
-        <div class="mb-3">
-            <label for="apellidos" class="form-label">Apellidos</label>
-            <input type="text" name="apellidos" class="form-control" placeholder="Introduce los apellidos del usuario" 
-                   value="{{ usuario.apellidos or '' }}">
-        </div>
+          <!-- Campo de nombre real -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label" style="font-weight: bold;">Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="{{ usuario.nombre }}">
+          </div>
 
-        <!-- Campo de teléfono -->
-        <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" name="telefono" class="form-control" placeholder="Introduce el teléfono del usuario" 
-                   value="{{ usuario.telefono or '' }}">
-        </div>
+          <!-- Campo de apellidos -->
+          <div class="mb-3">
+            <label for="apellidos" class="form-label" style="font-weight: bold;">Apellidos</label>
+            <input type="text" name="apellidos" class="form-control" value="{{ usuario.apellidos }}">
+          </div>
 
-        <!-- Campo de dirección -->
-        <div class="mb-3">
-            <label for="direccion" class="form-label">Dirección</label>
-            <input type="text" name="direccion" class="form-control" placeholder="Introduce la dirección del usuario" 
-                   value="{{ usuario.direccion or '' }}">
-        </div>
+          <!-- Campo de teléfono -->
+          <div class="mb-3">
+            <label for="telefono" class="form-label" style="font-weight: bold;">Teléfono</label>
+            <input type="text" name="telefono" class="form-control" value="{{ usuario.telefono }}">
+          </div>
 
-        <!-- Campo de ciudad -->
-        <div class="mb-3">
-            <label for="ciudad" class="form-label">Ciudad</label>
-            <input type="text" name="ciudad" class="form-control" placeholder="Introduce la ciudad del usuario" 
-                   value="{{ usuario.ciudad or '' }}">
-        </div>
+          <!-- Campo de dirección -->
+          <div class="mb-3">
+            <label for="direccion" class="form-label" style="font-weight: bold;">Dirección</label>
+            <input type="text" name="direccion" class="form-control" value="{{ usuario.direccion }}">
+          </div>
 
-        <!-- Campo de país -->
-        <div class="mb-3">
-            <label for="pais" class="form-label">País</label>
-            <input type="text" name="pais" class="form-control" placeholder="Introduce el país del usuario" 
-                   value="{{ usuario.pais or '' }}">
-        </div>
+          <!-- Campo de ciudad -->
+          <div class="mb-3">
+            <label for="ciudad" class="form-label" style="font-weight: bold;">Ciudad</label>
+            <input type="text" name="ciudad" class="form-control" value="{{ usuario.ciudad }}">
+          </div>
 
-        <!-- Campo de correo electrónico -->
-        <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" name="email" class="form-control" placeholder="Introduce el correo electrónico del usuario" 
-                   value="{{ usuario.email or '' }}" required>
-        </div>
+          <!-- Campo de país -->
+          <div class="mb-3">
+            <label for="pais" class="form-label" style="font-weight: bold;">País</label>
+            <input type="text" name="pais" class="form-control" value="{{ usuario.pais }}">
+          </div>
 
-        <!-- Campo para cargar foto de perfil -->
-        <div class="mb-3">
-            <label for="foto" class="form-label">Modificar Foto de Perfil</label>
-            
-            <!-- Mostrar la imagen si existe -->
-            {% if usuario.foto %}
-            <div class="mb-3">
-                <img src="{{ url_for('uploads', user_id=usuario.id, filename=usuario.foto) }}" width="150" height="150" class="rounded-circle mb-3">
-            </div>
-            {% elif current_user.role == 'admin' %}
-            <div class="mb-3">
-                <img src="{{ url_for('static', filename='images/logo.jpg') }}" width="150" height="150" class="rounded-circle mb-3">
-            </div>
-            {% else %}
-            <div class="mb-3">
-                <span>No disponible</span>
-            </div>
-            {% endif %}
-            
-            <!-- Entrada para cargar nueva foto -->
+          <!-- Campo de correo electrónico -->
+          <div class="mb-3">
+            <label for="email" class="form-label" style="font-weight: bold;">Correo Electrónico</label>
+            <input type="email" name="email" class="form-control" value="{{ usuario.email }}" required>
+          </div>
+
+          <!-- Campo para cargar foto de perfil -->
+          <div class="mb-3">
+            <label for="foto" class="form-label" style="font-weight: bold;">Modificar Foto de Perfil</label>
             <input type="file" name="foto" class="form-control">
-        </div>
+          </div>
 
-        <!-- Botón para guardar los cambios -->
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    </form>
+          <!-- Botón para guardar los cambios -->
+          <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
   {% else %}
     <p>Debes iniciar sesión para editar tu perfil.</p>
   {% endif %}
 </div>
+
 {% endblock %}
