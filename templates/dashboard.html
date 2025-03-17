@@ -9,40 +9,78 @@
   </h2>
 
   <div class="row justify-content-center">
-    {% if current_user.foto %}
-    <!-- Foto de Perfil -->
-    <img src="{{ url_for('admin.uploads', filename=current_user.foto) }}" width="150" height="150" class="rounded-circle mb-3">
-
-
-    {% else %}
-    <!-- Foto predeterminada -->
-    <img
-      class="mb-4"
-      src="{{ url_for('static', filename='images/logo.jpg') }}"
-      alt="Logo"
-      width="50%"
-     
-    />
-    {% endif %}
-  </div>
-
-  <!-- Información del Usuario -->
-  <div class="col-md-6">
-    <div class="card shadow-lg mb-4" style="background-color: #f5f5dc; border-radius: 10px;">
-      <div class="card-header text-white" style="background-color: #003366;">
-        <h5>Información de Perfil</h5>
-      </div>
-      <div class="card-body" style="font-family: 'Times New Roman', serif; font-size: 1.1rem;">
-        <p><strong>Nombre:</strong> {{ current_user.nombre }} {{ current_user.apellidos }}</p>
-        <p><strong>Correo:</strong> {{ current_user.email }}</p>
-        <p><strong>Teléfono:</strong> {{ current_user.telefono or 'No disponible' }}</p>
-        <p><strong>Dirección:</strong> {{ current_user.direccion or 'No disponible' }}</p>
-        <p><strong>Ciudad:</strong> {{ current_user.ciudad or 'No disponible' }}</p>
-        <p><strong>País:</strong> {{ current_user.pais or 'No disponible' }}</p>
+    <!-- Contenedor Principal -->
+    <div class="col-md-3">
+      <!-- Foto de Perfil y Información del Usuario -->
+      <div class="card shadow-lg mb-4" style="background-color: #f5f5dc; border-radius: 10px;">
+        <div class="card-header text-white" style="background-color: #003366;">
+          <h5>Información de Perfil</h5>
+        </div>
+        <div class="card-body text-center">
+          {% if current_user.foto %}
+          <!-- Foto de Perfil -->
+          <img src="{{ url_for('admin.uploads', filename=current_user.foto) }}" width="150" height="150" class="rounded-circle mb-3">
+          {% else %}
+          <!-- Foto predeterminada -->
+          <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="mb-4" width="150" height="150" />
+          {% endif %}
+          
+          <p><strong>Nombre:</strong> {{ current_user.nombre }} {{ current_user.apellidos }}</p>
+          <p><strong>Correo:</strong> {{ current_user.email }}</p>
+          <p><strong>Teléfono:</strong> {{ current_user.telefono or 'No disponible' }}</p>
+          <p><strong>Dirección:</strong> {{ current_user.direccion or 'No disponible' }}</p>
+          <p><strong>Ciudad:</strong> {{ current_user.ciudad or 'No disponible' }}</p>
+          <p><strong>País:</strong> {{ current_user.pais or 'No disponible' }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}" class="btn btn-warning btn-sm">Editar Información</a>
+        </div>
       </div>
     </div>
+
+    <!-- Contenedor Central para Contenido Multimedia -->
+    <div class="col-md-6">
+      <div class="row">
+        <!-- Tarjetas de contenido multimedia -->
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Título del contenido</h5>
+              <p class="card-text">Descripción breve del contenido multimedia.</p>
+              <a href="#" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Título del contenido</h5>
+              <p class="card-text">Descripción breve del contenido multimedia.</p>
+              <a href="#" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Título del contenido</h5>
+              <p class="card-text">Descripción breve del contenido multimedia.</p>
+              <a href="#" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor Derecho (vacío por ahora) -->
+    <div class="col-md-3">
+      <!-- Aquí puedes agregar contenido adicional en el futuro -->
+    </div>
   </div>
-  
+
   <!-- Botones de Acción -->
   <div class="mt-5 text-center d-flex justify-content-center gap-4">
     <!-- Botón para editar el perfil -->
