@@ -11,6 +11,19 @@
 
     <h1 class="h3 mb-3 fw-normal text-center">Registrarse</h1>
 
+    <!-- Mostrar los mensajes flash aquí -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="mb-4">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} text-center">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <form method="POST">
       <div class="form-floating mb-3">
         <input type="text" name="username" class="form-control" id="floatingUsername" placeholder="Nombre de Usuario" required>

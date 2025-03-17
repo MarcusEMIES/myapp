@@ -1,7 +1,9 @@
-#Condifuracion de la base de datos models/__init__.py
-from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 # Instancia de la base de datos
 db = SQLAlchemy()
-# Inicializa las extensiones
+
+# Inicializa el manejador de Login
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'  # Redirige a la vista de login

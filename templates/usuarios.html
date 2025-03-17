@@ -4,6 +4,20 @@
 {% block content %}
 <div class="container mt-5">
   <h1 class="text-center">Lista de Usuarios</h1>
+
+  <!-- Mostrar mensajes flash -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-info">
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+
   <table class="table table-striped">
     <thead class="table-dark">
       <tr>
@@ -22,12 +36,7 @@
           <!-- Mostrar la foto de perfil -->
           <td>
             {% if usuario.foto %}
-              <img
-                src="{{ url_for('uploaded_file', filename=usuario.foto) }}"
-                width="50"
-                height="50"
-                class="rounded-circle"
-              />
+            <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="rounded-circle profile-image" />
             {% else %}
               <span>No disponible</span>
             {% endif %}
@@ -39,10 +48,17 @@
           <!-- Ocultar la celda del ID -->
 
           <td>
-            <a href="{{ url_for('editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm">✏️ Editar</a>
-            <form action="{{ url_for('borrar_usuario', user_id=usuario.id) }}" method="POST" style="display: inline">
-              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">🗑️ Eliminar</button>
-            </form>
+            <!-- Botón de editar, ahora accesible para todos los usuarios -->
+            {% if current_user.id == usuario.id or current_user.role == 'admin' %}
+            <a href="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm">✏️ Editar</a>
+            {% endif %}
+
+            <!-- Botón de eliminar, accesible solo para el admin -->
+            {% if current_user.role == 'admin' %}
+              <form action="{{ url_for('admin.borrar_usuario', user_id=usuario.id) }}" method="POST" style="display: inline">
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">🗑️ Eliminar</button>
+              </form>
+            {% endif %}
           </td>
         </tr>
       {% endfor %}

@@ -4,86 +4,106 @@
 
 {% block content %}
 <div class="container mt-5">
-  <h2 class="text-center">Editar Usuario</h2>
+  {% if current_user.is_authenticated %}
+    <h2 class="text-center">Editar Usuario</h2>
 
-  <!-- Formulario para editar el usuario -->
-  <form action="{{ url_for('editar_usuario', user_id=usuario.id) }}" method="POST" enctype="multipart/form-data">
-    
-    <!-- Campo de nombre de usuario (editable para todos los usuarios) -->
-    <div class="mb-3">
-        <label for="username" class="form-label">Usuario</label>
-        <input type="text" name="username" class="form-control" placeholder="Introduce el nombre de usuario" 
-               value="{{ usuario.username or '' }}" required>
-    </div>
+    <!-- Formulario para editar el usuario -->
+    <form action="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" method="POST" enctype="multipart/form-data">
 
-    <!-- Campo de nombre real -->
-    <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" name="nombre" class="form-control" placeholder="Introduce el nombre del usuario" 
-               value="{{ usuario.nombre or '' }}">
-    </div>
-
-    <!-- Campo de apellidos -->
-    <div class="mb-3">
-        <label for="apellidos" class="form-label">Apellidos</label>
-        <input type="text" name="apellidos" class="form-control" placeholder="Introduce los apellidos del usuario" 
-               value="{{ usuario.apellidos or '' }}">
-    </div>
-
-    <!-- Campo de teléfono -->
-    <div class="mb-3">
-        <label for="telefono" class="form-label">Teléfono</label>
-        <input type="text" name="telefono" class="form-control" placeholder="Introduce el teléfono del usuario" 
-               value="{{ usuario.telefono or '' }}">
-    </div>
-
-    <!-- Campo de dirección -->
-    <div class="mb-3">
-        <label for="direccion" class="form-label">Dirección</label>
-        <input type="text" name="direccion" class="form-control" placeholder="Introduce la dirección del usuario" 
-               value="{{ usuario.direccion or '' }}">
-    </div>
-
-    <!-- Campo de ciudad -->
-    <div class="mb-3">
-        <label for="ciudad" class="form-label">Ciudad</label>
-        <input type="text" name="ciudad" class="form-control" placeholder="Introduce la ciudad del usuario" 
-               value="{{ usuario.ciudad or '' }}">
-    </div>
-
-    <!-- Campo de país -->
-    <div class="mb-3">
-        <label for="pais" class="form-label">País</label>
-        <input type="text" name="pais" class="form-control" placeholder="Introduce el país del usuario" 
-               value="{{ usuario.pais or '' }}">
-    </div>
-
-    <!-- Campo de correo electrónico -->
-    <div class="mb-3">
-        <label for="email" class="form-label">Correo Electrónico</label>
-        <input type="email" name="email" class="form-control" placeholder="Introduce el correo electrónico del usuario" 
-               value="{{ usuario.email or '' }}" required>
-    </div>
-
-    <!-- Campo para cargar foto de perfil -->
-    <div class="mb-3">
-        <label for="foto" class="form-label">Modificar Foto de Perfil</label>
         
-        <!-- Mostrar la imagen si existe -->
+        <!-- Si el usuario es admin, puede editar el nombre de usuario -->
+        {% if current_user.role == 'admin' %}
         <div class="mb-3">
-            {% if usuario.foto %}
-              <img src="{{ url_for('uploads', user_id=usuario.id, filename=usuario.foto) }}" width="150" height="150" class="rounded-circle mb-3">
-            {% else %}
-              <span>No disponible</span>
-            {% endif %}
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" name="username" class="form-control" placeholder="Introduce el nombre de usuario" 
+                   value="{{ usuario.username or '' }}" required>
         </div>
-        
-        <!-- Entrada para cargar nueva foto -->
-        <input type="file" name="foto" class="form-control">
-    </div>
+        {% else %}
+        <!-- Si el usuario no es admin, no puede editar el nombre de usuario -->
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" name="username" class="form-control" placeholder="Introduce el nombre de usuario" 
+                   value="{{ usuario.username or '' }}" disabled>
+        </div>
+        {% endif %}
 
-    <!-- Botón para guardar los cambios -->
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-  </form>
+        <!-- Campo de nombre real -->
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" placeholder="Introduce el nombre del usuario" 
+                   value="{{ usuario.nombre or '' }}">
+        </div>
+
+        <!-- Campo de apellidos -->
+        <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" name="apellidos" class="form-control" placeholder="Introduce los apellidos del usuario" 
+                   value="{{ usuario.apellidos or '' }}">
+        </div>
+
+        <!-- Campo de teléfono -->
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" name="telefono" class="form-control" placeholder="Introduce el teléfono del usuario" 
+                   value="{{ usuario.telefono or '' }}">
+        </div>
+
+        <!-- Campo de dirección -->
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" name="direccion" class="form-control" placeholder="Introduce la dirección del usuario" 
+                   value="{{ usuario.direccion or '' }}">
+        </div>
+
+        <!-- Campo de ciudad -->
+        <div class="mb-3">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <input type="text" name="ciudad" class="form-control" placeholder="Introduce la ciudad del usuario" 
+                   value="{{ usuario.ciudad or '' }}">
+        </div>
+
+        <!-- Campo de país -->
+        <div class="mb-3">
+            <label for="pais" class="form-label">País</label>
+            <input type="text" name="pais" class="form-control" placeholder="Introduce el país del usuario" 
+                   value="{{ usuario.pais or '' }}">
+        </div>
+
+        <!-- Campo de correo electrónico -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" name="email" class="form-control" placeholder="Introduce el correo electrónico del usuario" 
+                   value="{{ usuario.email or '' }}" required>
+        </div>
+
+        <!-- Campo para cargar foto de perfil -->
+        <div class="mb-3">
+            <label for="foto" class="form-label">Modificar Foto de Perfil</label>
+            
+            <!-- Mostrar la imagen si existe -->
+            {% if usuario.foto %}
+            <div class="mb-3">
+                <img src="{{ url_for('uploads', user_id=usuario.id, filename=usuario.foto) }}" width="150" height="150" class="rounded-circle mb-3">
+            </div>
+            {% elif current_user.role == 'admin' %}
+            <div class="mb-3">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" width="150" height="150" class="rounded-circle mb-3">
+            </div>
+            {% else %}
+            <div class="mb-3">
+                <span>No disponible</span>
+            </div>
+            {% endif %}
+            
+            <!-- Entrada para cargar nueva foto -->
+            <input type="file" name="foto" class="form-control">
+        </div>
+
+        <!-- Botón para guardar los cambios -->
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+  {% else %}
+    <p>Debes iniciar sesión para editar tu perfil.</p>
+  {% endif %}
 </div>
 {% endblock %}
