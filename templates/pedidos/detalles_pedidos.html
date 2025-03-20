@@ -1,0 +1,41 @@
+<!-- templates/detalles_orden.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de la Orden</title>
+</head>
+<body>
+    <h1>Detalles de la Orden</h1>
+    <table>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+        </tr>
+        {% for detalle in detalles_orden %}
+        <tr>
+            <td>{{ detalle.product.nombre }}</td>
+            <td>{{ detalle.cantidad }}</td>
+            <td>{{ detalle.precio }}</td>
+            <td>{{ detalle.subtotal }}</td>
+            <td>
+                <!-- Formulario para actualizar el detalle de la orden -->
+                <form action="{{ url_for('ordenes.actualizar_detalle_orden', detalle_orden_id=detalle.id) }}" method="POST">
+                    <input type="number" name="cantidad" value="{{ detalle.cantidad }}" required>
+                    <input type="number" name="precio" value="{{ detalle.precio }}" required>
+                    <button type="submit">Actualizar</button>
+                </form>
+
+                <!-- Formulario para eliminar el detalle de la orden -->
+                <form action="{{ url_for('ordenes.eliminar_detalle_orden', detalle_orden_id=detalle.id) }}" method="POST">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

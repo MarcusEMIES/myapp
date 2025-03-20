@@ -64,3 +64,9 @@ def contacto():
 @tasks.route("/Portafolio")
 def portafolio():
     return render_template('portafolio.html')
+
+
+@tasks.route('/video')
+def video():
+    # Sirve el aclog.html con el video
+    return render_template('aclog.html')

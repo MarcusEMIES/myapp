@@ -1,0 +1,43 @@
+<!-- templates/reservas.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Reservas</title>
+</head>
+<body>
+    <h1>Mis Reservas</h1>
+
+    {% if reservas %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID Reserva</th>
+                    <th>Usuario</th>
+                    <th>Fecha de Reserva</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva.id }}</td>
+                        <td>{{ reserva.usuario.nombre }} {{ reserva.usuario.apellidos }}</td>
+                        <td>{{ reserva.creado_en.strftime('%d/%m/%Y %H:%M') }}</td>
+                        <td>{{ reserva.descripcion if reserva.descripcion else 'No hay descripción' }}</td>
+                        <td>
+                            <form action="{{ url_for('reservas.eliminar_reserva', reserva_id=reserva.id) }}" method="POST">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No tienes reservas en este momento.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Portafolio{% endblock %}
+{% block title %}Bodas{% endblock %}
 
 {% block content %}
 
-<div class="row py-lg-5">
+<div class="row py-lg-0">
   <!-- Imagen de fondo que cubre todo el ancho -->
   <div class="col-12 px-0">
     <img
@@ -15,11 +15,21 @@
     >
   </div>
 
-  <!-- Contenedor de navegación entre la imagen y las tarjetas -->
-  <div class="container-fluid text-center py-4" style="background-color: white;">
-    <h2 class="text-dark" style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; margin: 0;">
+<!-- Contenedor de navegación entre la imagen y las tarjetas -->
+<div class="container-fluid text-center py-4" style="background-color: white;">
+  <div class="d-flex justify-content-between align-items-center">
+    <!-- Título de "Explora más portfolios" -->
+    <h2 class="text-dark mb-0" style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
       Explora más portfolios
     </h2>
+    
+    <!-- Botón de colapso con logo (navbar-toggler) -->
+    <!-- Este botón será visible solo en dispositivos móviles y tabletas -->
+    <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none; background: transparent; margin-right: 15px;">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img" style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px;">
+    </button>
+  </div>
+
     <nav>
       <ul class="nav justify-content-between" style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
         <li class="nav-item">
@@ -32,7 +42,7 @@
           <a class="nav-link text-dark" href="{{ url_for('portafolios.retratosm') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Femeninos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{{ url_for('portafolios.comida') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Comida</a>
+          <a class="nav-link text-dark" href="{{ url_for('portafolios.comida') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gastronomica</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="{{ url_for('portafolios.bodas') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Bodas</a>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Portafolio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+          <!-- Imagen de fondo que cubre todo el ancho -->
+  <div class="col-12 px-0 pt-0">
+    <img
+      id="portfolio"
+      src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
+      class="img-fluid w-100"
+      alt="Album image"
+    >
+  </div>
+  
+    
+<!-- Contenedor de navegación entre la imagen y las tarjetas -->
+<div class="container-fluid text-center py-4" style="background-color: white;">
+  <div class="d-flex justify-content-between align-items-center">
+    <!-- Título de "Explora más portfolios" -->
+    <h2 class="text-dark mb-0" style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+      Explora más portfolios
+    </h2>
+    
+    <!-- Botón de colapso con logo (navbar-toggler) -->
+    <!-- Este botón será visible solo en dispositivos móviles y tabletas -->
+    <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none; background: transparent; margin-right: 15px;">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img" style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px;">
+    </button>
+  </div>
+
+<!-- Barra de navegación colapsable -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item me-3"> <!-- me-3 agrega margen a la derecha -->
+        <a class="nav-link text-dark" href="/Coches" style="font-weight: bold; font-size: 1.2rem;">Coches</a>
+      </li>
+      <li class="nav-item me-3"> <!-- me-3 agrega margen a la derecha -->
+        <a class="nav-link text-dark" href="/Retratos_Masculinos" style="font-weight: bold; font-size: 1.2rem;">Retratos Masculinos</a>
+      </li>
+      <li class="nav-item me-3"> <!-- me-3 agrega margen a la derecha -->
+        <a class="nav-link text-dark" href="/Retratos_Femeninos" style="font-weight: bold; font-size: 1.2rem;">Retratos Femeninos</a>
+      </li>
+      <li class="nav-item me-3"> <!-- me-3 agrega margen a la derecha -->
+        <a class="nav-link text-dark" href="/Comida" style="font-weight: bold; font-size: 1.2rem;">Gastronomica</a>
+      </li>
+      <li class="nav-item me-3"> <!-- me-3 agrega margen a la derecha -->
+        <a class="nav-link text-dark" href="/Bodas" style="font-weight: bold; font-size: 1.2rem;">Bodas</a>
+      </li>
+      <li class="nav-item me-3"> <!-- me-3 agrega margen a la derecha -->
+        <a class="nav-link text-dark" href="/Urbana" style="font-weight: bold; font-size: 1.2rem;">Urbana</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    </header>
+    
+    <main class="container">
+        {% block content %}{% endblock %}
+
+        <script>
+            // Obtener la referencia a la imagen del modal y al modal
+            const modalImage = document.getElementById('modalImage');
+            const imageModal = document.getElementById('imageModal');
+          
+            // Escuchar el evento 'show.bs.modal' que se dispara cuando se abre el modal
+            imageModal.addEventListener('show.bs.modal', function (event) {
+              // Obtener el botón que activó el modal (la imagen en miniatura)
+              const button = event.relatedTarget;
+              // Obtener el atributo 'data-bs-image' de la imagen clickeada
+              const imageUrl = button.getAttribute('data-bs-image');
+              // Actualizar el src de la imagen en el modal
+              modalImage.src = imageUrl;
+            });
+          </script>
+          
+    </main>
+    <!-- CSS para recuadro luminoso en el logo -->
+<style>
+    /* Estilo específico para el botón de portafolio */
+    .portfolio-btn img.logo-img {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Recuadro luminoso negro */
+    }
+  
+    .portfolio-btn img.logo-img:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 1); /* Recuadro luminoso negro con más intensidad en hover */
+      transform: scale(1.1); /* Efecto de aumento en tamaño al hacer hover */
+    }
+  
+    /* Visibilidad responsiva */
+    .portfolio-btn {
+      display: none;
+    }
+  
+    /* El botón será visible solo en pantallas pequeñas (por debajo de 992px) */
+    @media (max-width: 992px) {
+      .portfolio-btn {
+        display: block;
+      }
+    }
+  </style>
+</body>
+</html>

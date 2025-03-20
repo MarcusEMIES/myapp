@@ -1,0 +1,58 @@
+<!-- aclog.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intro Video</title>
+  <style>
+    /* Estilos para el video a pantalla completa */
+    body, html {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+
+    #intro-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Video a pantalla completa -->
+<div id="video-container">
+  <video id="intro-video" autoplay muted>
+    <source src="{{ url_for('static', filename='video/aclog.mp4') }}" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+  </video>
+</div>
+
+<script>
+  window.onload = function() {
+    var video = document.getElementById('intro-video');
+
+    // Cuando el video termine, redirigir al índice
+    video.onended = function() {
+      setTimeout(function() {
+        // Redirige automáticamente después de 1 segundo
+        window.location.href = '{{ url_for("index") }}';  // Redirige al index
+      }, 1000);  // Espera 1 segundo después de que termine el video
+    };
+  };
+</script>
+
+</body>
+</html>

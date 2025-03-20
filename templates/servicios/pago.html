@@ -1,0 +1,99 @@
+{% extends 'bases/baseservicios.html' %}
+
+{% block title %}Servicios de Fotografía{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>Servicios</h1>
+    <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
+</div>
+
+<div class="container py-3">
+  <header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94">
+          <title>Bootstrap</title>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284..."></path>
+        </svg>
+        <span class="fs-4">Servicios de Fotografía</span>
+      </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Inicio</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Servicios</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Contacto</a>
+        <a class="py-2 link-body-emphasis text-decoration-none" href="#">Precios</a>
+      </nav>
+    </div>
+
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal text-body-emphasis">Nuestros Planes</h1>
+      <p class="fs-5 text-body-secondary">
+        Elige el mejor plan para tus necesidades. Ofrecemos paquetes personalizados de fotografía con precios accesibles.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <!-- Paquete Básico -->
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Básico</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$50 <small class="text-body-secondary fw-light">/sesión</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Sesión de 30 min</li>
+              <li>5 fotos editadas</li>
+              <li>Entrega digital</li>
+            </ul>
+            <!-- Enlace al formulario de pago -->
+            <a href="{{ url_for('pago') }}" class="w-100 btn btn-lg btn-outline-primary">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paquete Estándar -->
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Estándar</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$100 <small class="text-body-secondary fw-light">/sesión</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Sesión de 1 hora</li>
+              <li>15 fotos editadas</li>
+              <li>Entrega digital y física</li>
+            </ul>
+            <!-- Enlace al formulario de pago -->
+            <a href="{{ url_for('pago') }}" class="w-100 btn btn-lg btn-primary">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paquete Premium -->
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Premium</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$200 <small class="text-body-secondary fw-light">/sesión</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Sesión de 2 horas</li>
+              <li>30 fotos editadas</li>
+              <li>Entrega digital, física y álbum impreso</li>
+            </ul>
+            <!-- Enlace al formulario de pago -->
+            <a href="{{ url_for('pago') }}" class="w-100 btn btn-lg btn-primary">Comprar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

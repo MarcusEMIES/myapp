@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Presets{% endblock %}
+
+{% block content %}
+<!-- Imagen de fondo -->
+<div class="col-12 px-0">
+    <img id="portfolio" src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}" class="img-fluid w-100" alt="Album image">
+</div>
+
+<!-- Contenedor de navegación con título y botón de colapso -->
+<div class="container-fluid py-4 bg-white">
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- Título siempre centrado -->
+        <h2 class="text-dark mb-0 title-responsive mx-auto">
+            Explora más portafolios
+        </h2>
+
+        <!-- Botón de colapso (para móviles) alineado a la derecha -->
+        <button class="navbar-toggler order-last me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav d-flex flex-wrap justify-content-center gap-4">
+                    <li class="nav-item"><a class="nav-link text-dark fw-bold fs-5" href="/Coches">Coches</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-bold fs-5" href="/Retratos_Masculinos">Retratos Masculinos</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-bold fs-5" href="/Retratos_Femeninos">Retratos Femeninos</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-bold fs-5" href="/Comida">Gastronómica</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-bold fs-5" href="/Bodas">Bodas</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-bold fs-5" href="/Urbana">Urbana</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Contenido adicional de la página -->
+<div class="container text-center mt-5">
+    <h1>Contacta conmigo</h1>
+    <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
+</div>
+
+{% endblock %}
+
+{% block custom_styles %}
+<!-- Estilos personalizados -->
+<style>
+    /* Título siempre centrado y adaptativo */
+    .title-responsive {
+        font-family: 'Permanent Marker', sans-serif;
+        font-size: clamp(2rem, 5vw, 3rem); /* Ajuste dinámico de tamaño */
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+
+    /* Distribución horizontal de los enlaces */
+    .navbar-nav {
+        gap: 30px;
+    }
+
+    /* Espaciado menor en móviles */
+    @media (max-width: 768px) {
+        .navbar-nav {
+            gap: 15px;
+        }
+    }
+
+    /* Ajuste de margen del toggle-bar para no pegarse al borde */
+    .navbar-toggler {
+        border: none;
+        background: transparent;
+    }
+
+    /* Margen extra en móviles para separación adecuada */
+    @media (max-width: 992px) {
+        .navbar-toggler {
+            margin-right: 15px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block custom_scripts %}
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='JavaScript.js') }}"></script>
+{% endblock %}
