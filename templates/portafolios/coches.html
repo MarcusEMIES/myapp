@@ -3,51 +3,61 @@
 {% block title %}Coches{% endblock %}
 
 {% block content %}
-  <!-- Imagen de fondo que cubre todo el ancho -->
-  <div class="col-12 px-0 pt-0">
-    <img
-      id="portfolio"
-      src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-      class="img-fluid w-100"
-      alt="Album image"
-    >
-  </div>
+<!-- Imagen de fondo que cubre todo el ancho -->
+<div class="col-12 px-0 pt-0" style="overflow: hidden; height: 400px;">
+  <img src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}" class="img-fluid"
+    style="object-fit: cover; width: 100%; height: 900px; object-position: 0 42%; max-width: 100%; max-height: 100%;">
+</div>
+
+
+
 
 <!-- Contenedor de navegación entre la imagen y las tarjetas -->
 <div class="container-fluid text-center py-4" style="background-color: white;">
   <div class="d-flex justify-content-between align-items-center">
     <!-- Título de "Explora más portfolios" -->
-    <h2 class="text-dark mb-0" style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+    <h2 class="text-dark mb-0"
+      style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
       Explora más portfolios
     </h2>
-    
+
     <!-- Botón de colapso con logo (navbar-toggler) -->
     <!-- Este botón será visible solo en dispositivos móviles y tabletas -->
-    <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none; background: transparent; margin-right: 15px;">
-      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img" style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px;">
+    <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+      style="border: none; background: transparent; margin-right: 15px;">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img"
+        style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px;">
     </button>
   </div>
 
 
   <nav>
-    <ul class="nav justify-content-between" style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
+    <ul class="nav justify-content-between"
+      style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.coches') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Coches</a>
+        <a class="nav-link text-dark" href="{{ url_for('tasks.coches') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Coches</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosh') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Masculinos</a>
+        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosh') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Masculinos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosm') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Femeninos</a>
+        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosm') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Femeninos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.comida') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gastronomica</a>
+        <a class="nav-link text-dark" href="{{ url_for('tasks.comida') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gastronomica</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.bodas') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Bodas</a>
+        <a class="nav-link text-dark" href="{{ url_for('tasks.bodas') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Bodas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.urbana') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Urbana</a>
+        <a class="nav-link text-dark" href="{{ url_for('tasks.urbana') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Urbana</a>
       </li>
     </ul>
   </nav>
@@ -55,445 +65,325 @@
 
 
 
-  <!-- Sección de album con tarjetas -->
-  <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<!-- Sección de album con tarjetas -->
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 1"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 1" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
           </div>
         </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c25.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 2"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c25.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c3.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 3"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c3.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 4 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c4.jpg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 4"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c4.jpg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 5 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c5.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 5"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c5.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 6 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c6.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 6"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c6.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 7 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c7.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 7"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c7.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 8 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c8.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 8"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c8.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 9 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c26.jpg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 9"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c26.jpg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 10 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c10.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 10"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c10.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 11 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c11.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 11"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c11.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 12 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c12.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 12"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c12.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 13 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c13.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 13"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c13.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 14 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c14.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 14"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c14.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 15 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c15.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 15"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c15.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 16 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c16.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 16"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c16.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 17 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c17.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 17"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c17.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 18 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c27.jpg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 18"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c27.jpg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 19 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c19.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 19"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c19.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 20 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c20.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 20"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c20.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 21 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c21.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 21"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c21.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 22 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c22.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 22"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c22.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 23 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c23.jpg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 23"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c23.jpg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 24 -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c24.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 24"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c24.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Aquí puedes agregar una descripción más adelante -->
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c25.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 2" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c25.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c3.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 3" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c3.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c4.jpg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 4" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c4.jpg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 5 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c5.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 5" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c5.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 6 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c6.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 6" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c6.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 7 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c7.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 7" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c7.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 8 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c8.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 8" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c8.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 9 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c26.jpg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 9" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c26.jpg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 10 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c10.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 10" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c10.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 11 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c11.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 11" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c11.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 12 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c12.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 12" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c12.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 13 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c13.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 13" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c13.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 14 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c14.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 14" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c14.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 15 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c15.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 15" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c15.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 16 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c16.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 16" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c16.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 17 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c17.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 17" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c17.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 18 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c27.jpg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 18" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c27.jpg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 19 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c19.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 19" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c19.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 20 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c20.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 20" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c20.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 21 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c21.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 21" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c21.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 22 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c22.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 22" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c22.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 23 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c23.jpg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 23" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c23.jpg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 24 -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c24.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 24" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c24.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Aquí puedes agregar una descripción más adelante -->
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 </div>
 
 <!-- Modal para ver la imagen -->

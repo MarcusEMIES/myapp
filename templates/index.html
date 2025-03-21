@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Inicio - Mi Aplicación{% endblock %}
+{% block title %}Inicio Home {% endblock %}
 
 {% block content %}
 <!-- Mostrar mensajes flash -->
@@ -19,7 +19,7 @@
 {% endwith %}
 
 <!-- Carrusel de imágenes -->
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel"style="margin-bottom 0 ; ">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="{{ url_for('static', filename='images/Coches/c26.jpg') }}" class="d-fluid w-100 img-fluid" alt="Carrousel3" style="object-position: 50% 90%; object-fit: cover; height: 500px;">
@@ -50,17 +50,37 @@
         </div>
     </div>
 </div>
-<div class="black-container">
-    <div class="container">
-      <ul class="nav-links">
-        <li><a href="#">Enlace 1</a></li>
-        <li><a href="#">Enlace 2</a></li>
-        <li><a href="#">Enlace 3</a></li>
-        <li><a href="#">Enlace 4</a></li>
-        <li><a href="#">Enlace 5</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black; margin-top: 0px; padding:3rem;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('tasks.dashboard') }}" style="font-weight: bold; font-size: 1.5rem;">Mi Aplicación</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('tasks.coches') }}" style="font-weight: bold; font-size: 1.2rem;">Coches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('tasks.retratosh') }}" style="font-weight: bold; font-size: 1.2rem;">Retratos Masculinos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('tasks.retratosm') }}" style="font-weight: bold; font-size: 1.2rem;">Retratos Femeninos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('tasks.comida') }}" style="font-weight: bold; font-size: 1.2rem;">Gastronomica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('tasks.bodas') }}" style="font-weight: bold; font-size: 1.2rem;">Bodas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('tasks.urbana') }}" style="font-weight: bold; font-size: 1.2rem;">Urbana</a>
+        </li>
       </ul>
     </div>
   </div>
+</nav>
+
   
   
 
@@ -274,6 +294,20 @@
   .nav-links a {
     font-size: 1.3rem; /* Reducir aún más el tamaño de la fuente */
   }
+}
+.navbar-custom {
+  background-color: black;
+}
+
+.navbar-custom .nav-link {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #f8f9fa; /* Color más claro para el hover si lo deseas */
 }
 
 
