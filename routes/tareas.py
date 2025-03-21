@@ -41,29 +41,33 @@ def about():
 def contacto():
     return render_template('contacto.html')
 
-# @tasks.route("/cCches")
-# def coches():
-#     return render_template('portafolios/coches.html')
+@tasks.route("/Coches")
+def coches():
+    return render_template('portafolios/coches.html')
 
-# @tasks.route("/Retrato_Masculino")
-# def retratoh():
-#     return render_template('portafolios/retratosh.html')
+@tasks.route("/Retrato_Masculino")
+def retratosh():
+    return render_template('portafolios/retratosh.html')
 
-# @tasks.route("/Retrato_Femenino")
-# def retratosm():
-#     return render_template('portafolios/retratosm.html')
+@tasks.route("/Retrato_Femenino")
+def retratosm():
+    return render_template('portafolios/retratosm.html')
 
-# @tasks.route("/Bodas")
-# def bodas():
-#     return render_template('portafolios/bodas.html')
+@tasks.route("/Bodas")
+def bodas():
+    return render_template('portafolios/bodas.html')
 
-# @tasks.route("/Urbana")
-# def urbana():
-#     return render_template('portafolios/urbana.html')
+@tasks.route("/Urbana")
+def urbana():
+    return render_template('portafolios/urbana.html')
 
 @tasks.route("/Portafolio")
 def portafolio():
     return render_template('portafolio.html')
+
+@tasks.route("/comida")
+def comida():
+    return render_template('portafolios/comida.html')
 
 
 @tasks.route('/video')

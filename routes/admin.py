@@ -20,7 +20,7 @@ def admin_dashboard():
 @login_required
 def listar_usuarios():
     usuarios = User.query.all()
-    return render_template('usuarios.html', usuarios=usuarios)
+    return render_template('tareas_admin/usuarios.html', usuarios=usuarios)
 
 def allowed_file(filename):
     """Verifica si el archivo tiene una extensión permitida."""
@@ -70,6 +70,25 @@ def editar_usuario(user_id):
         return redirect(url_for('admin.editar_usuario', user_id=user.id))
 
     return render_template('editar_usuario.html', usuario=user)
+
+
+@admin.route('/borrar_usuario/<int:user_id>', methods=['POST'])
+@login_required
+def borrar_usuario(user_id):
+    if current_user.role != 'admin':
+        flash("Acceso denegado.", "danger")
+        return redirect(url_for('tasks.dashboard'))
+
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    
+    flash("Usuario eliminado exitosamente", "success")
+    return redirect(url_for('admin.listar_usuarios'))
+
+
+
+# Ruta para la controlar la subida de archivos 
 @admin.route('/uploads/<filename>')
 def uploads(filename):
     return send_from_directory(Config.UPLOAD_FOLDER, filename)

@@ -29,32 +29,30 @@
   </div>
 
 
-  <!-- Barra de navegación colapsable -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/Coches" style="font-weight: bold; font-size: 1.2rem;">Coches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/Retratos_Masculinos" style="font-weight: bold; font-size: 1.2rem;">Retratos Masculinos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/Retratos_Femeninos" style="font-weight: bold; font-size: 1.2rem;">Retratos Femeninos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/Comida" style="font-weight: bold; font-size: 1.2rem;">Gastronomica</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/Bodas" style="font-weight: bold; font-size: 1.2rem;">Bodas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/Urbana" style="font-weight: bold; font-size: 1.2rem;">Urbana</a>
-        </li>
-      </ul>
-    </div>
+  <nav>
+    <ul class="nav justify-content-between" style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.coches') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Coches</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosh') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Masculinos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosm') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Femeninos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.comida') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gastronomica</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.bodas') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Bodas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.urbana') }}" style="font-weight: bold; font-size: 1.2rem; text-align: center;">Urbana</a>
+      </li>
+    </ul>
   </nav>
 </div>
+
 
 
   <!-- Sección de album con tarjetas -->

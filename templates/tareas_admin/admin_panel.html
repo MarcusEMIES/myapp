@@ -4,118 +4,123 @@
 
 {% block content %}
 
-  <!-- Imagen de fondo que cubre todo el ancho -->
-  <div class="col-12 px-0 pt-0">
-    <img
-      id="portfolio"
-      src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-      class="img-fluid w-100"
-      alt="Album image"
-    >
+<!-- Imagen de fondo que cubre todo el ancho -->
+<div class="col-12 px-0 pt-0">
+  <img id="portfolio" src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}" class="img-fluid w-100"
+    alt="Album image">
+</div>
+
+<!-- Contenedor de navegación entre la imagen y las tarjetas -->
+<div class="container-fluid text-center py-4" style="background-color: white;">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 class="text-dark mb-0"
+      style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+      Explora más portfolios
+    </h2>
+
+    <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+      style="border: none; background: transparent; margin-right: 15px;">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img"
+        style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px;">
+    </button>
   </div>
 
-  <!-- Contenedor de navegación entre la imagen y las tarjetas -->
-  <div class="container-fluid text-center py-4" style="background-color: white;">
-    <div class="d-flex justify-content-between align-items-center">
-      <h2 class="text-dark mb-0" style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
-        Explora más portfolios
-      </h2>
-    
-      <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none; background: transparent; margin-right: 15px;">
-        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img" style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px;">
-      </button>
-    </div>
+  <!-- Barra de navegación colapsable -->
+  <nav>
+    <ul class="nav justify-content-between"
+      style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.coches') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Coches</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosh') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Masculinos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosm') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Femeninos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.comida') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gastronomica</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.bodas') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Bodas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.urbana') }}"
+          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Urbana</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 
-    <!-- Barra de navegación colapsable -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item me-3">
-            <a class="nav-link text-dark" href="/Coches" style="font-weight: bold; font-size: 1.2rem;">Coches</a>
-          </li>
-          <li class="nav-item me-3">
-            <a class="nav-link text-dark" href="/Retratos_Masculinos" style="font-weight: bold; font-size: 1.2rem;">Retratos Masculinos</a>
-          </li>
-          <li class="nav-item me-3">
-            <a class="nav-link text-dark" href="/Retratos_Femeninos" style="font-weight: bold; font-size: 1.2rem;">Retratos Femeninos</a>
-          </li>
-          <li class="nav-item me-3">
-            <a class="nav-link text-dark" href="/Comida" style="font-weight: bold; font-size: 1.2rem;">Gastronomica</a>
-          </li>
-          <li class="nav-item me-3">
-            <a class="nav-link text-dark" href="/Bodas" style="font-weight: bold; font-size: 1.2rem;">Bodas</a>
-          </li>
-          <li class="nav-item me-3">
-            <a class="nav-link text-dark" href="/Urbana" style="font-weight: bold; font-size: 1.2rem;">Urbana</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-
-  <!-- Sección de album con tarjetas -->
-  <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <!-- Tarjeta de producto -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img
-              src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-              class="bd-placeholder-img card-img-top img-fluid"
-              alt="Imagen 1"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-bs-image="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-              style="object-fit: cover; height: 225px"
-            />
-            <div class="card-body">
-              <!-- Descripción del producto -->
-            </div>
-          </div>
-        </div>
-        <!-- Tarjeta de administración flotante a la derecha -->
-        <div class="col-md-4 offset-md-2">
-          <div class="card bg-dark text-white shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Panel de Administración</h5>
-              <p class="card-text">Realiza diversas tareas de administración desde aquí:</p>
-              <div class="d-grid gap-2">
-                <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-outline-light">Dashboard</a>
-                <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light">Usuarios</a>
-                <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}" class="btn btn-outline-light">Editar Perfil</a>
-                <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
-              </div>
-            </div>
+<!-- Sección de album con tarjetas -->
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <!-- Tarjeta de producto -->
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
+            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 1" data-bs-toggle="modal"
+            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
+            style="object-fit: cover; height: 225px" />
+          <div class="card-body">
+            <!-- Descripción del producto -->
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Modal para ver la imagen -->
-  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img id="modalImage" class="img-fluid" src="" alt="Imagen ampliada">
+      <!-- Tarjeta de administración flotante a la derecha -->
+      <div class="col-md-4 offset-md-2">
+        <div class="card bg-dark text-white shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Panel de Administración</h5>
+            <p class="card-text">Realiza diversas tareas de administración desde aquí:</p>
+            <div class="d-grid gap-2">
+              <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-outline-light">Dashboard</a>
+              <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light">Usuarios</a>
+              <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}"
+                class="btn btn-outline-light">Editar Perfil</a>
+              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
+              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
+              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
+              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
+              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-    // Obtener la referencia a la imagen del modal y al modal
-    const modalImage = document.getElementById('modalImage');
-    const imageModal = document.getElementById('imageModal');
+<!-- Modal para ver la imagen -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img id="modalImage" class="img-fluid" src="" alt="Imagen ampliada">
+      </div>
+    </div>
+  </div>
+</div>
 
-    // Escuchar el evento 'show.bs.modal' que se dispara cuando se abre el modal
-    imageModal.addEventListener('show.bs.modal', function (event) {
-      // Obtener la imagen de la tarjeta seleccionada
-      const button = event.relatedTarget;
-      const imageSrc = button.getAttribute('data-bs-image');
-      modalImage.src = imageSrc;
-    });
-  </script>
+<script>
+  // Obtener la referencia a la imagen del modal y al modal
+  const modalImage = document.getElementById('modalImage');
+  const imageModal = document.getElementById('imageModal');
+
+  // Escuchar el evento 'show.bs.modal' que se dispara cuando se abre el modal
+  imageModal.addEventListener('show.bs.modal', function (event) {
+    // Obtener la imagen de la tarjeta seleccionada
+    const button = event.relatedTarget;
+    const imageSrc = button.getAttribute('data-bs-image');
+    modalImage.src = imageSrc;
+  });
+</script>
 
 {% endblock %}
