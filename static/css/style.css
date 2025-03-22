@@ -256,4 +256,11 @@ body, html {
   }
 }
 
+/* Ajuste mid navbar index */
 
+#lemonada-mid-nav {
+  font-family: "Lemonada", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  }
