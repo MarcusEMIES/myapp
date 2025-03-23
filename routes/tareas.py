@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template
-from flask_login import login_required
+from flask_login import login_required, logout_user
+from datetime import datetime
+from flask import redirect, url_for, session, flash
 
 tasks = Blueprint('tasks', __name__)
 
@@ -74,3 +76,20 @@ def comida():
 def video():
     # Sirve el aclog.html con el video
     return render_template('aclog.html')
+
+# Controlador de Sesiones login
+
+
+
+# Decorador que asegura que la sesión no ha expirado
+def check_session_expiration(func):
+    def wrapper(*args, **kwargs):
+        # Verificar si la sesión ha expirado
+        if 'expires' in session:
+            expiration_time = datetime.fromisoformat(session['expires'])
+            if datetime.now() > expiration_time:
+                logout_user()  # Cerrar sesión si ha expirado
+                flash("Tu sesión ha expirado. Por favor, inicia sesión de nuevo.", "danger")
+                return redirect(url_for('auth.login'))  # Redirigir al login si la sesión expiró
+        return func(*args, **kwargs)
+    return wrapper

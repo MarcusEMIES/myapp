@@ -4,19 +4,24 @@
 
 {% block content %}
 <div class="container mt-5">
-  <h2 class="text-center mb-4" style="font-family: 'Georgia', serif; font-size: 2rem">
-    Bienvenido, {{ current_user.username }}!
-  </h2>
+  <h2 class="text-center mb-4" style="font-family: 'Lobster', cursive; font-size: 2rem">
+    Hola, {{ current_user.username }}! 
+  </h2><br>
+  <h1 class="text-center text-uppercase" style="font-family: 'Ewert', sans-serif; font-weight: bold; font-size: 36px; background: linear-gradient(to right, white, black); color: transparent; background-clip: text; -webkit-background-clip: text; transition: transform 0.3s ease;">
+    Enlaces Interactivos
+  </h1>
+  <br>
+  
 
-  <div class="row justify-content-center">
-    <!-- Contenedor Principal -->
-    <div class="col-md-3">
+  <div class="row justify-content-between">
+    <!-- Contenedor Principal (Información del Usuario) -->
+    <div class="col-md-4">
       <!-- Foto de Perfil y Información del Usuario -->
-      <div class="card shadow-lg mb-4" style="background-color: #f5f5dc; border-radius: 10px;">
+      <div class="card shadow-lg mb-4" style="background: linear-gradient(to right, #1b3a57, #5e0c53); border-radius: 10px; border: 2px solid #003366;">
         <div class="card-header text-white" style="background-color: #003366;">
           <h5>Información de Perfil</h5>
         </div>
-        <div class="card-body text-center">
+        <div class="card-body text-left">
           {% if current_user.foto %}
           <!-- Foto de Perfil -->
           <img src="{{ url_for('admin.uploads', filename=current_user.foto) }}" width="150" height="150" class="rounded-circle mb-3">
@@ -38,67 +43,107 @@
       </div>
     </div>
 
-    <!-- Contenedor Central para Contenido Multimedia -->
-    <div class="col-md-6">
-      <div class="row">
-        <!-- Tarjetas de contenido multimedia -->
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+    <!-- Contenedor Central para Enlaces -->
+    <div class="col-md-7">
+      <div class="row m-3">
+
+  
+        <!-- Enlace de Registro -->
+        <div class="col-md-4 mb-4 mt-0" style="margin: 1.5rem;">
+          <div class="card shadow-sm" style="background: linear-gradient(to right, #1b3a57, #5e0c53);">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="bd-placeholder-img card-img-top img-fluid" alt="Imagen" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/logo.jpg') }}" style="object-fit: cover; height: 225px" />
             <div class="card-body">
-              <h5 class="card-title">Título del contenido</h5>
-              <p class="card-text">Descripción breve del contenido multimedia.</p>
-              <a href="#" class="btn btn-primary">Ver más</a>
+              <h5 class="card-title text-center">¡Únete a nuestra comunidad!</h5>
+              <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-block">
+                <i class="fas fa-user-plus"></i> Regístrate
+              </a>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+  
+        <!-- Enlace de Iniciar Sesión -->
+        <div class="col-md-4 mb-4 mt-0" style="margin: 1.5rem;">
+          <div class="card shadow-sm" style="background: linear-gradient(to right, #1b3a57, #69064e);">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="bd-placeholder-img card-img-top img-fluid" alt="Imagen" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/logo.jpg') }}" style="object-fit: cover; height: 225px" />
             <div class="card-body">
-              <h5 class="card-title">Título del contenido</h5>
-              <p class="card-text">Descripción breve del contenido multimedia.</p>
-              <a href="#" class="btn btn-primary">Ver más</a>
+              <h5 class="card-title text-center">Ya eres miembro</h5>
+              <a href="{{ url_for('auth.login') }}" class="btn btn-secondary btn-block">
+                <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+              </a>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+  
+        <!-- Enlace a la Tienda -->
+        <div class="col-md-4 mb-4" style="margin: 1.5rem;">
+          <div class="card shadow-sm" style="background: linear-gradient(to right, #1b3a57, #3c0439);">
+            <img src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}" class="bd-placeholder-img card-img-top img-fluid" alt="Imagen" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c1.jpeg') }}" style="object-fit: cover; height: 225px" />
             <div class="card-body">
-              <h5 class="card-title">Título del contenido</h5>
-              <p class="card-text">Descripción breve del contenido multimedia.</p>
-              <a href="#" class="btn btn-primary">Ver más</a>
+              <h5 class="card-title text-center">Explora nuestra tienda</h5>
+              <a href="{{ url_for('static', filename='productos/productos1.html') }}" class="btn btn-success btn-block">
+                Ver Productos
+              </a>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Enlace a Redes Sociales -->
+        <div class="col-md-4 mb-4" style="margin: 1.5rem;">
+          <div class="card shadow-sm" style="background: linear-gradient(to right, #1b3a57, #3b063b);">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="bd-placeholder-img card-img-top img-fluid" alt="Imagen" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/logo.jpg') }}" style="object-fit: cover; height: 225px" />
+            <div class="card-body">
+              <h5 class="card-title text-center">Síguenos en redes</h5>
+              <a href="https://www.instagram.com/tuusuario" target="_blank" class="btn btn-info btn-block">
+                <i class="fab fa-instagram"></i> Instagram
+              </a>
+              <a href="https://www.facebook.com/tuusuario" target="_blank" class="btn btn-primary btn-block">
+                <i class="fab fa-facebook"></i> Facebook
+              </a>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Enlace al Blog -->
+        <div class="col-md-4 mb-4" style="margin: 1.5rem;">
+          <div class="card shadow-sm" style="background: linear-gradient(to right, #1b3a57, #17043d);">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="bd-placeholder-img card-img-top img-fluid" alt="Imagen" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/logo.jpg') }}" style="object-fit: cover; height: 225px" />
+            <div class="card-body">
+              <h5 class="card-title text-center">Lee nuestro blog</h5>
+              <a href="{{ url_for('index') }}" class="btn btn-light btn-block">
+                <i class="fas fa-newspaper"></i> Ir al blog
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Modal para ver la imagen -->
+      <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-body">
+              <!-- Imagen en el modal -->
+              <img id="modalImage" class="img-fluid" src="" alt="Imagen ampliada" style="max-width: 100%; max-height: 90vh;">
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Contenedor Derecho (vacío por ahora) -->
-    <div class="col-md-3">
-      <!-- Aquí puedes agregar contenido adicional en el futuro -->
-    </div>
   </div>
 
-  <!-- Botones de Acción -->
-  <div class="mt-5 text-center d-flex justify-content-center gap-4">
-    <!-- Botón para editar el perfil -->
-    <a href="{{ url_for('admin.listar_usuarios', user_id=current_user.id) }}" class="btn btn-outline-secondary mb-3" style="width: 200px; font-size: 1.1rem; padding: 12px 20px;">
-      <i class="bi bi-pencil-square"></i> Editar mi Perfil
-    </a>
+  <script>
+    // Obtener la referencia a la imagen del modal y al modal
+    const modalImage = document.getElementById('modalImage');
+    const imageModal = document.getElementById('imageModal');
 
-    {% if current_user.role == 'admin' %}
-    <!-- Botón de gestión de usuarios (solo para admin) -->
-    <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}" class="btn btn-outline-secondary mb-3" style="width: 200px; font-size: 1.1rem; padding: 12px 20px;">
-      Editar Usuario
-    </a>
-    {% endif %}
-    
-    <!-- Botón para cerrar sesión -->
-    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger mb-3" style="width: 200px; font-size: 1.1rem; padding: 12px 20px;">
-      <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
-    </a>
-  </div>
-</div>
+    // Escuchar el evento 'show.bs.modal' que se dispara cuando se abre el modal
+    imageModal.addEventListener('show.bs.modal', function (event) {
+      // Obtener el botón que activó el modal (la imagen en miniatura)
+      const button = event.relatedTarget;
+      // Obtener el atributo 'data-bs-image' de la imagen clickeada
+      const imageUrl = button.getAttribute('data-bs-image');
+      // Actualizar el src de la imagen en el modal
+      modalImage.src = imageUrl;
+    });
+  </script>
 {% endblock %}

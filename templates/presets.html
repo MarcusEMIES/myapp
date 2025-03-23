@@ -1,10 +1,42 @@
-{% extends 'base.html' %} {% block title %}Presets{%
-    endblock %} {% block content %}
-    
-    <div class="container text-center mt-5">
-      <h1>Bienvenido a mis presets</h1>
-      <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
-    
-    </div>
-    {% endblock %}
-    
+{% extends 'base.html' %} 
+{% block title %}Presets{% endblock %} 
+{% block content %}
+
+<div class="container text-center mt-5 p-5" style="object-fit: cover; height: 600px;">
+  <h1 class="epic-text">Bienvenido a mis presets</h1>
+
+  <!-- Video en segundo plano -->
+  <video id="background-video" autoplay loop muted playsinline class="background-video" style="position: absolute; width: 100%; height: 100%; object-fit: cover;">
+    <source src="{{ url_for('static', filename='video/aclog.mp4') }}" type="video/mp4">
+    Tu navegador no soporta videos.
+  </video>
+
+  <!-- Contenedor del contenido de la página, inicialmente oculto -->
+  <div id="page-content" style="display: none; opacity: 0; transition: opacity 1s ease-in;">
+    <!-- Aquí va el resto del contenido que se mostrará después de que el video desaparezca -->
+    <p>Este es el contenido que aparecerá después de 7 segundos.</p>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+    // Esperar 7 segundos para que el video se vea
+    setTimeout(function() {
+      var video = document.getElementById('background-video');
+      var content = document.getElementById('page-content');
+
+      // Hacer desaparecer el video gradualmente
+      video.style.transition = 'opacity 1s ease-out';  // Animación suave de desaparición
+      video.style.opacity = '0'; // Hace que el video desaparezca
+
+      // Detener el video
+      video.pause();
+
+      // Mostrar el contenido de la página después de que el video desaparezca
+      content.style.display = 'block';  // Mostrar el contenido
+      content.style.opacity = '1';      // Aparecer suavemente
+    }, 7000); // 7000 milisegundos = 7 segundos
+  });
+</script>
+
+{% endblock %}

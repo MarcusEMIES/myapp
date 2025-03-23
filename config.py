@@ -1,12 +1,20 @@
 import os
 from models.products import Product
+from datetime import timedelta
 
 class Config:
     """Clase base de configuración para la aplicación."""
 
     # Clave secreta para la aplicación (cambiar en producción)
     SECRET_KEY = os.environ.get('SECRET_KEY', 'Pa$$w0rd2024!')
-
+    
+    
+    # Aquí van otras configuraciones de tu app si las tienes
+    SESSION_TYPE = 'filesystem'  # Usar sesiones en archivos
+    PERMANENT_SESSION_LIFETIME = timedelta(minutes=2)  # Expiración de sesión tras 2 minutos
+    REMEMBER_COOKIE_DURATION = timedelta(minutes=2)  # Duración del cookie "remember me"
+    
+    
     # Configuración de la carpeta de uploads y extensiones permitidas
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))  # Directorio base
     INSTANCE_FOLDER = os.path.join(BASE_DIR, 'instance')  # Carpeta para las bases de datos

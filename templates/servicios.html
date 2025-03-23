@@ -3,12 +3,13 @@
 {% block title %}Servicios de Fotografía{% endblock %}
 
 {% block content %}
-<div class="container text-center mt-5">
-    <h1>Servicios</h1>
-    <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
+<div class="container text-center mt-5 luxurious-roman-regular">  <!-- Apply luxurious-roman-regular here -->
+ 
+  <h2 class="ewert-regular">Bienvenido</h2>  <!-- "Bienvenido" keeps the Ewert font -->
+  <h1 class="oswald-header">This is a title with Oswald font</h1>  <!-- Title uses Oswald font -->
 </div>
 
-<div class="container py-3">
+<div class="container py-3 luxurious-roman-regular">  <!-- Apply luxurious-roman-regular here as well -->
   <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
@@ -70,7 +71,7 @@
               <li>Entrega digital y física</li>
             </ul>
             <!-- Enlace al formulario de pago -->
-            <a href="{{ url_for('tasks.servicios') }}" class="w-100 btn btn-lg btn-primary">Comprar</a>
+            <a href="{{ url_for('tasks.servicios') }}" class="w-100 btn btn-lg btn-primary">Formación</a>
           </div>
         </div>
       </div>
@@ -82,14 +83,14 @@
             <h4 class="my-0 fw-normal">Premium</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">$200 <small class="text-body-secondary fw-light">/sesión</small></h1>
+            <h1 class="card-title pricing-card-title">$200 <small class="text-body-secondary fw-light">/Presets</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>Sesión de 2 horas</li>
               <li>30 fotos editadas</li>
               <li>Entrega digital, física y álbum impreso</li>
             </ul>
             <!-- Enlace al formulario de pago -->
-            <a href="{{ url_for('tasks.servicios') }}" class="w-100 btn btn-lg btn-primary">Comprar</a>
+            <a href="{{ url_for('tasks.servicios') }}" class="w-100 btn btn-lg btn-primary">Agendar Sesión</a>
           </div>
         </div>
       </div>

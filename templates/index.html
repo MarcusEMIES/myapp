@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block title %}Inicio Home {% endblock %} {% block
 content %}
-<!-- Mostrar mensajes flash -->
+<!-- Mostrar mensajes flash
 {% with messages = get_flashed_messages(with_categories=true) %} {% if messages
 %}
 <div class="container mt-3">
@@ -12,14 +12,14 @@ content %}
     </ul>
   </div>
 </div>
-{% endif %} {% endwith %}
+{% endif %} {% endwith %} -->
 
 <!-- Carrusel de imágenes -->
 <div
   id="carouselExampleSlidesOnly"
   class="carousel slide"
   data-bs-ride="carousel"
-  style="margin-bottom 0 ; "
+  style="margin-bottom: 0 ; "
 >
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -227,8 +227,12 @@ content %}
     <div class="col-12 col-md-6 mb-4">
       <div class="main-container">
         <!-- Sección con Pinterest -->
+   
+        
         <div class="section-container">
           <h2 class="elegant-title">Pinterest</h2>
+
+          
           <div class="text-center">
             <!-- iframe de Pinterest con un id para el control -->
             <iframe
@@ -242,6 +246,7 @@ content %}
             ></iframe>
           </div>
         </div>
+        
 
         <!-- Sección con Video -->
         <div class="section-container">

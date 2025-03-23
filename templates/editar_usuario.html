@@ -19,7 +19,7 @@
       <!-- Foto de perfil -->
       <div class="card-header text-center">
         {% if usuario.foto %}
-        <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="rounded-circle mb-3" width="150" height="150">
+        <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="rounded-circle mb-3" width="160" height="150">
         {% else %}
         <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="rounded-circle mb-3" width="150" height="150">
         {% endif %}

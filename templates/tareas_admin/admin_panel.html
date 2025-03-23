@@ -26,37 +26,55 @@
     </button>
   </div>
 
-  <!-- Barra de navegación colapsable -->
-  <nav>
-    <ul class="nav justify-content-between"
-      style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.coches') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Coches</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosh') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Masculinos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosm') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Femeninos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.comida') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gastronomica</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.bodas') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Bodas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.urbana') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Urbana</a>
-      </li>
-    </ul>
-  </nav>
-</div>
+<!-- Barra de navegación colapsable -->
+<nav>
+  <ul class="nav justify-content-between"
+    style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
+    
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{{ url_for('admin.dashboard') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Dashboard</a>
+    </li>
+
+    <!-- Usuarios -->
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{{ url_for('admin.users') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Usuarios</a>
+    </li>
+
+    <!-- Servicios Fotográficos -->
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{{ url_for('admin.services') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Servicios Fotográficos</a>
+    </li>
+
+    <!-- Cursos -->
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{{ url_for('admin.courses') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Cursos</a>
+    </li>
+
+    <!-- Productos -->
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{{ url_for('admin.products') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Productos</a>
+    </li>
+
+    <!-- Informes -->
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{{ url_for('admin.reports') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Informes</a>
+    </li>
+
+    <!-- Ajustes -->
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{{ url_for('admin.settings') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Ajustes</a>
+    </li>
+  </ul>
+</nav>
+
 
 <!-- Sección de album con tarjetas -->
 <div class="album py-5 bg-body-tertiary">
@@ -90,6 +108,9 @@
               <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
               <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
               <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
+              
+              <a href="#"><svg class="bi" width="16" height="16"><use xlink:href="#x-circle-fill"/></svg></a>
+         
             </div>
           </div>
         </div>

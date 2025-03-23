@@ -67,7 +67,7 @@ def editar_usuario(user_id):
         db.session.commit()
 
         flash("Usuario actualizado exitosamente", "success")
-        return redirect(url_for('admin.editar_usuario', user_id=user.id))
+        return redirect(url_for('tasks.dashboard', user_id=user.id))
 
     return render_template('editar_usuario.html', usuario=user)
 

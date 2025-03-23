@@ -1,9 +1,11 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block title %}Lista de Usuarios{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h1 class="text-center">Lista de Usuarios</h1>
+<div class="container mt-5 mb-3 " style="position: relative; z-index: 1;">
+  <h1 class="text-center text-uppercase" style="font-family: 'Ewert', sans-serif; font-weight: bold; font-size: 36px; background: linear-gradient(to right, white, black); background-clip: text; color: transparent; transition: transform 0.3s ease;">
+    Lista de Usuarios
+  </h1>
 
   <!-- Mostrar mensajes flash -->
   {% with messages = get_flashed_messages() %}
@@ -18,51 +20,175 @@
     {% endif %}
   {% endwith %}
 
-  <table class="table table-striped">
-    <thead class="table-dark">
-      <tr>
-        <!-- Columna de Foto -->
-        <th>Foto</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th style="display: none">ID</th>
-        <!-- Ocultar la columna de ID -->
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for usuario in usuarios %}
-        <tr>
-          <!-- Mostrar la foto de perfil -->
-          <td>
-            {% if usuario.foto %}
-            <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="rounded-circle profile-image" />
-            {% else %}
-              <span>No disponible</span>
-            {% endif %}
-          </td>
+  <div class="row ">
+    {% for usuario in usuarios %}
+      <!-- Mostrar solo el usuario autenticado o el admin -->
+      {% if current_user.id == usuario.id or current_user.role == 'admin' %}
+        <div class="col-md-4 mb-4">
+          <div class="user-container" style="background: linear-gradient(to right, #1b3a57, #874f01);">
+            <div class="user-info">
+              <!-- Foto de perfil -->
+              <div class="user-photo" style="padding-top: 20px;"> <!-- Añadir padding-top -->
+                {% if usuario.foto %}
+                  <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="rounded-circle profile-image" />
+                {% else %}
+                  <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="mb-4" width="150" height="150" style="border-radius: 3rem;" />
+                {% endif %}
+              </div>
 
-          <td>{{ usuario.username }}</td>
-          <td>{{ usuario.email }}</td>
-          <td style="display: none">{{ usuario.id }}</td>
-          <!-- Ocultar la celda del ID -->
+              <div class="user-details">
+                <h5>{{ usuario.username }}</h5>
+                <p>{{ usuario.email }}</p>
+              </div>
+              
+              <!-- Botones flotantes -->
+              <div class="user-actions">
+                {% if current_user.id == usuario.id or current_user.role == 'admin' %}
+                  <a href="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm btn-floating">
+                    📸 Editar
+                  </a>
+                {% endif %}
 
-          <td>
-            <!-- Botón de editar, ahora accesible para todos los usuarios -->
-            {% if current_user.id == usuario.id or current_user.role == 'admin' %}
-            <a href="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm">✏️ Editar</a>
-            {% endif %}
-
-            <!-- Botón de eliminar, accesible solo para el admin -->
-            {% if current_user.role == 'admin' %}
-              <form action="{{ url_for('admin.borrar_usuario', user_id=usuario.id) }}" method="POST" style="display: inline">
-                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">🗑️ Eliminar</button>
-              </form>
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+                {% if current_user.role == 'admin' %}
+                  <form action="{{ url_for('admin.borrar_usuario', user_id=usuario.id) }}" method="POST" style="display: inline">
+                    <button type="submit" class="btn btn-danger btn-sm btn-floating" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
+                      💀 Eliminar
+                    </button>
+                  </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>
+
+{% endblock %}
+
+{% block extra_css %}
+<!-- Incluir fuente Ewert desde Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ewert&display=swap" rel="stylesheet">
+
+<style>
+  /* Fondo de video */
+  body {
+    background: url('https://path_to_your_video.mp4') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+  }
+
+  /* Estilo del contenedor principal */
+  .container {
+    padding: 40px;
+  }
+
+  /* Estilo de cada contenedor de usuario */
+  .user-container {
+    background: linear-gradient(to right, #1b3a57, #e63946); /* Degradado azul a fucsia */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+  }
+
+  .user-container:hover {
+    transform: translateY(-5px); /* Efecto hover de elevación */
+  }
+
+  .user-info {
+    text-align: center;
+  }
+
+  .user-photo img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+  }
+
+  .user-details h5 {
+    font-family: 'Ewert', sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, white, black);
+    -webkit-background-clip: text; /* Solo para Webkit browsers */
+    background-clip: text; /* Usado para otros navegadores */
+    color: transparent;
+  }
+
+  .user-details p {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .user-actions {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Estilo de los botones flotantes */
+  .btn-floating {
+    position: absolute;
+    top: -10px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-floating:hover {
+    transform: scale(1.1);
+  }
+
+  /* Estilo de los botones de editar */
+  .btn-warning {
+    background-color: #f7c948; /* Dorado */
+    color: black;
+    font-weight: bold;
+  }
+
+  .btn-danger {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #e63946; /* Rojo elegante */
+    cursor: pointer;
+  }
+
+  .btn-warning:hover {
+    opacity: 0.8;
+  }
+
+  .btn-danger:hover {
+    opacity: 0.8;
+  }
+
+  /* Efecto de flotado en el título de la página */
+  h1:hover {
+    transform: translateY(-10px); /* Eleva el título al pasar el ratón */
+  }
+
+  /* Ajustes responsive */
+  @media (max-width: 768px) {
+    .user-container {
+      margin: 1rem;
+    }
+
+    .user-photo img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+</style>
 {% endblock %}
