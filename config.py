@@ -11,8 +11,12 @@ class Config:
     
     # Aquí van otras configuraciones de tu app si las tienes
     SESSION_TYPE = 'filesystem'  # Usar sesiones en archivos
-    PERMANENT_SESSION_LIFETIME = timedelta(minutes=2)  # Expiración de sesión tras 2 minutos
-    REMEMBER_COOKIE_DURATION = timedelta(minutes=2)  # Duración del cookie "remember me"
+    # PERMANENT_SESSION_LIFETIME = timedelta(minutes=None)  # Expiración de sesión tras 2 minutos
+    # REMEMBER_COOKIE_DURATION = timedelta(minutes=2)  # Duración del cookie "remember me"
+    SESSION_TYPE = 'filesystem'  # Usar sesiones en archivos
+    PERMANENT_SESSION_LIFETIME = timedelta(days=7)  # Expiración de sesión en 7 días
+    REMEMBER_COOKIE_DURATION = timedelta(days=7)  # Duración del cookie "remember me" por 7 días
+
     
     
     # Configuración de la carpeta de uploads y extensiones permitidas

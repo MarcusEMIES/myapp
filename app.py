@@ -1,15 +1,14 @@
 # app.py
 
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, flash, redirect, url_for
 from config import Config
 from models import db, login_manager
 from routes import init_app
 from models.users import User
 from flask_migrate import Migrate
-from datetime import datetime,timedelta # Corregido de "datatime" a "datetime"
+from datetime import datetime, timedelta  # Corregido de "datatime" a "datetime"
 import os
-from flask_login import current_user
-
+from flask_login import current_user, login_required
 
 # Crear carpetas necesarias si no existen
 os.makedirs(Config.INSTANCE_FOLDER, exist_ok=True)
@@ -54,6 +53,11 @@ def check_session_expiration():
         if datetime.now() > expiration_time:
             flash("Tu sesión ha expirado.", "warning")
             return redirect(url_for('auth.login'))
+        
+# Esto asegura que la sesión sea "permanente" mientras el usuario esté activo
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
 
 
 

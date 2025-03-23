@@ -71,6 +71,10 @@ def portafolio():
 def comida():
     return render_template('portafolios/comida.html')
 
+@tasks.route("/Mis Productos")
+def productos():
+    return render_template('productos/productos1.html')
+
 
 @tasks.route('/video')
 def video():

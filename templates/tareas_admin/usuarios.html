@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+
 {% block title %}Lista de Usuarios{% endblock %}
 
 {% block content %}
-<div class="container mt-5 mb-3 " style="position: relative; z-index: 1;">
+<div class="container mt-5 mb-3" style="position: relative; z-index: 1;">
   <h1 class="text-center text-uppercase" style="font-family: 'Ewert', sans-serif; font-weight: bold; font-size: 36px; background: linear-gradient(to right, white, black); background-clip: text; color: transparent; transition: transform 0.3s ease;">
     Lista de Usuarios
   </h1>
@@ -20,49 +21,80 @@
     {% endif %}
   {% endwith %}
 
-  <div class="row ">
+  <!-- Solo muestra esta sección si el usuario es admin -->
+  {% if current_user.role == 'admin' %}
+  <div class="row">
     {% for usuario in usuarios %}
-      <!-- Mostrar solo el usuario autenticado o el admin -->
-      {% if current_user.id == usuario.id or current_user.role == 'admin' %}
-        <div class="col-md-4 mb-4">
-          <div class="user-container" style="background: linear-gradient(to right, #1b3a57, #874f01);">
-            <div class="user-info">
-              <!-- Foto de perfil -->
-              <div class="user-photo" style="padding-top: 20px;"> <!-- Añadir padding-top -->
-                {% if usuario.foto %}
-                  <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="rounded-circle profile-image" />
-                {% else %}
-                  <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="mb-4" width="150" height="150" style="border-radius: 3rem;" />
-                {% endif %}
-              </div>
+      <!-- Mostrar solo los usuarios si el usuario es admin -->
+      <div class="col-md-4 mb-4">
+        <div class="user-container" style="background: linear-gradient(to right, #1b3a57, #874f01);">
+          <div class="user-info">
+            <!-- Foto de perfil -->
+            <div class="user-photo" style="padding-top: 20px;">
+              {% if usuario.foto %}
+                <img src="{{ url_for('admin.uploads', user_id=usuario.id, filename=usuario.foto) }}" class="mb-4" width="150" height="150" style="border-radius: 3rem;" />
+              {% else %}
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="mb-4" width="150" height="150" style="border-radius: 3rem;" />
+              {% endif %}
+            </div>
 
-              <div class="user-details">
-                <h5>{{ usuario.username }}</h5>
-                <p>{{ usuario.email }}</p>
-              </div>
-              
-              <!-- Botones flotantes -->
-              <div class="user-actions">
-                {% if current_user.id == usuario.id or current_user.role == 'admin' %}
-                  <a href="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm btn-floating">
-                    📸 Editar
-                  </a>
-                {% endif %}
+            <div class="user-details">
+              <h5>{{ usuario.username }}</h5>
+              <p>{{ usuario.email }}</p>
+            </div>
 
-                {% if current_user.role == 'admin' %}
-                  <form action="{{ url_for('admin.borrar_usuario', user_id=usuario.id) }}" method="POST" style="display: inline">
-                    <button type="submit" class="btn btn-danger btn-sm btn-floating" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
-                      💀 Eliminar
-                    </button>
-                  </form>
-                {% endif %}
-              </div>
+            <!-- Botones flotantes -->
+            <div class="user-actions">
+              <a href="{{ url_for('admin.editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm btn-floating">
+                📸 Editar
+              </a>
+
+              <form action="{{ url_for('admin.borrar_usuario', user_id=usuario.id) }}" method="POST" style="display: inline">
+                <button type="submit" class="btn btn-danger btn-sm btn-floating" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
+                  💀 Eliminar
+                </button>
+              </form>
             </div>
           </div>
         </div>
-      {% endif %}
+      </div>
     {% endfor %}
   </div>
+
+  <!-- Panel de administración solo visible para el admin -->
+  <h5 class="card-title mt-5">Panel de Administración</h5>
+  <p class="card-text">Realiza diversas tareas de administración desde aquí:</p>
+  <div class="d-grid gap-2">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+      <div class="col mb-2">
+        <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-outline-light w-100">Dashboard</a>
+      </div>
+      <div class="col mb-2">
+        <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light w-100">Gestionar Usuarios</a>
+      </div>
+      <div class="col mb-2">
+        <a href="{{ url_for('tasks.servicios') }}" class="btn btn-outline-light w-100">Servicios Fotográficos</a>
+      </div>
+      <div class="col mb-2">
+        <a href="{{ url_for('tasks.formacion') }}" class="btn btn-outline-light w-100">Cursos</a>
+      </div>
+      <div class="col mb-2">
+        <a href="{{ url_for('tasks.productos') }}" class="btn btn-outline-light w-100">Productos</a>
+      </div>
+      <div class="col mb-2">
+        <a href="{{ url_for('admin.reports') }}" class="btn btn-outline-light w-100">Ver Informes</a>
+      </div>
+      <div class="col mb-2">
+        <a href="{{ url_for('admin.admin_panel') }}" class="btn btn-outline-light w-100">Ajustes</a>
+      </div>
+      <div class="col mb-2">
+        <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light w-100">Cerrar sesión</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+    <p class="alert alert-warning">No tienes permiso para ver esta página.</p>
+  {% endif %}
 </div>
 
 {% endblock %}

@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Añadir Productos{% endblock %}
+{% block title %}Panel de Administración{% endblock %}
 
 {% block content %}
+
+<!-- Verificamos si el usuario es admin -->
+{% if current_user.is_authenticated and current_user.role == 'admin' %}
 
 <!-- Imagen de fondo que cubre todo el ancho -->
 <div class="col-12 px-0 pt-0" style="overflow: hidden; height: 400px;">
@@ -15,7 +18,7 @@
   <div class="d-flex justify-content-between align-items-center">
     <h2 class="text-dark mb-0"
       style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
-      Explora más portfolios
+      Panel de Administración
     </h2>
 
     <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -33,31 +36,31 @@
     
     <!-- Dashboard -->
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.dashboard') }}"
+      <a class="nav-link text-dark" href="{{ url_for('tasks.dashboard') }}"
         style="font-weight: bold; font-size: 1.2rem; text-align: center;">Dashboard</a>
     </li>
 
     <!-- Usuarios -->
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.users') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Usuarios</a>
+      <a class="nav-link text-dark" href="{{ url_for('admin.listar_usuarios') }}"
+        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gestionar Usuarios</a>
     </li>
 
     <!-- Servicios Fotográficos -->
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.services') }}"
+      <a class="nav-link text-dark" href="{{ url_for('tasks.servicios') }}"
         style="font-weight: bold; font-size: 1.2rem; text-align: center;">Servicios Fotográficos</a>
     </li>
 
     <!-- Cursos -->
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.courses') }}"
+      <a class="nav-link text-dark" href="{{ url_for('tasks.formacion') }}"
         style="font-weight: bold; font-size: 1.2rem; text-align: center;">Cursos</a>
     </li>
 
     <!-- Productos -->
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.products') }}"
+      <a class="nav-link text-dark" href="{{ url_for('tasks.productos') }}"
         style="font-weight: bold; font-size: 1.2rem; text-align: center;">Productos</a>
     </li>
 
@@ -69,29 +72,16 @@
 
     <!-- Ajustes -->
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.settings') }}"
+      <a class="nav-link text-dark" href="{{ url_for('admin.admin_panel') }}"
         style="font-weight: bold; font-size: 1.2rem; text-align: center;">Ajustes</a>
     </li>
   </ul>
 </nav>
 
-
-<!-- Sección de album con tarjetas -->
+Sección de administración
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <!-- Tarjeta de producto -->
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-            class="bd-placeholder-img card-img-top img-fluid" alt="Imagen 1" data-bs-toggle="modal"
-            data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='images/Coches/c1.jpeg') }}"
-            style="object-fit: cover; height: 225px" />
-          <div class="card-body">
-            <!-- Descripción del producto -->
-          </div>
-        </div>
-      </div>
       <!-- Tarjeta de administración flotante a la derecha -->
       <div class="col-md-4 offset-md-2">
         <div class="card bg-dark text-white shadow-sm">
@@ -99,18 +89,14 @@
             <h5 class="card-title">Panel de Administración</h5>
             <p class="card-text">Realiza diversas tareas de administración desde aquí:</p>
             <div class="d-grid gap-2">
-              <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-outline-light">Dashboard</a>
-              <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light">Usuarios</a>
-              <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}"
-                class="btn btn-outline-light">Editar Perfil</a>
-              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
-              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
-              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
-              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
-              <a href="{{ url_for('admin.subir_imagen') }}" class="btn btn-outline-light">Subir Imagen</a>
-              
-              <a href="#"><svg class="bi" width="16" height="16"><use xlink:href="#x-circle-fill"/></svg></a>
-         
+              <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-outline-light">Dashboard</a>
+              <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light">Gestionar Usuarios</a>
+              <a href="{{ url_for('tasks.servicios') }}" class="btn btn-outline-light">Servicios Fotográficos</a>
+              <a href="{{ url_for('tasks.formacion') }}" class="btn btn-outline-light">Cursos</a>
+              <a href="{{ url_for('tasks.productos') }}" class="btn btn-outline-light">Productos</a>
+              <a href="{{ url_for('admin.reports') }}" class="btn btn-outline-light">Ver Informes</a>
+              <a href="{{ url_for('admin.admin_panel') }}" class="btn btn-outline-light">Ajustes</a>
+              <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light">Cerrar sesión</a>
             </div>
           </div>
         </div>
@@ -118,6 +104,38 @@
     </div>
   </div>
 </div>
+
+<h5 class="card-title">Panel de Administración</h5>
+<p class="card-text">Realiza diversas tareas de administración desde aquí:</p>
+<div class="d-grid gap-2">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    <div class="col mb-2">
+      <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-outline-light w-100">Dashboard</a>
+    </div>
+    <div class="col mb-2">
+      <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light w-100">Gestionar Usuarios</a>
+    </div>
+    <div class="col mb-2">
+      <a href="{{ url_for('tasks.servicios') }}" class="btn btn-outline-light w-100">Servicios Fotográficos</a>
+    </div>
+    <div class="col mb-2">
+      <a href="{{ url_for('tasks.formacion') }}" class="btn btn-outline-light w-100">Cursos</a>
+    </div>
+    <div class="col mb-2">
+      <a href="{{ url_for('tasks.productos') }}" class="btn btn-outline-light w-100">Productos</a>
+    </div>
+    <div class="col mb-2">
+      <a href="{{ url_for('admin.reports') }}" class="btn btn-outline-light w-100">Ver Informes</a>
+    </div>
+    <div class="col mb-2">
+      <a href="{{ url_for('admin.admin_panel') }}" class="btn btn-outline-light w-100">Ajustes</a>
+    </div>
+    <div class="col mb-2">
+      <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light w-100">Cerrar sesión</a>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal para ver la imagen -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
@@ -143,5 +161,13 @@
     modalImage.src = imageSrc;
   });
 </script>
+
+{% else %}
+  <!-- Si el usuario no es admin, mostramos un mensaje de acceso denegado -->
+  <div class="container text-center">
+    <h2 class="text-danger">Acceso Denegado</h2>
+    <p>Solo los administradores pueden acceder a esta página.</p>
+  </div>
+{% endif %}
 
 {% endblock %}

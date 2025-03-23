@@ -16,15 +16,6 @@ def admin_dashboard():
         return redirect(url_for('tasks.dashboard'))
     return render_template('admin.html')
 
-@admin.route('/usuarios')
-@login_required
-def listar_usuarios():
-    usuarios = User.query.all()
-    return render_template('tareas_admin/usuarios.html', usuarios=usuarios)
-
-def allowed_file(filename):
-    """Verifica si el archivo tiene una extensión permitida."""
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
 
 @admin.route('/editar_usuario/<int:user_id>', methods=['GET', 'POST'])
@@ -122,6 +113,69 @@ def subir_imagen():
         else:
             flash("Archivo no permitido. Asegúrate de que la imagen tenga una extensión válida.", "danger")
     return render_template('subir_imagen.html')
+
+
+
+
+# 1. Gestión de Usuarios
+@admin.route('/usuarios')
+@login_required
+def listar_usuarios():
+    usuarios = User.query.all()
+    return render_template('tareas_admin/usuarios.html', usuarios=usuarios)
+
+def allowed_file(filename):
+    """Verifica si el archivo tiene una extensión permitida."""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
+
+# 2. Administración de Contenidos
+@admin.route('/contenido')
+@login_required
+def administracion_contenido():
+    return render_template('tareas_admin/administracion_contenido.html')
+
+# 3. Seguridad y Accesos
+@admin.route('/seguridad')
+@login_required
+def seguridad_accesos():
+    return render_template('tareas_admin/seguridad_accesos.html')
+
+# 4. Gestión de Correos y Notificaciones
+@admin.route('/correo')
+@login_required
+def gestion_correos():
+    return render_template('tareas_admin/gestion_correos.html')
+
+# 5. Configuración del Sitio
+@admin.route('/configuracion')
+@login_required
+def configuracion_sitio():
+    return render_template('tareas_admin/configuracion_sitio.html')
+
+# 6. Monitoreo y Análisis
+@admin.route('/monitoreo')
+@login_required
+def monitoreo_analisis():
+    return render_template('tareas_admin/monitoreo_analisis.html')
+
+# 7. Gestión de Pagos y Finanzas
+@admin.route('/Pagos')
+@login_required
+def gestion_pagos():
+    return render_template('tareas_admin/gestion_pagos.html')
+
+# 8. Administración de Base de Datos
+@admin.route('/Bases_de_datos')
+@login_required
+def administracion_base_datos():
+    return render_template('tareas_admin/administracion_base_datos.html')
+
+#9 Imprimir reportes
+@admin.route('/Reportes')
+@login_required
+def reports():
+    # Aquí va la lógica para generar y mostrar los reportes
+    return render_template('tareas_admin/printreport.html')
 
 
 
