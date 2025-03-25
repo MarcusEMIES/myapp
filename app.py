@@ -7,6 +7,9 @@ from routes import init_app
 from models.users import User
 from flask_migrate import Migrate
 from datetime import datetime, timedelta  # Corregido de "datatime" a "datetime"
+from models.reserva import Reserva
+from models.products import Product
+# Importar el Blueprint
 import os
 from flask_login import current_user, login_required
 
@@ -58,6 +61,11 @@ def check_session_expiration():
 @app.before_request
 def make_session_permanent():
     session.permanent = True
+    
+# Crear la base de datos si no existe
+with app.app_context():
+    db.create_all()  # Crea las tablas si no existen
+
 
 
 

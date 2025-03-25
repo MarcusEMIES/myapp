@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Packs de Bodas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Packs de Bodas</h1>
+    <p class="text-center">Inmortalizamos el día más importante de tu vida.</p>
+</div>
+<div class="d-flex justify-content-center gap-3 mt-4">
+    <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
+    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-primary">👤 Mi Perfil</a>
+    <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Reservar Sesión</a>
+    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
+</div>
+
+{% endblock %}

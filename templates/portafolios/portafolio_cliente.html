@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header id="frame-panel">
+    <a href="{{ url_for('index') }}" class="btn-back" aria-label="Regresar">
+        <svg width="16" height="16"><use xlink:href="#icon-arrow-left"></use></svg>
+    </a>
+    <h1>{{ name }}</h1>
+    <p>{{ biography }}</p>
+
+    <div class="device-selector">
+        <button class="btn-device" data-device="desktop" aria-label="Vista de escritorio">
+            <svg width="24" height="24"><use xlink:href="#icon-desktop"></use></svg>
+        </button>
+        <button class="btn-device" data-device="tablet" aria-label="Vista de tablet">
+            <svg width="24" height="24"><use xlink:href="#icon-tablet"></use></svg>
+        </button>
+        <button class="btn-device" data-device="smartphone" aria-label="Vista de smartphone">
+            <svg width="24" height="24"><use xlink:href="#icon-smartphone"></use></svg>
+        </button>
+    </div>
+
+    <button id="add-to-cart" class="btn-buy">
+        Comprar Ahora
+    </button>
+</header>
+
+<section id="extra-services">
+    <h2>Servicios Adicionales</h2>
+    <ul>
+        {% for service in services %}
+        <li>
+            <input type="checkbox" id="service-{{ service.id }}" name="services" value="{{ service.id }}">
+            <label for="service-{{ service.id }}">{{ service.name }} - {{ service.price }}$</label>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

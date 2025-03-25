@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header id="frame-panel" class="text-center my-4">
+    <h2 class="text-4xl font-bold font-luxurious-roman">📸 Reserva tu Sesión Fotográfica</h2>
+    <p class="text-lg text-gray-600">Elige el mejor horario para tu sesión y asegura una experiencia profesional.</p>
+</header>
+
+<!-- Mensajes Flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <ul class="list-group p-4">
+    {% for category, message in messages %}
+      <li class="list-group-item {% if category == 'success' %}list-group-item-primary{% elif category == 'error' %}list-group-item-danger{% endif %}">
+        {{ message }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endwith %}
+
+<section class="container d-flex flex-column flex-md-row gap-4 p-4">
+    <!-- Tarjeta de Detalles de Reserva -->
+    <div class="card w-100 w-md-50 shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title font-luxurious-roman">📷 Sesión Fotográfica</h2>
+            <p class="card-text">Captura momentos inolvidables con una sesión profesional.</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">🔹 <strong>Duración:</strong> Mínimo 3h - Máximo 3h</li>
+                <li class="list-group-item">🔹 <strong>Precio:</strong> 120€</li>
+                <li class="list-group-item">🔹 <strong>Ubicación:</strong> Estudio o Exteriores</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tarjeta de Formulario de Reserva -->
+    <div class="card w-100 w-md-50 shadow-lg">
+        <div class="card-body">
+            {% if current_user.is_authenticated %}
+            <h2 class="card-title font-luxurious-roman">📅 Reserva tu Sesión</h2>
+            <form action="{{ url_for('reservamiento.reservar') }}" method="POST">
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" name="fecha" id="fecha" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="hora" class="form-label">Hora</label>
+                    <input type="time" name="hora" id="hora" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="lugar" class="form-label">Lugar</label>
+                    <input type="text" name="lugar" id="lugar" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="tipo_sesion" class="form-label">Tipo de Sesión</label>
+                    <select name="tipo_sesion" id="tipo_sesion" class="form-control" required>
+                        <option value="Estudio">Estudio</option>
+                        <option value="Exteriores">Exteriores</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">📸 Reservar</button>
+            </form>
+            {% else %}
+            <p class="text-center text-danger">⚠️ Debes iniciar sesión para reservar.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<div class="d-flex justify-content-center gap-3 mt-4">
+    <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
+    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-primary">👤 Mi Perfil</a>
+    <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Reservar Sesión</a>
+    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fechaInput = document.getElementById("fecha");
+        const horaInput = document.getElementById("hora");
+        let now = new Date();
+        now.setMinutes(0, 0, 0);
+        now.setHours(now.getHours() + 3); // Mínimo 3 horas desde ahora
+        
+        fechaInput.setAttribute("min", now.toISOString().slice(0, 10));
+        
+        horaInput.addEventListener("input", function() {
+            const selectedTime = this.value;
+            const [hours, minutes] = selectedTime.split(":").map(Number);
+            
+            if ((hours >= 21 || hours < 6) || (hours >= 11 && hours < 14)) {
+                alert("No se pueden seleccionar horas entre 21:00 y 06:00, ni entre 11:00 y 14:00.");
+                this.value = "";
+            }
+        });
+    });
+</script>
+
+{% endblock %}

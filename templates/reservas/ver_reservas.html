@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header id="frame-panel">
+    <h1 class="text-center text-4xl font-bold mt-6">📅 Mis Reservas</h1>
+    <p class="text-center text-lg text-gray-400">Consulta tus reservas de sesiones fotográficas.</p>
+</header>
+
+{% if current_user.is_authenticated %}
+<section class="p-8">
+    {% if reservas %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for reserva in reservas %}
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-lg">
+            <h2 class="text-xl font-bold">📷 Sesión Reservada</h2>
+            <p><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
+            <p><strong>Duración:</strong> 3 horas</p>
+            <p><strong>Ubicación:</strong> Estudio o Exteriores</p>
+            <p><strong>Precio:</strong> 120€</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center text-gray-400">No tienes reservas registradas.</p>
+    {% endif %}
+</section>
+{% else %}
+<p class="text-center text-red-500">⚠️ Debes iniciar sesión para ver tus reservas.</p>
+{% endif %}
+
+<div class="flex justify-center gap-4 mt-8">
+    <a href="javascript:history.back()" class="btn bg-gray-500 text-white px-4 py-2 rounded-lg">⬅️ Volver</a>
+    <a href="{{ url_for('tasks.dashboard') }}" class="btn bg-blue-500 text-white px-4 py-2 rounded-lg">👤 Mi Perfil</a>
+    <a href="{{ url_for('reservamiento.reservar') }}" class="btn bg-green-500 text-white px-4 py-2 rounded-lg">📅 Reservar Sesión</a>
+    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn bg-purple-500 text-white px-4 py-2 rounded-lg">📜 Ver Reservas</a>
+</div>
+{% endblock %}

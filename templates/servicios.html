@@ -3,98 +3,85 @@
 {% block title %}Servicios de Fotografía{% endblock %}
 
 {% block content %}
-<div class="container text-center mt-5 luxurious-roman-regular">  <!-- Apply luxurious-roman-regular here -->
- 
-  <h2 class="ewert-regular">Bienvenido</h2>  <!-- "Bienvenido" keeps the Ewert font -->
-  <h1 class="oswald-header">This is a title with Oswald font</h1>  <!-- Title uses Oswald font -->
+<div class="container text-center mt-5 luxurious-roman-regular">
+  <h2 class="ewert-regular">Bienvenido</h2>
+  <h1 class="oswald-header">Descubre Nuestros Servicios</h1>
 </div>
 
-<div class="container py-3 luxurious-roman-regular">  <!-- Apply luxurious-roman-regular here as well -->
+<div class="container py-3 luxurious-roman-regular text-white">
   <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94">
-          <title>Bootstrap</title>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284..."></path>
-        </svg>
+      <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none text-white">
         <span class="fs-4">Servicios de Fotografía</span>
       </a>
-
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Inicio</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Servicios</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Contacto</a>
-        <a class="py-2 link-body-emphasis text-decoration-none" href="#">Precios</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{ url_for('servicioso.sesiones_estudio') }}">Sesiones</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{ url_for('servicioso.formacion_fotografia') }}">Cursos</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{ url_for('servicioso.video_publicidad') }}">Publicidad</a>
       </nav>
     </div>
 
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-      <h1 class="display-4 fw-normal text-body-emphasis">Nuestros Planes</h1>
-      <p class="fs-5 text-body-secondary">
-        Elige el mejor plan para tus necesidades. Ofrecemos paquetes personalizados de fotografía con precios accesibles.
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center text-white">
+    
+      <p class="fs-5 text-body-secondary text-white">
+        Ofrecemos una amplia gama de servicios de fotografía y video para empresas y particulares.
       </p>
     </div>
   </header>
 
   <main>
-    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-      <!-- Paquete Básico -->
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Básico</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$50 <small class="text-body-secondary fw-light">/sesión</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Sesión de 30 min</li>
-              <li>5 fotos editadas</li>
-              <li>Entrega digital</li>
-            </ul>
-            <!-- Enlace al formulario de pago -->
-            <a href="{{ url_for('tasks.servicios') }}" class="w-100 btn btn-lg btn-outline-primary">Comprar</a>
-          </div>
-        </div>
-      </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+      {% set servicios = [
+        {'titulo': 'Sesión en Estudio', 'precio': '80€', 'img': 's1.jpeg', 'url': 'servicioso.sesiones_estudio'},
+        {'titulo': 'Sesión en Exterior', 'precio': '100€', 'img': 's2.jpeg', 'url': 'servicioso.sesiones_exterior'},
+        {'titulo': 'Curso de Fotografía', 'precio': '150€', 'img': 's3.jpeg', 'url': 'servicioso.formacion_fotografia'},
+        {'titulo': 'Curso de Edición', 'precio': '120€', 'img': 's1.jpeg', 'url': 'servicioso.formacion_edicion'},
+        {'titulo': 'Curso de Videografía', 'precio': '200€', 'img': 's2.jpeg', 'url': 'servicioso.formacion_videografia'},
+        {'titulo': 'Video Publicidad', 'precio': '300€', 'img': 's3.jpeg', 'url': 'servicioso.video_publicidad'}
+      ] %}
 
-      <!-- Paquete Estándar -->
+      {% for servicio in servicios %}
       <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Estándar</h4>
+        <div class="card mb-4 rounded-3 shadow-sm h-100 d-flex flex-column">
+          <div class="card-header py-3 text-white text-center" style="background-color: black; font-family: 'Luxurious Roman', serif; font-weight: bold;">
+            <h4 class="my-0">{{ servicio.titulo }}</h4>
           </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$100 <small class="text-body-secondary fw-light">/sesión</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Sesión de 1 hora</li>
-              <li>15 fotos editadas</li>
-              <li>Entrega digital y física</li>
+          <div class="card-body d-flex flex-column">
+            <div class="image-container">
+              <img src="{{ url_for('static', filename='images/servicios/' + servicio.img) }}" 
+                   class="img-fluid mb-3 rounded service-image" 
+                   alt="{{ servicio.titulo }}">
+            </div>
+            <h1 class="card-title pricing-card-title">{{ servicio.precio }}</h1>
+            <ul class="list-unstyled mt-3 mb-4 flex-grow-1">
+              <li>Calidad profesional</li>
+              <li>Entrega rápida</li>
+              <li>Atención personalizada</li>
             </ul>
-            <!-- Enlace al formulario de pago -->
-            <a href="{{ url_for('tasks.servicios') }}" class="w-100 btn btn-lg btn-primary">Formación</a>
+            <a href="{{ url_for(servicio.url) }}" class="mt-auto w-100 btn btn-lg btn-outline-primary">Más info</a>
           </div>
         </div>
       </div>
-
-      <!-- Paquete Premium -->
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm border-primary">
-          <div class="card-header py-3 text-bg-primary border-primary">
-            <h4 class="my-0 fw-normal">Premium</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$200 <small class="text-body-secondary fw-light">/Presets</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Sesión de 2 horas</li>
-              <li>30 fotos editadas</li>
-              <li>Entrega digital, física y álbum impreso</li>
-            </ul>
-            <!-- Enlace al formulario de pago -->
-            <a href="{{ url_for('tasks.servicios') }}" class="w-100 btn btn-lg btn-primary">Agendar Sesión</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </main>
 </div>
+
+<style>
+  .image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ajusta la imagen al tamaño sin deformarla */
+    object-position: center; /* Centra la parte relevante de la imagen */
+  }
+</style>
 {% endblock %}

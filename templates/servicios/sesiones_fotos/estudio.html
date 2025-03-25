@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Sesión de Estudio{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Sesión de Estudio</h1>
+    <p class="text-center">Capturamos tu mejor versión en un estudio profesional.</p>
+
+    <div class="text-center mt-4">
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('pago.pagar_bizum', servicio='sesiones_estudio') }}" class="btn btn-primary btn-lg">
+            Proceder al Pago con Bizum
+        </a>
+        
+        {% else %}
+            <a href="{{ url_for('auth.login') }}" class="btn btn-warning btn-lg">
+                Iniciar Sesión para Reservar
+            </a>
+            <p class="mt-2">¿No tienes cuenta? 
+                <a href="{{ url_for('auth.register') }}" class="text-decoration-none text-primary fw-bold">
+                    Regístrate aquí
+                </a>
+            </p>
+        {% endif %}
+    </div>
+</div>
+<div class="d-flex justify-content-center gap-3 mt-4">
+    <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
+    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-primary">👤 Mi Perfil</a>
+    <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Reservar Sesión</a>
+    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Pago con Redsys{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="text-primary">Pago con Redsys</h1>
+    <p>Completa tu pago de <strong>{{ servicio.nombre }}</strong> usando Redsys.</p>
+
+    <!-- Contenedor de las dos tarjetas flotantes -->
+    <div class="row">
+        <!-- Parte izquierda: Imagen del producto y su precio -->
+        <div class="col-md-6">
+            <div class="card shadow-lg" style="background-color: white;">
+                <img src="{{ servicio.imagen_url }}" class="card-img-top" alt="Imagen del servicio" style="height: 300px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ servicio.nombre }}</h5>
+                    <p class="card-text"><strong>Precio:</strong> €{{ servicio.precio }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parte derecha: Formulario de pago -->
+        <div class="col-md-6">
+            <div class="card shadow-lg" style="background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Detalles de la Transacción</h5>
+                    <p class="card-text"><strong>Servicio:</strong> {{ servicio.nombre }}</p>
+                    <p class="card-text"><strong>Precio:</strong> €{{ servicio.precio }}</p>
+                    
+                    <!-- Formulario de pago -->
+                    <form action="{{ url_redsys }}" method="POST">
+                        {% for key, value in datos.items() %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                        {% endfor %}
+                        <input type="hidden" name="DS_SIGNATURE" value="{{ firma }}">
+                        
+                        <!-- Botón de pago -->
+                        <button type="submit" class="btn btn-success btn-block mt-4">Pagar Ahora</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

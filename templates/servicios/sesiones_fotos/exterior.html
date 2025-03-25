@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Sesión en Exterior{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Sesión Fotográfica en Exterior</h1>
+    <p class="text-center">Inmortaliza momentos en los paisajes más bellos.</p>
+</div>
+<div class="d-flex justify-content-center gap-3 mt-4">
+    <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
+    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-primary">👤 Mi Perfil</a>
+    <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Reservar Sesión</a>
+    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
+</div>
+
+{% endblock %}

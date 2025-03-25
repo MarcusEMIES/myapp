@@ -176,6 +176,9 @@
       .navbar-toggler-icon {
         background-color: white;
       }
+      body {
+        font-family: 'Luxurious Roman', serif;
+      }
 
      
     </style>
@@ -299,6 +302,11 @@
             <!-- Mostrar el nombre del usuario y botón de cerrar sesión si está autenticado -->
             <li class="nav-item">
               <span class="nav-link">! Hola {{ current_user.username }} !</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('tasks.dashboard') }}"
+                >Mi Perfil</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('auth.logout') }}"
