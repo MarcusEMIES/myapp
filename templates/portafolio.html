@@ -10,83 +10,99 @@
        style="object-fit: cover; width: 100%; height: 900px; object-position: 0 42%; max-width: 100%; max-height: 100%;">
 </div>
 
-
 <!-- Contenedor de navegación entre la imagen y las tarjetas -->
 <div class="container-fluid text-center py-4" style="background-color: white;">
   <div class="d-flex justify-content-between align-items-center">
+    
     <!-- Título de "Explora más portfolios" -->
     <h2 class="text-dark mb-0"
       style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
       Explora más portfolios
     </h2>
 
-    <!-- Botón de colapso con logo (navbar-toggler) -->
-    <!-- Este botón será visible solo en dispositivos móviles y tabletas -->
-    <button class="portfolio-btn d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-      style="border: none; background: transparent; margin-right: 15px;">
+    <!-- Botón de colapso (hamburguesa) -->
+    <button class="navbar-toggler d-block d-md-none" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+            style="border: none; background: transparent; margin-right: 15px;">
       <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img"
-        style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px;">
+           style="width: 50px; height: auto; transition: all 0.3s ease; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);">
     </button>
   </div>
-  <nav>
-    <ul class="nav justify-content-between"
-      style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.coches') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Coches</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosh') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Masculinos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.retratosm') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Retratos Femeninos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.comida') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gastronomica</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.bodas') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Bodas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ url_for('tasks.urbana') }}"
-          style="font-weight: bold; font-size: 1.2rem; text-align: center;">Urbana</a>
-      </li>
-    </ul>
+
+  <!-- Navbar que colapsa en pantallas pequeñas -->
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold fs-5" href="{{ url_for('tasks.coches') }}">Coches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold fs-5" href="{{ url_for('tasks.retratosh') }}">Retratos Masculinos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold fs-5" href="{{ url_for('tasks.retratosm') }}">Retratos Femeninos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold fs-5" href="{{ url_for('tasks.comida') }}">Gastronómica</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold fs-5" href="{{ url_for('tasks.bodas') }}">Bodas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold fs-5" href="{{ url_for('tasks.urbana') }}">Urbana</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
 </div>
 
-<!-- CSS para recuadro luminoso en el logo -->
+<!-- CSS para el logo y la responsividad -->
 <style>
-  /* Estilo específico para el botón de portafolio */
-  .portfolio-btn img.logo-img {
+  /* Estilo del logo */
+  .navbar-toggler img {
+    transition: all 0.3s ease;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-    /* Recuadro luminoso negro */
+    border-radius: 5px;
   }
 
-  .portfolio-btn img.logo-img:hover {
+  .navbar-toggler img:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-    /* Recuadro luminoso negro con más intensidad en hover */
     transform: scale(1.1);
-    /* Efecto de aumento en tamaño al hacer hover */
   }
 
-  /* Visibilidad responsiva */
-  .portfolio-btn {
-    display: none;
+  /* Estilo del navbar en pantallas pequeñas */
+  .navbar-nav .nav-link {
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    transition: all 0.3s;
   }
 
-  /* El botón será visible solo en pantallas pequeñas (por debajo de 992px) */
+  .navbar-nav .nav-link:hover {
+    color: #3730a3 !important;
+  }
+
+  /* Estilos responsivos */
   @media (max-width: 992px) {
-    .portfolio-btn {
-      display: block;
+    .navbar-collapse {
+      text-align: center;
+    }
+
+    .navbar-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 1rem;
+      padding: 10px 0;
     }
   }
 </style>
+
 
 
 <!-- Sección de album con tarjetas -->

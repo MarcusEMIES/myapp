@@ -1,38 +1,181 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block title %}Contacto | Fotografía Profesional{%
+endblock %} {% block content %}
+<div
+  class="container d-flex justify-content-center align-items-center min-vh-100"
+>
+  <div class="col-md-8 col-lg-6 p-4 shadow-lg rounded bg-white">
+    <!-- Foto del usuario con el mismo tamaño y estilo -->
+    {% if current_user.foto %}
+    <img
+      src="{{ url_for('admin.uploads', filename=current_user.foto) }}"
+      alt="Foto de Usuario"
+      class="img-fluid rounded-circle mb-3"
+      style="
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border: 4px solid #007bff;
+      "
+    />
+    {% else %}
+    <img
+      src="{{ url_for('static', filename='images/logo.jpg') }}"
+      alt="Imagen por defecto"
+      class="img-fluid rounded-circle mb-3"
+      style="
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border: 4px solid #6c757d;
+      "
+    />
+    {% endif %}
 
-{% block title %}Contacto | Fotografía Profesional{% endblock %}
+    <!-- Título estilizado -->
+    <h2
+      class="text-center mb-4"
+      style="
+        font-family: 'Permanent Marker', sans-serif;
+        color: #3730a3;
+        font-size: 2.5rem;
+      "
+    >
+      Contáctanos
+    </h2>
+    <p class="text-center text-muted" style="font-size: 1.1rem">
+      Déjanos tu mensaje y nos pondremos en contacto contigo lo antes posible.
+    </p>
 
-{% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="col-md-8 col-lg-6 p-4 shadow-lg rounded bg-white">
-        <h2 class="text-center mb-4">📷 Contáctanos</h2>
-        <p class="text-center text-muted">Déjanos tu mensaje y nos pondremos en contacto contigo lo antes posible.</p>
-        
-        <form action="{{ url_for('tasks.contacto') }}" method="POST">
-            <div class="mb-3">
-                <label for="nombre" class="form-label fw-bold">Nombre</label>
-                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label fw-bold">Correo Electrónico</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
-            </div>
-            <div class="mb-3">
-                <label for="telefono" class="form-label fw-bold">Teléfono</label>
-                <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Número de contacto (opcional)">
-            </div>
-            <div class="mb-3">
-                <label for="asunto" class="form-label fw-bold">Asunto</label>
-                <input type="text" id="asunto" name="asunto" class="form-control" placeholder="Motivo de tu consulta" required>
-            </div>
-            <div class="mb-3">
-                <label for="mensaje" class="form-label fw-bold">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">📩 Enviar Mensaje</button>
-        </form>
+    <!-- Formulario -->
+    <form action="{{ url_for('tasks.contacto') }}" method="POST">
+      <div class="mb-3">
+        <label for="nombre" class="form-label fw-bold">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          class="form-control"
+          placeholder="Tu nombre completo"
+          required
+        />
+      </div>
 
-        <p class="text-center text-muted mt-3">O contáctanos directamente en <strong>info@tuempresa.com</strong></p>
-    </div>
+      <div class="mb-3">
+        <label for="email" class="form-label fw-bold">Correo Electrónico</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="tu@email.com"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="telefono" class="form-label fw-bold">Teléfono</label>
+        <input
+          type="text"
+          id="telefono"
+          name="telefono"
+          class="form-control"
+          placeholder="Número de contacto (opcional)"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="asunto" class="form-label fw-bold">Asunto</label>
+        <input
+          type="text"
+          id="asunto"
+          name="asunto"
+          class="form-control"
+          placeholder="Motivo de tu consulta"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="mensaje" class="form-label fw-bold">Mensaje</label>
+        <textarea
+          id="mensaje"
+          name="mensaje"
+          class="form-control"
+          rows="5"
+          placeholder="Escribe tu mensaje aquí..."
+          required
+        ></textarea>
+      </div>
+
+      <!-- Botones estilizados -->
+      <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+        <button
+          type="submit"
+          class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2"
+          style="color: #3730a3; border-color: #3730a3; transition: all 0.3s"
+        >
+          Enviar Mensaje
+        </button>
+
+        <a
+          href="javascript:history.back()"
+          class="btn btn-outline-secondary btn-lg text-uppercase fw-bold px-4 py-2"
+          style="transition: all 0.3s"
+        >
+          Volver
+        </a>
+      </div>
+    </form>
+
+    <!-- Info de contacto -->
+    <p class="text-center text-muted mt-4">
+      O contáctanos directamente en <strong>marcus_hinestroza@mht.com</strong>
+    </p>
+  </div>
 </div>
+
+<!-- Estilos adicionales -->
+<style>
+  /* Efecto hover para los botones */
+  .btn:hover {
+    background-color: #3730a3 !important;
+    color: white !important;
+    border-color: #3730a3 !important;
+    transform: scale(1.05);
+    transition: all 0.3s;
+  }
+
+  /* Efecto de transición suave */
+  input,
+  textarea,
+  button {
+    transition: all 0.3s ease-in-out;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #3730a3 !important;
+    box-shadow: 0 0 8px rgba(55, 48, 163, 0.5) !important;
+  }
+
+  /* Estilo responsivo para la foto de perfil */
+  .rounded-circle {
+    transition: transform 0.3s ease;
+  }
+
+  .rounded-circle:hover {
+    transform: scale(1.1);
+  }
+
+  /* Estilo para campos del formulario */
+  .form-control {
+    border: 2px solid #ddd;
+    padding: 0.75rem;
+  }
+
+  /* Estilo del contenedor */
+  .container {
+    max-width: 900px;
+  }
+</style>
 {% endblock %}

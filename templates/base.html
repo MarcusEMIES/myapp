@@ -100,82 +100,131 @@
         height: 100%;
       }
 
-      /* Ajustes del navbar */
-      .navbar-custom {
-        background-color: #111111;
-      }
-
-      /* Efecto en el logo */
-      .navbar-brand img {
-        transition: transform 0.3s ease-in-out;
-      }
-
-      .navbar-brand img:hover {
-        transform: scale(1.1);
-      }
-
-      /* Estilo para "Marcus Hinestroza" */
-      .navbar-custom .brand-name {
-        font-family: "Playfair Display", serif;
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: white;
-        transition: color 0.3s ease-in-out;
-      }
-
-      .navbar-custom .brand-name:hover {
-        color: rgb(31, 23, 120);
-      }
-
-      /* Estilos de enlaces en navbar */
-      .navbar-custom .navbar-nav .nav-link {
-        color: white !important;
-        font-size: 1rem;
-        font-weight: 600;
-        transition: color 0.3s ease-in-out;
-      }
-
-      .navbar-custom .navbar-nav .nav-link:hover {
-        color: rgb(42, 34, 124) !important;
-      }
-
-      /* Responsive: Centrar navbar en móvil */
-      @media (max-width: 991px) {
-        .navbar-custom .navbar-nav {
-          text-align: center;
+      <style>
+        /* ==== Estilos generales ==== */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Luxurious Roman', serif;
         }
-      }
 
-      /* Estilo del footer */
-      .footer-logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-      }
+        /* Navbar personalizado */
+        .navbar-custom {
+            background-color: #111111;
+        }
 
-      .footer-logo-container img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-      }
+        .navbar-brand img {
+            transition: transform 0.3s ease-in-out;
+        }
 
-      /* Asegurarse que el contenido ocupa todo el espacio disponible entre el navbar y el footer */
-      .content {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
 
-      footer {
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
+        /* Fuente "Permanent Marker" aplicada a los enlaces del navbar */
+        .navbar-custom .navbar-nav .nav-link {
+            font-family: 'Permanent Marker', sans-serif; 
+            font-size: 1rem;
+            color: white !important;
+            transition: color 0.3s ease-in-out, transform 0.3s;
+        }
 
-      /* Cambiar color de las líneas del navbar-toggler-icon a blanco */
-      .navbar-toggler-icon {
-        background-color: white;
-      }
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #ff8c00 !important;
+            transform: scale(1.1);
+        }
+
+        /* Botones coherentes */
+        .btn {
+            font-family: 'Permanent Marker', sans-serif;
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            transition: background 0.3s ease, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff4500;
+            transform: scale(1.05);
+        }
+
+        /* Estilo para el botón hamburguesa */
+        .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* Menú responsive */
+        .navbar-collapse {
+            transition: all 0.4s ease;
+        }
+
+        /* Footer completo con logo, redes y enlaces */
+        footer {
+            padding: 40px 0;
+            background-color: #000;
+            color: white;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo-container img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .footer-logo-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff8c00;
+        }
+
+        /* Estilos para mensajes flash */
+        .alert {
+            font-weight: bold;
+            font-size: 1rem;
+            margin: 0 auto;
+            width: 80%;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+
+        /* Estilo para la sesión modal */
+        .modal-content {
+            border-radius: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .navbar-custom .navbar-nav {
+                text-align: center;
+            }
+        }
+
       body {
         font-family: 'Luxurious Roman', serif;
       }
@@ -218,114 +267,110 @@
       </div>
     </div>
     {% endif %} {% endwith %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand" href="{{ url_for('index') }}">
+      <img
+        src="{{ url_for('static', filename='images/logo.jpg') }}"
+        alt="logo"
+        width="60"
+        height="50"
+      />
+    </a>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
-      <div class="container">
-        <!-- Logo -->
-        <a class="navbar-brand" href="{{ url_for('index') }}">
-          <img
-            src="{{ url_for('static', filename='images/logo.jpg') }}"
-            alt="logo"
-            width="60"
-            height="50"
-          />
-        </a>
+    <!-- Nombre al lado izquierdo -->
+    <a class="navbar-brand brand-name ms-2" href="{{ url_for('index') }}">Marcus Hinestroza</a>
 
-        <!-- Nombre al lado izquierdo -->
-        <a class="navbar-brand brand-name ms-2" href="{{ url_for('index') }}"
-          >Marcus Hinestroza</a
-        >
+    <!-- Botón hamburguesa con funcionalidad corregida -->
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      onclick="toggleNavbar()"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- Botón de colapso en móviles -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Menú de navegación -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('tasks.portafolio') }}">Portafolio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('tasks.servicios') }}">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('tasks.preguntas_frecuentes') }}">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('tasks.about') }}">Acerca de mí</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('tasks.contacto') }}">Contacto</a>
+        </li>
 
-        <!-- Menú de navegación -->
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('tasks.portafolio') }}"
-                >Portafolio</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('tasks.servicios') }}"
-                >Servicios</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="{{ url_for('tasks.preguntas_frecuentes') }}"
-                >FAQ</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('tasks.about') }}"
-                >Acerca de mí</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('tasks.contacto') }}"
-                >Contacto</a
-              >
-            </li>
+        <!-- Mostrar "Administrar" solo si el usuario es admin -->
+        {% if current_user.is_authenticated and current_user.role == 'admin' %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('admin.admin_panel') }}">Administrar</a>
+        </li>
+        {% endif %}
 
-            <!-- Mostrar el enlace "Administrar" solo si el usuario es admin -->
-            {% if current_user.is_authenticated and current_user.role == 'admin'
-            %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('admin.admin_panel') }}"
-                >Administrar</a
-              >
-            </li>
-            {% endif %}
+        <!-- Mostrar botones solo si el usuario NO está autenticado -->
+        {% if not current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.login') }}">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.register') }}">Registrarse</a>
+        </li>
+        {% else %}
+        <!-- Mostrar nombre del usuario y cerrar sesión si está autenticado -->
+        <li class="nav-item">
+          <span class="nav-link">¡Hola {{ current_user.username }}!</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('tasks.dashboard') }}">Mi Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
 
-            <!-- Mostrar los botones solo si el usuario NO está autenticado -->
-            {% if not current_user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('auth.login') }}"
-                >Iniciar Sesión</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('auth.register') }}"
-                >Registrarse</a
-              >
-            </li>
-            {% else %}
-            <!-- Mostrar el nombre del usuario y botón de cerrar sesión si está autenticado -->
-            <li class="nav-item">
-              <span class="nav-link">! Hola {{ current_user.username }} !</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('tasks.dashboard') }}"
-                >Mi Perfil</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('auth.logout') }}"
-                >Cerrar sesión</a
-              >
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
+<!-- JavaScript para manejar el botón hamburguesa -->
+<script>
+  function toggleNavbar() {
+    const navbar = document.getElementById('navbarNav');
+    navbar.classList.toggle('show');
+  }
+</script>
+
+<!-- Estilos adicionales -->
+<style>
+  /* Estilo para la animación de apertura del menú */
+  .navbar-collapse {
+    transition: all 0.4s ease;
+  }
+
+  /* Estilo para el icono de hamburguesa */
+  .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+</style>
 
     <!-- Contenido dinámico -->
     <div class="content">{% block content %} {% endblock %}</div>
@@ -437,6 +482,16 @@
         }, 4000);  // 4 segundos antes de empezar el fade-out
       });
     });
+    <!-- JavaScript -->
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const flashMessages = document.querySelectorAll('.alert');
+        flashMessages.forEach((msg) => {
+            setTimeout(() => { msg.classList.add('fade-out'); }, 4000);
+        });
+    });
+
+
 </script>
 
 
