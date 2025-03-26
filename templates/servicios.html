@@ -37,14 +37,14 @@
   <main>
     <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
       {% set servicios = [
-        {'titulo': 'Sesión en Estudio', 'precio': '80€', 'img': 'h5.jpeg', 'url': 'servicioso.sesiones_estudio'},
-        {'titulo': 'Sesión en Exterior', 'precio': '100€', 'img': 'm15.jpeg', 'url': 'servicioso.sesiones_exterior'},
-        {'titulo': 'Curso de Fotografía', 'precio': '150€', 'img': 'b7.jpeg', 'url': 'servicioso.formacion_fotografia'},
-        {'titulo': 'Curso de Edición', 'precio': '120€', 'img': 'h12.jpeg', 'url': 'servicioso.formacion_edicion'},
-        {'titulo': 'Curso de Videografía', 'precio': '200€', 'img': 'm3.jpeg', 'url': 'servicioso.formacion_videografia'},
-        {'titulo': 'Video Publicidad', 'precio': '300€', 'img': 'b19.jpeg', 'url': 'servicioso.video_publicidad'}
+        {'titulo': 'Sesión en Estudio', 'precio': '80€', 'img': 'servicios/s1.jpeg', 'url': 'servicioso.sesiones_estudio'},
+        {'titulo': 'Sesión en Exterior', 'precio': '100€', 'img': 'servicios/s9.jpeg', 'url': 'servicioso.sesiones_exterior'},
+        {'titulo': 'Curso de Fotografía', 'precio': '150€', 'img': 'servicios/s8.jpeg', 'url': 'servicioso.formacion_fotografia'},
+        {'titulo': 'Curso de Edición', 'precio': '120€', 'img': 'servicios/s10.jpeg', 'url': 'servicioso.formacion_edicion'},
+        {'titulo': 'Curso de Videografía', 'precio': '200€', 'img': 'servicios/s11.jpeg', 'url': 'servicioso.formacion_videografia'},
+        {'titulo': 'Video Publicidad', 'precio': '300€', 'img': 'servicios/s12.jpeg', 'url': 'servicioso.video_publicidad'}
       ] %}
-
+  
       {% for servicio in servicios %}
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm h-100 d-flex flex-column">
@@ -54,8 +54,8 @@
           </div>
           <div class="card-body d-flex flex-column">
             <div class="image-container">
-              <img src="{{ url_for('static', filename='images/servicios/' + servicio.img) }}" 
-                   class="img-fluid mb-3 rounded service-image" 
+              <img src="{{ url_for('static', filename='images/' + servicio.img) }}" 
+                   class="img-fluid mb-3 rounded service-image {{ servicio.titulo|lower|replace(" ", "_") }}" 
                    alt="{{ servicio.titulo }}">
             </div>
             <h1 class="card-title pricing-card-title" style="font-family: 'Permanent Marker', sans-serif;">{{ servicio.precio }}</h1>
@@ -73,6 +73,7 @@
       {% endfor %}
     </div>
   </main>
+  
 </div>
 
 <div class="container mt-5">
@@ -146,5 +147,37 @@
       color: white !important;
       border-color: #3730a3 !important;
   }
+
+  /* Clases de imagen específicas para cada servicio */
+.sesión_en_estudio {
+  object-fit: cover;
+  object-position: 0 20%; /* Ajusta la imagen para que se enfoque en la parte superior central */
+}
+
+.sesión_en_exterior {
+  object-fit: cover;
+  object-position: 0 10%; /* Enfoca la imagen en la parte central izquierda */
+}
+
+.curso_de_fotografía {
+  object-fit: cover;
+  object-position:; /* Centrado */
+}
+
+.curso_de_edición {
+  object-fit: cover;
+  object-position: ri; /* Enfoca la imagen en la parte superior derecha */
+}
+
+.curso_de_videografía {
+  object-fit: cover;
+  object-position: 0 10%%; /* Enfoca la imagen en la parte inferior central */
+}
+
+.video_publicidad {
+  object-fit: cover;
+  object-position: 0 70%; /* Enfoca la imagen en la parte inferior izquierda */
+}
+
 </style>
 {% endblock %}
