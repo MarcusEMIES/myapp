@@ -6,7 +6,7 @@ servicioso = Blueprint('servicioso', __name__, template_folder='../templates/ser
 # Rutas para la sección de formación
 @servicioso.route('/formacion/edicion')
 def formacion_edicion():
-    return render_template('servicios/formacion/edicion.html')
+    return render_template('servicios/formacion/curso_edicion.html')
 
 @servicioso.route('/formacion/fotografia')
 def formacion_fotografia():
@@ -14,7 +14,7 @@ def formacion_fotografia():
 
 @servicioso.route('/formacion/videografia')
 def formacion_videografia():
-    return render_template('servicios/formacion/videografia.html')
+    return render_template('servicios/formacion/curso_videografia.html')
 
 # Rutas para la sección de sesiones de fotos
 @servicioso.route('/sesiones_fotos/estudio')

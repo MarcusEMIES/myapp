@@ -3,27 +3,32 @@
 {% block title %}Servicios de Fotografía{% endblock %}
 
 {% block content %}
-<div class="container text-center mt-5 luxurious-roman-regular">
-  <h2 class="ewert-regular">Bienvenido</h2>
-  <h1 class="oswald-header">Descubre Nuestros Servicios</h1>
+<div class="container text-center mt-5">
+  <h2 class="ewert-regular" style="font-family: 'Permanent Marker', sans-serif; color: #3730a3;">Bienvenido</h2>
+  <h1 class="oswald-header" style="font-family: 'Permanent Marker', sans-serif; color: #3730a3;">Descubre Nuestros Servicios</h1>
 </div>
 
 <div class="container py-3 luxurious-roman-regular text-white">
   <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none text-white">
-        <span class="fs-4">Servicios de Fotografía</span>
+        <span class="fs-4" style="font-family: 'Permanent Marker', sans-serif;">Servicios de Fotografía</span>
       </a>
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{ url_for('servicioso.sesiones_estudio') }}">Sesiones</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{ url_for('servicioso.formacion_fotografia') }}">Cursos</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{ url_for('servicioso.video_publicidad') }}">Publicidad</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" 
+           href="{{ url_for('servicioso.sesiones_estudio') }}" 
+           style="font-family: 'Permanent Marker', sans-serif;">Sesiones</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" 
+           href="{{ url_for('servicioso.formacion_fotografia') }}" 
+           style="font-family: 'Permanent Marker', sans-serif;">Cursos</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" 
+           href="{{ url_for('servicioso.video_publicidad') }}" 
+           style="font-family: 'Permanent Marker', sans-serif;">Publicidad</a>
       </nav>
     </div>
 
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center text-white">
-    
-      <p class="fs-5 text-body-secondary text-white">
+      <p class="fs-5 text-body-secondary text-white" style="font-family: 'Permanent Marker', sans-serif;">
         Ofrecemos una amplia gama de servicios de fotografía y video para empresas y particulares.
       </p>
     </div>
@@ -32,18 +37,19 @@
   <main>
     <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
       {% set servicios = [
-        {'titulo': 'Sesión en Estudio', 'precio': '80€', 'img': 's1.jpeg', 'url': 'servicioso.sesiones_estudio'},
-        {'titulo': 'Sesión en Exterior', 'precio': '100€', 'img': 's2.jpeg', 'url': 'servicioso.sesiones_exterior'},
-        {'titulo': 'Curso de Fotografía', 'precio': '150€', 'img': 's3.jpeg', 'url': 'servicioso.formacion_fotografia'},
-        {'titulo': 'Curso de Edición', 'precio': '120€', 'img': 's1.jpeg', 'url': 'servicioso.formacion_edicion'},
-        {'titulo': 'Curso de Videografía', 'precio': '200€', 'img': 's2.jpeg', 'url': 'servicioso.formacion_videografia'},
-        {'titulo': 'Video Publicidad', 'precio': '300€', 'img': 's3.jpeg', 'url': 'servicioso.video_publicidad'}
+        {'titulo': 'Sesión en Estudio', 'precio': '80€', 'img': 'h5.jpeg', 'url': 'servicioso.sesiones_estudio'},
+        {'titulo': 'Sesión en Exterior', 'precio': '100€', 'img': 'm15.jpeg', 'url': 'servicioso.sesiones_exterior'},
+        {'titulo': 'Curso de Fotografía', 'precio': '150€', 'img': 'b7.jpeg', 'url': 'servicioso.formacion_fotografia'},
+        {'titulo': 'Curso de Edición', 'precio': '120€', 'img': 'h12.jpeg', 'url': 'servicioso.formacion_edicion'},
+        {'titulo': 'Curso de Videografía', 'precio': '200€', 'img': 'm3.jpeg', 'url': 'servicioso.formacion_videografia'},
+        {'titulo': 'Video Publicidad', 'precio': '300€', 'img': 'b19.jpeg', 'url': 'servicioso.video_publicidad'}
       ] %}
 
       {% for servicio in servicios %}
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm h-100 d-flex flex-column">
-          <div class="card-header py-3 text-white text-center" style="background-color: black; font-family: 'Luxurious Roman', serif; font-weight: bold;">
+          <div class="card-header py-3 text-white text-center" 
+               style="background-color: black; font-family: 'Permanent Marker', sans-serif; font-weight: bold;">
             <h4 class="my-0">{{ servicio.titulo }}</h4>
           </div>
           <div class="card-body d-flex flex-column">
@@ -52,13 +58,15 @@
                    class="img-fluid mb-3 rounded service-image" 
                    alt="{{ servicio.titulo }}">
             </div>
-            <h1 class="card-title pricing-card-title">{{ servicio.precio }}</h1>
+            <h1 class="card-title pricing-card-title" style="font-family: 'Permanent Marker', sans-serif;">{{ servicio.precio }}</h1>
             <ul class="list-unstyled mt-3 mb-4 flex-grow-1">
               <li>Calidad profesional</li>
               <li>Entrega rápida</li>
               <li>Atención personalizada</li>
             </ul>
-            <a href="{{ url_for(servicio.url) }}" class="mt-auto w-100 btn btn-lg btn-outline-primary">Más info</a>
+            <a href="{{ url_for(servicio.url) }}" 
+               class="mt-auto w-100 btn btn-lg btn-outline-primary"
+               style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;">Más info</a>
           </div>
         </div>
       </div>
@@ -67,6 +75,36 @@
   </main>
 </div>
 
+<div class="container mt-5">
+  <div class="d-flex flex-wrap justify-content-center gap-3">
+      
+      <!-- Botón Volver -->
+      <a href="javascript:history.back()" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;"
+         >Volver</a>
+
+      <!-- Botón Perfil -->
+      <a href="{{ url_for('tasks.dashboard') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;"
+         >Mi Perfil</a>
+
+      <!-- Botón Reservar -->
+      <a href="{{ url_for('reservamiento.reservar') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;"
+         >Reservar Sesión</a>
+
+      <!-- Botón Ver Reservas -->
+      <a href="{{ url_for('reservamiento.ver_reserva') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;"
+         >Ver Reservas</a>
+  </div>
+</div>
+
+<!-- Estilos adicionales -->
 <style>
   .image-container {
     width: 100%;
@@ -80,8 +118,33 @@
   .service-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* Ajusta la imagen al tamaño sin deformarla */
-    object-position: center; /* Centra la parte relevante de la imagen */
+    object-fit: cover;  
+    object-position: center; 
+  }
+
+  @media (max-width: 768px) {
+      .btn {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+      }
+  }
+
+  @media (max-width: 576px) {
+      .d-flex {
+          flex-direction: column;
+          align-items: center;
+      }
+
+      .btn {
+          width: 100%;
+          font-size: 0.9rem;  
+      }
+  }
+
+  .btn:hover {
+      background-color: #3730a3 !important;  
+      color: white !important;
+      border-color: #3730a3 !important;
   }
 </style>
 {% endblock %}

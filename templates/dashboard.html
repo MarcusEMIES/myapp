@@ -63,7 +63,10 @@
                 <div class="col-md-6 mb-4">
                     <div class="card shadow-sm text-center">
                         <div class="card-body">
-                            <h2 class="card-title">📸 Mi Portafolio</h2>
+                          <h2 class="text-dark mb-0"
+                          style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+                          Mi Portafolio
+                        </h2>
                             <p class="card-text">Accede a tu portafolio y visualiza tu trabajo.</p>
                             <a href="{{ url_for('cliente_navegando.portafolio') }}" class="btn btn-primary">Ver Portafolio</a>
                         </div>
@@ -74,7 +77,10 @@
                 <div class="col-md-6 mb-4">
                     <div class="card shadow-sm text-center">
                         <div class="card-body">
-                            <h2 class="card-title">📅 Reservas</h2>
+                          <h2 class="text-dark mb-0"
+                          style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+                          Reservas
+                        </h2>
                             <p class="card-text">Programa y gestiona tus citas fácilmente.</p>
                             <a href="{{ url_for('tasks.servicios') }}" class="btn btn-success">Reservar</a>
                         </div>
@@ -85,7 +91,10 @@
                 <div class="col-md-6 mb-4">
                     <div class="card shadow-sm text-center">
                         <div class="card-body">
-                            <h2 class="card-title">📞 Contacto</h2>
+                          <h2 class="text-dark mb-0"
+                          style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+                          Contacto
+                        </h2>
                             <p class="card-text">Comunícate con nuestro equipo de soporte.</p>
                             <a href="{{ url_for('tasks.contacto') }}" class="btn btn-info">Contactar</a>
                         </div>
@@ -96,7 +105,10 @@
                 <div class="col-md-6 mb-4">
                     <div class="card shadow-sm text-center">
                         <div class="card-body">
-                            <h2 class="card-title">📚 Formación</h2>
+                          <h2 class="text-dark mb-0"
+                          style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+                          Formacion
+                        </h2>
                             <p class="card-text">Explora nuestros cursos y capacitaciones.</p>
                             <a href="{{ url_for('tasks.formacion') }}" class="btn btn-warning">Ver Cursos</a>
                         </div>
@@ -106,15 +118,89 @@
         </div>
     </div>
 </div>
+<h2 class="text-dark mb-0"
+style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+Explora más portfolios
+</h2>
 
-<!-- Botones de navegación -->
-<div class="d-flex justify-content-center gap-3 mt-4">
-    <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
-    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-primary">👤 Mi Perfil</a>
-    <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Reservar Sesión</a>
-    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
+<div class="container mt-5">
+  <div class="d-flex flex-wrap justify-content-center gap-3">
+      
+      <!-- Botón Volver -->
+      <a href="javascript:history.back()" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Volver</a>
+
+      <!-- Botón Perfil -->
+      <a href="{{ url_for('tasks.dashboard') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Mi Perfil</a>
+
+      <!-- Botón Reservar -->
+      <a href="{{ url_for('reservamiento.reservar') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Reservar Sesión</a>
+
+      <!-- Botón Ver Reservas -->
+      <a href="{{ url_for('reservamiento.ver_reserva') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Ver Reservas</a>
+      <!-- Botón Ver Formacion -->
+      <a href="{{ url_for('tasks.servicios') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Formación</a>
+  </div>
 </div>
 
+<!-- Estilos adicionales para mejorar la responsividad -->
+<style>
+  @media (max-width: 768px) {
+      .btn {
+          font-size: 1rem;  /* Reduce el tamaño del texto en pantallas medianas */
+          padding: 0.5rem 1rem;
+      }
+  }
+
+  @media (max-width: 576px) {
+      .d-flex {
+          flex-direction: column;  /* Botones en columna en pantallas pequeñas */
+          align-items: center;
+      }
+
+      .btn {
+          width: 100%;  /* Botones ocupan todo el ancho */
+          text-align: center;
+          font-size: 0.9rem;  
+      }
+  }
+
+  /* Efecto hover: color de fondo lleno */
+  .btn:hover {
+      background-color: #3730a3 !important;  
+      color: white !important;
+      border-color: #3730a3 !important;
+  }
+</style>
 <script>
     // Obtener la referencia a la imagen del modal y al modal
     const modalImage = document.getElementById("modalImage");

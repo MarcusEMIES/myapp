@@ -169,5 +169,75 @@ Sección de administración
     <p>Solo los administradores pueden acceder a esta página.</p>
   </div>
 {% endif %}
+<div class="container mt-5">
+  <div class="d-flex flex-wrap justify-content-center gap-3">
+      
+      <!-- Botón Volver -->
+      <a href="javascript:history.back()" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Volver</a>
+
+      <!-- Botón Perfil -->
+      <a href="{{ url_for('tasks.dashboard') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Mi Perfil</a>
+
+      <!-- Botón Reservar -->
+      <a href="{{ url_for('reservamiento.reservar') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Reservar Sesión</a>
+
+      <!-- Botón Ver Reservas -->
+      <a href="{{ url_for('reservamiento.ver_reserva') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Ver Reservas</a>
+  </div>
+</div>
+
+<!-- Estilos adicionales para mejorar la responsividad -->
+<style>
+  @media (max-width: 768px) {
+      .btn {
+          font-size: 1rem;  /* Reduce el tamaño del texto en pantallas medianas */
+          padding: 0.5rem 1rem;
+      }
+  }
+
+  @media (max-width: 576px) {
+      .d-flex {
+          flex-direction: column;  /* Botones en columna en pantallas pequeñas */
+          align-items: center;
+      }
+
+      .btn {
+          width: 100%;  /* Botones ocupan todo el ancho */
+          text-align: center;
+          font-size: 0.9rem;  
+      }
+  }
+
+  /* Efecto hover: color de fondo lleno */
+  .btn:hover {
+      background-color: #3730a3 !important;  
+      color: white !important;
+      border-color: #3730a3 !important;
+  }
+</style>
 
 {% endblock %}
