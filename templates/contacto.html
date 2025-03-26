@@ -1,10 +1,38 @@
-{% extends 'base.html' %} {% block title %}Presets{%
-    endblock %} {% block content %}
-    
-    <div class="container text-center mt-5">
-      <h1>Contacta conmigo </h1>
-      <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
-    
+{% extends 'base.html' %}
+
+{% block title %}Contacto | Fotografía Profesional{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-8 col-lg-6 p-4 shadow-lg rounded bg-white">
+        <h2 class="text-center mb-4">📷 Contáctanos</h2>
+        <p class="text-center text-muted">Déjanos tu mensaje y nos pondremos en contacto contigo lo antes posible.</p>
+        
+        <form action="{{ url_for('tasks.contacto') }}" method="POST">
+            <div class="mb-3">
+                <label for="nombre" class="form-label fw-bold">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label fw-bold">Correo Electrónico</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label fw-bold">Teléfono</label>
+                <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Número de contacto (opcional)">
+            </div>
+            <div class="mb-3">
+                <label for="asunto" class="form-label fw-bold">Asunto</label>
+                <input type="text" id="asunto" name="asunto" class="form-control" placeholder="Motivo de tu consulta" required>
+            </div>
+            <div class="mb-3">
+                <label for="mensaje" class="form-label fw-bold">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">📩 Enviar Mensaje</button>
+        </form>
+
+        <p class="text-center text-muted mt-3">O contáctanos directamente en <strong>info@tuempresa.com</strong></p>
     </div>
-    {% endblock %}
-    
+</div>
+{% endblock %}

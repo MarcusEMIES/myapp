@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import base64
 from config import Config  # Importa la clase Config correctamente
+from models.reserva import Reserva
 
 pago = Blueprint('pago', __name__)
 

@@ -1,3 +1,5 @@
+#users.py
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from models import db  # Asegúrate de que db esté configurado correctamente en tu app
@@ -23,14 +25,14 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
 
     # Campos opcionales que pueden ser editados más tarde
-    nombre = db.Column(db.String(120), nullable=False)    # Nombre del usuario
-    apellidos = db.Column(db.String(120), nullable=False)  # Apellidos del usuario
-    telefono = db.Column(db.String(20), nullable=False)    # Teléfono del usuario
-    direccion = db.Column(db.String(255), nullable=False)  # Dirección del usuario
-    ciudad = db.Column(db.String(120), nullable=False)     # Ciudad del usuario
-    pais = db.Column(db.String(120), nullable=False)       # País del usuario
-    foto = db.Column(db.String(255), nullable=False)       # Foto del usuario (se guarda como ruta)
-    role = db.Column(db.String(80), default='user', nullable=False)  # Rol del usuario, por defecto 'user'
+    nombre = db.Column(db.String(120), nullable=True)    # Nombre del usuario
+    apellidos = db.Column(db.String(120), nullable=True)  # Apellidos del usuario
+    telefono = db.Column(db.String(20), nullable=True)    # Teléfono del usuario
+    direccion = db.Column(db.String(255), nullable=True)  # Dirección del usuario
+    ciudad = db.Column(db.String(120), nullable=True)     # Ciudad del usuario
+    pais = db.Column(db.String(120), nullable=True)       # País del usuario
+    foto = db.Column(db.String(255), nullable=True)       # Foto del usuario (se guarda como ruta)
+    role = db.Column(db.String(80), default='user', nullable=True)  # Rol del usuario, por defecto 'user'
     is_active = db.Column(db.Boolean, default=True, nullable=False)  # Estado del usuario (activo o no)
 
     # Método para representar la clase 'User' como un string

@@ -1,3 +1,4 @@
+#reserva.py
 from models import db
 
 class Reserva(db.Model):

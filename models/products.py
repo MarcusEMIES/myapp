@@ -1,3 +1,5 @@
+#products.py
+
 from models import db
 
 class Product(db.Model):
