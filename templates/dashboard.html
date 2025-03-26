@@ -1,113 +1,131 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
-  %}
-  
-  <style>
+{% extends 'base.html' %} 
+{% block title %}Home{% endblock %} 
+{% block content %}
+
+<style>
     body {
-      font-family: 'Luxurious Roman', serif;
+        font-family: 'Luxurious Roman', serif;
     }
-  </style>
-  
-  <div class="container mt-5">
+</style>
+
+<div class="container mt-5">
     <div class="row">
-      <!-- Sección izquierda: Información del Usuario -->
-      <div class="col-md-4">
-        <div class="card shadow-lg text-white" style="background: linear-gradient(to right, #1b3a57, #5e0c53); border-radius: 10px;">
-          <div class="card-body text-center">
-            {% if current_user.foto %}
-              <img src="{{ url_for('admin.uploads', filename=current_user.foto) }}" width="120" height="120" class="rounded-circle mb-3" />
-            {% else %}
-              <img src="{{ url_for('static', filename='images/logo.jpg') }}" width="120" height="120" class="rounded-circle mb-3" />
-            {% endif %}
-            <h2>
-              {% if current_user.nombre or current_user.apellidos %}
-                {{ current_user.nombre or '' }} {{ current_user.apellidos or '' }}
-              {% elif current_user.username %}
-                {{ current_user.username }}
-              {% else %}
-                Usuario sin nombre
-              {% endif %}
-            </h2>
-            
-            </h2>
-            {% if current_user.email %}<p class="text-light"><strong>Email:</strong> {{ current_user.email }}</p>{% endif %}
-            {% if current_user.telefono %}<p class="text-light"><strong>Teléfono:</strong> {{ current_user.telefono }}</p>{% endif %}
-            {% if current_user.direccion %}<p class="text-light"><strong>Dirección:</strong> {{ current_user.direccion }}</p>{% endif %}
-            <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}" class="btn btn-warning btn-sm">Editar Información</a>
-          </div>
+        <!-- Sección izquierda: Información del Usuario -->
+        <div class="col-md-4">
+            <div class="card shadow-lg text-white" style="background: linear-gradient(to right, #1b3a57, #5e0c53); border-radius: 10px;">
+                <div class="card-body text-center">
+                    
+                    <!-- Foto del usuario con el mismo tamaño y estilo -->
+                    {% if current_user.foto %}
+                        <img src="{{ url_for('admin.uploads', filename=current_user.foto) }}" 
+                             alt="Foto de Usuario" 
+                             class="img-fluid rounded-circle mb-3" 
+                             style="width: 250px; height: 250px; object-fit: cover; border: 4px solid #007bff;">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='images/logo.jpg') }}" 
+                             alt="Imagen por defecto" 
+                             class="img-fluid rounded-circle mb-3" 
+                             style="width: 250px; height: 250px; object-fit: cover; border: 4px solid #6c757d;">
+                    {% endif %}
+
+                    <!-- Información del usuario -->
+                    <h2>
+                        {% if current_user.nombre or current_user.apellidos %}
+                            {{ current_user.nombre or '' }} {{ current_user.apellidos or '' }}
+                        {% elif current_user.username %}
+                            {{ current_user.username }}
+                        {% else %}
+                            Usuario sin nombre
+                        {% endif %}
+                    </h2>
+                    
+                    {% if current_user.email %}
+                        <p class="text-light"><strong>Email:</strong> {{ current_user.email }}</p>
+                    {% endif %}
+                    
+                    {% if current_user.telefono %}
+                        <p class="text-light"><strong>Teléfono:</strong> {{ current_user.telefono }}</p>
+                    {% endif %}
+                    
+                    {% if current_user.direccion %}
+                        <p class="text-light"><strong>Dirección:</strong> {{ current_user.direccion }}</p>
+                    {% endif %}
+                    
+                    <a href="{{ url_for('admin.editar_usuario', user_id=current_user.id) }}" class="btn btn-warning btn-sm">✏️ Editar Información</a>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Sección derecha: Tarjetas de opciones -->
-      <div class="col-md-8">
-        <div class="row">
-          <!-- Tarjeta de Portafolio -->
-          <div class="col-md-6 mb-4">
-            <div class="card shadow-sm text-center">
-              <div class="card-body">
-                <h2 class="card-title">Mi Portafolio</h2>
-                <p class="card-text">Accede a tu portafolio y visualiza tu trabajo.</p>
-                <a href="{{ url_for('cliente_navegando.portafolio') }}" class="btn btn-primary">Ver Portafolio</a>
-              </div>
+
+        <!-- Sección derecha: Tarjetas de opciones -->
+        <div class="col-md-8">
+            <div class="row">
+                <!-- Tarjeta de Portafolio -->
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h2 class="card-title">📸 Mi Portafolio</h2>
+                            <p class="card-text">Accede a tu portafolio y visualiza tu trabajo.</p>
+                            <a href="{{ url_for('cliente_navegando.portafolio') }}" class="btn btn-primary">Ver Portafolio</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Reservas -->
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h2 class="card-title">📅 Reservas</h2>
+                            <p class="card-text">Programa y gestiona tus citas fácilmente.</p>
+                            <a href="{{ url_for('tasks.servicios') }}" class="btn btn-success">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Contacto -->
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h2 class="card-title">📞 Contacto</h2>
+                            <p class="card-text">Comunícate con nuestro equipo de soporte.</p>
+                            <a href="{{ url_for('tasks.contacto') }}" class="btn btn-info">Contactar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Formación -->
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h2 class="card-title">📚 Formación</h2>
+                            <p class="card-text">Explora nuestros cursos y capacitaciones.</p>
+                            <a href="{{ url_for('tasks.formacion') }}" class="btn btn-warning">Ver Cursos</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-  
-          <!-- Tarjeta de Reservas -->
-          <div class="col-md-6 mb-4">
-            <div class="card shadow-sm text-center">
-              <div class="card-body">
-                <h2 class="card-title">Reserva tus Sesiones</h2>
-                <p class="card-text">Programa y gestiona tus citas fácilmente.</p>
-                <a href="{{ url_for('tasks.servicios') }}" class="btn btn-primary">Reservar</a>
-              </div>
-            </div>
-          </div>
-  
-          <!-- Tarjeta de Contacto -->
-          <div class="col-md-6 mb-4">
-            <div class="card shadow-sm text-center">
-              <div class="card-body">
-                <h2 class="card-title">Contacto</h2>
-                <p class="card-text">Comunícate con nuestro equipo de soporte.</p>
-                <a href="{{ url_for('tasks.contacto') }}" class="btn btn-info">Contactar</a>
-              </div>
-            </div>
-          </div>
-  
-          <!-- Tarjeta de Formación -->
-          <div class="col-md-6 mb-4">
-            <div class="card shadow-sm text-center">
-              <div class="card-body">
-                <h2 class="card-title">Formación</h2>
-                <p class="card-text">Explora nuestros cursos y capacitaciones.</p>
-                <a href="{{ url_for('tasks.formacion') }}" class="btn btn-warning">Ver Cursos</a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="d-flex justify-content-center gap-3 mt-4">
+</div>
+
+<!-- Botones de navegación -->
+<div class="d-flex justify-content-center gap-3 mt-4">
     <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
     <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-primary">👤 Mi Perfil</a>
     <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Reservar Sesión</a>
     <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
-  </div>
-  
-  <script>
+</div>
+
+<script>
     // Obtener la referencia a la imagen del modal y al modal
     const modalImage = document.getElementById("modalImage");
     const imageModal = document.getElementById("imageModal");
-  
+
     // Escuchar el evento 'show.bs.modal' que se dispara cuando se abre el modal
     imageModal.addEventListener("show.bs.modal", function (event) {
-      // Obtener el botón que activó el modal (la imagen en miniatura)
-      const button = event.relatedTarget;
-      // Obtener el atributo 'data-bs-image' de la imagen clickeada
-      const imageUrl = button.getAttribute("data-bs-image");
-      // Actualizar el src de la imagen en el modal
-      modalImage.src = imageUrl;
+        const button = event.relatedTarget;
+        const imageUrl = button.getAttribute("data-bs-image");
+        modalImage.src = imageUrl;
     });
-  </script>
-  {% endblock %}
-  
+</script>
+
+{% endblock %}

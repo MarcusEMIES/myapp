@@ -1,37 +1,93 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<header id="frame-panel">
-    <h1 class="text-center text-4xl font-bold mt-6">📅 Mis Reservas</h1>
-    <p class="text-center text-lg text-gray-400">Consulta tus reservas de sesiones fotográficas.</p>
+<header class="text-center mt-5 mb-5">
+    <h1 class="display-4 font-weight-bold text-primary">📅 Mis Reservas</h1>
+    <p class="lead text-muted">Consulta y gestiona tus sesiones fotográficas</p>
 </header>
 
 {% if current_user.is_authenticated %}
-<section class="p-8">
-    {% if reservas %}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for reserva in reservas %}
-        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-lg">
-            <h2 class="text-xl font-bold">📷 Sesión Reservada</h2>
-            <p><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
-            <p><strong>Duración:</strong> 3 horas</p>
-            <p><strong>Ubicación:</strong> Estudio o Exteriores</p>
-            <p><strong>Precio:</strong> 120€</p>
+<div class="container">
+    <div class="row">
+        <!-- Columna de foto del usuario -->
+        <div class="col-md-4 d-flex flex-column align-items-center">
+            <div class="card shadow-lg mb-4" style="width: 100%;">
+                <div class="card-body text-center">
+                    <!-- Foto del usuario o imagen por defecto -->
+                    {% if current_user.foto %}
+                        <img src="{{ url_for('admin.uploads', filename=current_user.foto) }}" 
+                             alt="Foto de Usuario" 
+                             class="img-fluid rounded-circle mb-3" 
+                             style="width: 250px; height: 250px; object-fit: cover; border: 4px solid #007bff;">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='images/logo.jpg') }}" 
+                             alt="Imagen por defecto" 
+                             class="img-fluid rounded-circle mb-3" 
+                             style="width: 250px; height: 250px; object-fit: cover; border: 4px solid #6c757d;">
+                    {% endif %}
+
+                    <!-- Datos del usuario -->
+                    <h2 class="card-title">
+                        {% if current_user.nombre or current_user.apellidos %}
+                            {{ current_user.nombre or '' }} {{ current_user.apellidos or '' }}
+                        {% elif current_user.username %}
+                            {{ current_user.username }}
+                        {% else %}
+                            Usuario sin nombre
+                        {% endif %}
+                    </h2>
+                    <p class="card-text text-muted">{{ current_user.email }}</p>
+                </div>
+            </div>
         </div>
-        {% endfor %}
+
+        <!-- Columna de las reservas -->
+        <div class="col-md-8">
+            {% if reservas %}
+                <div class="row">
+                    {% for reserva in reservas %}
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow-sm border-0" style="border-left: 8px solid #28a745;">
+                            <div class="card-body">
+                                <h5 class="card-title text-success">📷 Sesión Reservada</h5>
+                                <p class="card-text"><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
+                                <p class="card-text"><strong>Duración:</strong> 3 horas</p>
+                                <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
+                                <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
+
+                                <!-- Botones de acción -->
+                                {% if current_user.is_admin %}
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
+                                       class="btn btn-warning btn-sm">✏️ Editar</a>
+                                    <a href="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" 
+                                       class="btn btn-danger btn-sm">🗑️ Eliminar</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center text-muted">No tienes reservas registradas.</p>
+            {% endif %}
+        </div>
     </div>
-    {% else %}
-    <p class="text-center text-gray-400">No tienes reservas registradas.</p>
-    {% endif %}
-</section>
+</div>
+
 {% else %}
-<p class="text-center text-red-500">⚠️ Debes iniciar sesión para ver tus reservas.</p>
+<p class="text-center text-danger">⚠️ Debes iniciar sesión para ver tus reservas.</p>
 {% endif %}
 
-<div class="flex justify-center gap-4 mt-8">
-    <a href="javascript:history.back()" class="btn bg-gray-500 text-white px-4 py-2 rounded-lg">⬅️ Volver</a>
-    <a href="{{ url_for('tasks.dashboard') }}" class="btn bg-blue-500 text-white px-4 py-2 rounded-lg">👤 Mi Perfil</a>
-    <a href="{{ url_for('reservamiento.reservar') }}" class="btn bg-green-500 text-white px-4 py-2 rounded-lg">📅 Reservar Sesión</a>
-    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn bg-purple-500 text-white px-4 py-2 rounded-lg">📜 Ver Reservas</a>
+<!-- Botones de navegación -->
+<div class="container text-center mt-5">
+    <div class="btn-group">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary">⬅️ Volver</a>
+        <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-outline-primary">👤 Mi Perfil</a>
+        <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-outline-success">📅 Reservar Sesión</a>
+        <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-outline-info">📜 Ver Reservas</a>
+    </div>
 </div>
+
 {% endblock %}
