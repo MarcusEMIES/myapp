@@ -10,7 +10,7 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     # __bind_key__ = 'users_db'  # 🔥 Agrega esto para asegurarte de que usa la DB correcta
 
-  
+    
 
     # Definición de la columna 'id' que es la clave primaria de la tabla
     id = db.Column(db.Integer, primary_key=True)

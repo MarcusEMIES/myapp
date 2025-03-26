@@ -6,7 +6,7 @@
 <main class="d-flex justify-content-center align-items-center vh-100">
   <div class="card w-50 p-4 shadow-lg" style="transition: transform 0.3s ease-in-out;">
     
-    <!-- Mensajes flash -->
+    <!-- Mensajes flash
     <div class="mb-3">
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -15,7 +15,7 @@
           </div>
         {% endif %}
       {% endwith %}
-    </div>
+    </div> -->
 
     <div class="text-center">
       <img class="mb-4" 
@@ -56,8 +56,34 @@
     font-weight: bold;
     font-size: 1rem;
     margin: 0 auto;
-    width: 80%; /* Ajusta el ancho si lo necesitas */
+    width: 80%;  /* Ajusta el ancho si lo necesitas */
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* Oculta el mensaje después de 4 segundos */
+  .fade-out {
+    opacity: 0;
   }
 </style>
+
+<script>
+  // Función para hacer que los mensajes flash desaparezcan automáticamente
+  window.addEventListener('DOMContentLoaded', () => {
+    const flashMessages = document.querySelectorAll('.alert');
+
+    flashMessages.forEach((msg) => {
+      setTimeout(() => {
+        msg.classList.add('fade-out');
+        
+        // Opcional: eliminar el elemento del DOM después del fade-out
+        setTimeout(() => {
+          msg.remove();
+        }, 500);  // Espera a que termine la transición para eliminar
+      }, 4000);  // 4 segundos antes de empezar el fade-out
+    });
+  });
+</script>
+
 
 {% endblock %}

@@ -55,6 +55,9 @@ def make_session_permanent():
 # Crear la base de datos si no existe
 with app.app_context():
     db.create_all()
+with app.app_context():
+    usuario = User.query.get(1)  # Obtener usuario con ID 1
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,99 +1,126 @@
 {% extends 'base.html' %}
 
+{% block title %}Reservar Servicio{% endblock %}
+
 {% block content %}
-<header id="frame-panel" class="text-center my-4">
-    <h2 class="text-4xl font-bold font-luxurious-roman">📸 Reserva tu Sesión Fotográfica</h2>
-    <p class="text-lg text-gray-600">Elige el mejor horario para tu sesión y asegura una experiencia profesional.</p>
-</header>
+<div class="container mt-5">
+    <div class="row justify-content-center d-flex align-items-stretch">
+        
+        <!-- Tarjeta izquierda con información del servicio -->
+        <div class="col-md-5">
+            <div class="card shadow-lg h-100">
+                <div class="card-header bg-black text-white text-center">
+                    <h2 class="card-title">Tipo de Servicio</h2>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Reserva una Sesión de Fotografía</h4>
+                    <p>Este servicio te permite reservar una cita para una sesión fotográfica profesional. ¡Haz tu reserva ahora!</p>
+                    <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="img-fluid" alt="Logo de la empresa">
+                </div>
+            </div>
+        </div>
 
-<!-- Mensajes Flash -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-  <ul class="list-group p-4">
-    {% for category, message in messages %}
-      <li class="list-group-item {% if category == 'success' %}list-group-item-primary{% elif category == 'error' %}list-group-item-danger{% endif %}">
-        {{ message }}
-      </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-{% endwith %}
+        <!-- Tarjeta derecha con el formulario de reserva -->
+        <div class="col-md-5">
+            <div class="card shadow-lg h-100">
+                <div class="card-header bg-black text-white text-center">
+                    <h2 class="card-title">Formulario de Reserva</h2>
+                </div>
+                <div class="card-body">
 
-<section class="container d-flex flex-column flex-md-row gap-4 p-4">
-    <!-- Tarjeta de Detalles de Reserva -->
-    <div class="card w-100 w-md-50 shadow-lg">
-        <div class="card-body">
-            <h2 class="card-title font-luxurious-roman">📷 Sesión Fotográfica</h2>
-            <p class="card-text">Captura momentos inolvidables con una sesión profesional.</p>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">🔹 <strong>Duración:</strong> Mínimo 3h - Máximo 3h</li>
-                <li class="list-group-item">🔹 <strong>Precio:</strong> 120€</li>
-                <li class="list-group-item">🔹 <strong>Ubicación:</strong> Estudio o Exteriores</li>
-            </ul>
+                    <!-- Mostrar mensajes de error o éxito -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} text-center" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- Formulario -->
+                    <form action="{{ url_for('reservamiento.reservar') }}" method="POST">
+                        
+                        <!-- Nombre del usuario autenticado -->
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="nombre" 
+                                name="nombre" 
+                                value="{{ nombre_usuario if nombre_usuario else '' }}" 
+                                required>
+                        </div>
+
+                        <!-- Correo del usuario autenticado -->
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo Electrónico</label>
+                            <input 
+                                type="email" 
+                                class="form-control" 
+                                id="correo" 
+                                name="correo" 
+                                value="{{ correo_usuario if correo_usuario else '' }}" 
+                                required>
+                        </div>
+
+                        <!-- Fecha y hora -->
+                        <div class="mb-3">
+                            <label for="fecha_hora" class="form-label">Fecha y Hora</label>
+                            <input 
+                                type="datetime-local" 
+                                class="form-control" 
+                                id="fecha_hora" 
+                                name="fecha_hora" 
+                                value="{{ ahora }}" 
+                                required 
+                                min="{{ ahora_min }}" 
+                                max="{{ ahora_max }}">
+                        </div>
+
+                        <!-- Lugar -->
+                        <div class="mb-3">
+                            <label for="lugar" class="form-label">Lugar</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="lugar" 
+                                name="lugar" 
+                                placeholder="Especifica el lugar" 
+                                required>
+                        </div>
+
+                        <!-- Tipo de sesión -->
+                        <div class="mb-3">
+                            <label for="tipo_sesion" class="form-label">Tipo de Sesión</label>
+                            <select class="form-select" id="tipo_sesion" name="tipo_sesion" required>
+                                <option value="Fotografía de Producto">Fotografía de Producto</option>
+                                <option value="Fotografía de Retrato">Fotografía de Retrato</option>
+                                <option value="Fotografía de Evento">Fotografía de Evento</option>
+                                <option value="Fotografía de Matrimonio">Fotografía de Matrimonio</option>
+                            </select>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <button type="submit" class="btn btn-primary w-100">Reservar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Tarjeta de Formulario de Reserva -->
-    <div class="card w-100 w-md-50 shadow-lg">
-        <div class="card-body">
-            {% if current_user.is_authenticated %}
-            <h2 class="card-title font-luxurious-roman">📅 Reserva tu Sesión</h2>
-            <form action="{{ url_for('reservamiento.reservar') }}" method="POST">
-                <div class="mb-3">
-                    <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" name="fecha" id="fecha" required class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="hora" class="form-label">Hora</label>
-                    <input type="time" name="hora" id="hora" required class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="lugar" class="form-label">Lugar</label>
-                    <input type="text" name="lugar" id="lugar" required class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="tipo_sesion" class="form-label">Tipo de Sesión</label>
-                    <select name="tipo_sesion" id="tipo_sesion" class="form-control" required>
-                        <option value="Estudio">Estudio</option>
-                        <option value="Exteriores">Exteriores</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">📸 Reservar</button>
-            </form>
-            {% else %}
-            <p class="text-center text-danger">⚠️ Debes iniciar sesión para reservar.</p>
-            {% endif %}
+    <!-- Contenedor con los botones de navegación -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-between">
+                <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
+                <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-secondary">👤 Ir a mi perfil</a>
+                <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Nueva Reserva</a>
+                <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
+            </div>
         </div>
     </div>
-</section>
-
-<div class="d-flex justify-content-center gap-3 mt-4">
-    <a href="javascript:history.back()" class="btn btn-secondary">⬅️ Volver</a>
-    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-primary">👤 Mi Perfil</a>
-    <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-success">📅 Reservar Sesión</a>
-    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-info">📜 Ver Reservas</a>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const fechaInput = document.getElementById("fecha");
-        const horaInput = document.getElementById("hora");
-        let now = new Date();
-        now.setMinutes(0, 0, 0);
-        now.setHours(now.getHours() + 3); // Mínimo 3 horas desde ahora
-        
-        fechaInput.setAttribute("min", now.toISOString().slice(0, 10));
-        
-        horaInput.addEventListener("input", function() {
-            const selectedTime = this.value;
-            const [hours, minutes] = selectedTime.split(":").map(Number);
-            
-            if ((hours >= 21 || hours < 6) || (hours >= 11 && hours < 14)) {
-                alert("No se pueden seleccionar horas entre 21:00 y 06:00, ni entre 11:00 y 14:00.");
-                this.value = "";
-            }
-        });
-    });
-</script>
-
 {% endblock %}

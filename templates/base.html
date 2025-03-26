@@ -180,7 +180,20 @@
         font-family: 'Luxurious Roman', serif;
       }
 
-     
+      /* Estilo para los mensajes flash centrados */
+      .alert {
+        font-weight: bold;
+        font-size: 1rem;
+        margin: 0 auto;
+        width: 80%;  /* Ajusta el ancho si lo necesitas */
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+      }
+    
+      /* Oculta el mensaje después de 4 segundos */
+      .fade-out {
+        opacity: 0;
+      }
     </style>
   </head>
 
@@ -198,12 +211,7 @@
             role="alert"
           >
             {{ message }}
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
+
           </div>
         </div>
         {% endif %} {% endfor %}
@@ -413,6 +421,22 @@
       alert("Hubo un error al intentar extender tu sesión.");
     });
   });
+
+    // Función para hacer que los mensajes flash desaparezcan automáticamente
+    window.addEventListener('DOMContentLoaded', () => {
+      const flashMessages = document.querySelectorAll('.alert');
+  
+      flashMessages.forEach((msg) => {
+        setTimeout(() => {
+          msg.classList.add('fade-out');
+          
+          // Opcional: eliminar el elemento del DOM después del fade-out
+          setTimeout(() => {
+            msg.remove();
+          }, 500);  // Espera a que termine la transición para eliminar
+        }, 4000);  // 4 segundos antes de empezar el fade-out
+      });
+    });
 </script>
 
 
