@@ -1,81 +1,92 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<header id="frame-panel">
-    <h1 class="text-center text-4xl font-bold mt-6">🎓 Escuela de Fotografía - Dashboard 📸</h1>
-    <p class="text-center text-lg text-gray-600">Explora nuestros cursos desde nivel principiante hasta avanzado.</p>
+<header id="frame-panel" class="bg-black text-white py-5">
+    <div class="container text-center">
+        <h1 class="text-4xl font-bold mt-6" style="font-family: 'Montserrat', sans-serif; color: #fff;">Escuela de Fotografía</h1>
+        <p class="text-lg text-gray-300" style="font-family: 'Poppins', sans-serif;">Explora nuestros cursos desde nivel principiante hasta avanzado. ¡Perfecciona tus habilidades con nosotros!</p>
+    </div>
 </header>
 
-<section class="courses-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
-    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105">
-        <img src="/static/images/beginner.jpg" alt="Fotografía para Principiantes" class="w-full h-48 object-cover">
+<section class="courses-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 bg-white">
+    <!-- Fotografía para Principiantes -->
+    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+        <img src="/static/images/mujer/m27.png" alt="Fotografía para Principiantes" class="w-full h-48 object-cover rounded-t-xl">
         <div class="p-4">
-            <h2 class="text-xl font-semibold">📷 Fotografía para Principiantes</h2>
-            <p class="text-gray-600">Aprende los fundamentos de la fotografía y captura imágenes increíbles.</p>
+            <h2 class="text-xl font-semibold text-black">Fotografía para Principiantes</h2>
+            <p class="text-gray-600">Aprende los fundamentos de la fotografía y captura imágenes impresionantes.</p>
         </div>
     </div>
-    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105">
-        <img src="/static/images/lighting.jpg" alt="Técnicas de Iluminación" class="w-full h-48 object-cover">
+    
+    <!-- Técnicas de Iluminación -->
+    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+        <img src="/static/images/mujer/m.26.jpeg" alt="Técnicas de Iluminación" class="w-full h-48 object-cover rounded-t-xl">
         <div class="p-4">
-            <h2 class="text-xl font-semibold">💡 Técnicas de Iluminación</h2>
-            <p class="text-gray-600">Domina la luz natural y artificial para mejorar tus fotos.</p>
+            <h2 class="text-xl font-semibold text-black">Técnicas de Iluminación</h2>
+            <p class="text-gray-600">Domina la luz natural y artificial para mejorar la calidad de tus fotos.</p>
         </div>
     </div>
-    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105">
-        <img src="/static/images/advanced.jpg" alt="Fotografía Avanzada" class="w-full h-48 object-cover">
+    
+    <!-- Fotografía Avanzada -->
+    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+        <img src="/static/images/mujer/m.11.jpeg" alt="Fotografía Avanzada" class="w-full h-48 object-cover rounded-t-xl">
         <div class="p-4">
-            <h2 class="text-xl font-semibold">🎯 Fotografía Avanzada</h2>
-            <p class="text-gray-600">Perfecciona tu técnica con composición y postproducción profesional.</p>
+            <h2 class="text-xl font-semibold text-black">Fotografía Avanzada</h2>
+            <p class="text-gray-600">Perfecciona tu técnica con composición avanzada y postproducción profesional.</p>
         </div>
     </div>
 </section>
 
-
 <div class="container mt-5">
     <div class="d-flex flex-wrap justify-content-center gap-3">
-        
         <!-- Botón Volver -->
         <a href="javascript:history.back()" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
+           style="font-family: 'Poppins', sans-serif; 
+                  color: #fff; 
+                  border-color: #2d3748; 
+                  background-color: #2d3748; 
+                  transition: all 0.3s ease-in-out;"
            >Volver</a>
 
         <!-- Botón Perfil -->
         <a href="{{ url_for('tasks.dashboard') }}" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
+           style="font-family: 'Poppins', sans-serif; 
+                  color: #fff; 
+                  border-color: #2d3748; 
+                  background-color: #2d3748; 
+                  transition: all 0.3s ease-in-out;"
            >Mi Perfil</a>
 
         <!-- Botón Reservar -->
         <a href="{{ url_for('reservamiento.reservar') }}" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
+           style="font-family: 'Poppins', sans-serif; 
+                  color: #fff; 
+                  border-color: #2d3748; 
+                  background-color: #2d3748; 
+                  transition: all 0.3s ease-in-out;"
            >Reservar Sesión</a>
 
         <!-- Botón Ver Reservas -->
         <a href="{{ url_for('reservamiento.ver_reserva') }}" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
+           style="font-family: 'Poppins', sans-serif; 
+                  color: #fff; 
+                  border-color: #2d3748; 
+                  background-color: #2d3748; 
+                  transition: all 0.3s ease-in-out;"
            >Ver Reservas</a>
-        <!-- Botón Ver Formacion -->
+        
+        <!-- Botón Formación -->
         <a href="{{ url_for('tasks.servicios') }}" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
+           style="font-family: 'Poppins', sans-serif; 
+                  color: #fff; 
+                  border-color: #2d3748; 
+                  background-color: #2d3748; 
+                  transition: all 0.3s ease-in-out;"
            >Formación</a>
     </div>
 </div>
@@ -104,9 +115,25 @@
 
     /* Efecto hover: color de fondo lleno */
     .btn:hover {
-        background-color: #3730a3 !important;  
+        background-color: #2d3748 !important;  
         color: white !important;
-        border-color: #3730a3 !important;
+        border-color: #2d3748 !important;
+    }
+
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Color personalizado */
+    .btn-outline-primary {
+        border-color: #2d3748;
+        color: #2d3748;
+    }
+    .btn-outline-primary:hover {
+        background-color: #2d3748;
+        color: white;
     }
 </style>
+
 {% endblock %}

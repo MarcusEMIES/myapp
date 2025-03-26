@@ -3,10 +3,10 @@
 {% block content %}
 <header class="text-center mt-5 mb-5">
     <h2 class="text-light mb-0"
-    style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
-    Ver mis Reservas
-  </h2>
-    <p class="lead text-muted">Consulta y gestiona tus sesiones fotográficas</p>
+        style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+        Ver Reservas
+    </h2>
+    <p class="lead text-muted">Consulta y gestiona las sesiones fotográficas de todos los usuarios (si eres administrador)</p>
 </header>
 
 {% if current_user.is_authenticated %}
@@ -46,34 +46,86 @@
 
         <!-- Columna de las reservas -->
         <div class="col-md-8">
-            {% if reservas %}
-                <div class="row">
-                    {% for reserva in reservas %}
-                    <div class="col-lg-6 mb-4">
-                        <div class="card shadow-sm border-0" style="border-left: 8px solid #28a745;">
-                            <div class="card-body">
-                                <h5 class="card-title text-success">📷 Sesión Reservada</h5>
-                                <p class="card-text"><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
-                                <p class="card-text"><strong>Duración:</strong> 3 horas</p>
-                                <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
-                                <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
+            {% if current_user.role == 'admin' %}
+                <!-- Si es admin, mostrar todas las reservas -->
+                {% if reservas %}
+                    <div class="row">
+                        {% for reserva in reservas %}
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow-sm border-0" style="border-left: 8px solid #28a745;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-success">📷 Sesión Reservada</h5>
+                                    <p class="card-text"><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
+                                    <p class="card-text"><strong>Duración:</strong> 3 horas</p>
+                                    <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
+                                    <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
 
-                                <!-- Botones de acción -->
-                                {% if current_user.is_admin %}
-                                <div class="d-flex justify-content-between">
-                                    <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
-                                       class="btn btn-warning btn-sm">✏️ Editar</a>
-                                    <a href="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" 
-                                       class="btn btn-danger btn-sm">🗑️ Eliminar</a>
+                                    <!-- Datos del usuario que hizo la reserva -->
+                                    <p class="card-text"><strong>Usuario que reservó:</strong> 
+                                        {% if reserva.user %}
+                                            {{ reserva.user.nombre }} {{ reserva.user.apellidos }}
+                                        {% else %}
+                                            Usuario desconocido
+                                        {% endif %}
+                                    </p>
+
+                                    <!-- Botones de acción solo si el usuario es admin -->
+                                    {% if current_user.role == 'admin' %}
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
+                                           class="btn btn-warning btn-sm">✏️ Editar</a>
+                                        <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
+                                           class="btn btn-danger btn-sm">🗑️ Eliminar</a>
+                                    </div>
+                                    {% endif %}
                                 </div>
-                                {% endif %}
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-                </div>
+                {% else %}
+                    <p class="text-center text-muted">No hay reservas registradas.</p>
+                {% endif %}
             {% else %}
-                <p class="text-center text-muted">No tienes reservas registradas.</p>
+                <!-- Si no es admin, mostrar solo las reservas del usuario -->
+                {% if reservas %}
+                    <div class="row">
+                        {% for reserva in reservas %}
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow-sm border-0" style="border-left: 8px solid #28a745;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-success">📷 Sesión Reservada</h5>
+                                    <p class="card-text"><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
+                                    <p class="card-text"><strong>Duración:</strong> 3 horas</p>
+                                    <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
+                                    <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
+
+                                    <!-- Mostrar datos del usuario que hizo la reserva -->
+                                    <p class="card-text"><strong>Usuario que reservó:</strong> 
+                                        {% if reserva.user %}
+                                            {{ reserva.user.nombre }} {{ reserva.user.apellidos }}
+                                        {% else %}
+                                            Usuario desconocido
+                                        {% endif %}
+                                    </p>
+
+                                    <!-- Solo mostrar botones de acción si el usuario es admin o si la reserva es del propio usuario -->
+                                    {% if current_user.role == 'admin' or reserva.user_id == current_user.id %}
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
+                                           class="btn btn-warning btn-sm">✏️ Editar</a>
+                                        <a href="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" 
+                                           class="btn btn-danger btn-sm">🗑️ Eliminar</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-center text-muted">No tienes reservas registradas.</p>
+                {% endif %}
             {% endif %}
         </div>
     </div>
@@ -83,18 +135,17 @@
 <p class="text-center text-danger">⚠️ Debes iniciar sesión para ver tus reservas.</p>
 {% endif %}
 
-
 <div class="container mt-5">
     <div class="d-flex flex-wrap justify-content-center gap-3">
-        
         <!-- Botón Volver -->
         <a href="javascript:history.back()" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
            style="font-family: 'Permanent Marker', sans-serif; 
                   color: #3730a3; 
                   border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Volver</a>
+                  transition: all 0.3s;">
+           Volver
+        </a>
 
         <!-- Botón Perfil -->
         <a href="{{ url_for('tasks.dashboard') }}" 
@@ -102,8 +153,9 @@
            style="font-family: 'Permanent Marker', sans-serif; 
                   color: #3730a3; 
                   border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Mi Perfil</a>
+                  transition: all 0.3s;">
+           Mi Perfil
+        </a>
 
         <!-- Botón Reservar -->
         <a href="{{ url_for('reservamiento.reservar') }}" 
@@ -111,8 +163,9 @@
            style="font-family: 'Permanent Marker', sans-serif; 
                   color: #3730a3; 
                   border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Reservar Sesión</a>
+                  transition: all 0.3s;">
+           Reservar Sesión
+        </a>
 
         <!-- Botón Ver Reservas -->
         <a href="{{ url_for('reservamiento.ver_reserva') }}" 
@@ -120,47 +173,19 @@
            style="font-family: 'Permanent Marker', sans-serif; 
                   color: #3730a3; 
                   border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Ver Reservas</a>
+                  transition: all 0.3s;">
+           Ver Reservas
+        </a>
+        
         <!-- Botón Ver Formacion -->
         <a href="{{ url_for('tasks.servicios') }}" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
            style="font-family: 'Permanent Marker', sans-serif; 
                   color: #3730a3; 
                   border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Formación</a>
+                  transition: all 0.3s;">
+           Formación
+        </a>
     </div>
 </div>
-
-<!-- Estilos adicionales para mejorar la responsividad -->
-<style>
-    @media (max-width: 768px) {
-        .btn {
-            font-size: 1rem;  /* Reduce el tamaño del texto en pantallas medianas */
-            padding: 0.5rem 1rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .d-flex {
-            flex-direction: column;  /* Botones en columna en pantallas pequeñas */
-            align-items: center;
-        }
-
-        .btn {
-            width: 100%;  /* Botones ocupan todo el ancho */
-            text-align: center;
-            font-size: 0.9rem;  
-        }
-    }
-
-    /* Efecto hover: color de fondo lleno */
-    .btn:hover {
-        background-color: #3730a3 !important;  
-        color: white !important;
-        border-color: #3730a3 !important;
-    }
-</style>
-
 {% endblock %}

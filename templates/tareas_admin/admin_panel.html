@@ -17,7 +17,7 @@
 <div class="container-fluid text-center py-4" style="background-color: white;">
   <div class="d-flex justify-content-between align-items-center">
     <h2 class="text-dark mb-0"
-      style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center; display: inline-block;">
+      style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; flex-grow: 1; text-align: center;">
       Panel de Administración
     </h2>
 
@@ -29,65 +29,45 @@
     </button>
   </div>
 
-<!-- Barra de navegación colapsable -->
-<nav>
-  <ul class="nav justify-content-between"
-    style="margin-top: 20px; display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-    
-    <!-- Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('tasks.dashboard') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Dashboard</a>
-    </li>
+  <!-- Barra de navegación colapsable -->
+  <nav>
+    <ul class="nav justify-content-center" style="margin-top: 20px;">
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.dashboard') }}" style="font-weight: bold; font-size: 1.2rem;">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('admin.listar_usuarios') }}" style="font-weight: bold; font-size: 1.2rem;">Gestionar Usuarios</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.servicios') }}" style="font-weight: bold; font-size: 1.2rem;">Servicios Fotográficos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.formacion') }}" style="font-weight: bold; font-size: 1.2rem;">Cursos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('tasks.productos') }}" style="font-weight: bold; font-size: 1.2rem;">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('admin.reports') }}" style="font-weight: bold; font-size: 1.2rem;">Informes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ url_for('admin.admin_panel') }}" style="font-weight: bold; font-size: 1.2rem;">Ajustes</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 
-    <!-- Usuarios -->
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.listar_usuarios') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Gestionar Usuarios</a>
-    </li>
-
-    <!-- Servicios Fotográficos -->
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('tasks.servicios') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Servicios Fotográficos</a>
-    </li>
-
-    <!-- Cursos -->
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('tasks.formacion') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Cursos</a>
-    </li>
-
-    <!-- Productos -->
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('tasks.productos') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Productos</a>
-    </li>
-
-    <!-- Informes -->
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.reports') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Informes</a>
-    </li>
-
-    <!-- Ajustes -->
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ url_for('admin.admin_panel') }}"
-        style="font-weight: bold; font-size: 1.2rem; text-align: center;">Ajustes</a>
-    </li>
-  </ul>
-</nav>
-
-Sección de administración
-<div class="album py-5 bg-body-tertiary">
+<!-- Sección de administración -->
+<div class="album py-5 bg-light">
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+
       <!-- Tarjeta de administración flotante a la derecha -->
-      <div class="col-md-4 offset-md-2">
+      <div class="col mb-3">
         <div class="card bg-dark text-white shadow-sm">
           <div class="card-body">
             <h5 class="card-title">Panel de Administración</h5>
-            <p class="card-text">Realiza diversas tareas de administración desde aquí:</p>
+            <p class="card-text">Accede a diferentes secciones de administración:</p>
             <div class="d-grid gap-2">
               <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-outline-light">Dashboard</a>
               <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light">Gestionar Usuarios</a>
@@ -104,38 +84,6 @@ Sección de administración
     </div>
   </div>
 </div>
-
-<h5 class="card-title">Panel de Administración</h5>
-<p class="card-text">Realiza diversas tareas de administración desde aquí:</p>
-<div class="d-grid gap-2">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-    <div class="col mb-2">
-      <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-outline-light w-100">Dashboard</a>
-    </div>
-    <div class="col mb-2">
-      <a href="{{ url_for('admin.listar_usuarios') }}" class="btn btn-outline-light w-100">Gestionar Usuarios</a>
-    </div>
-    <div class="col mb-2">
-      <a href="{{ url_for('tasks.servicios') }}" class="btn btn-outline-light w-100">Servicios Fotográficos</a>
-    </div>
-    <div class="col mb-2">
-      <a href="{{ url_for('tasks.formacion') }}" class="btn btn-outline-light w-100">Cursos</a>
-    </div>
-    <div class="col mb-2">
-      <a href="{{ url_for('tasks.productos') }}" class="btn btn-outline-light w-100">Productos</a>
-    </div>
-    <div class="col mb-2">
-      <a href="{{ url_for('admin.reports') }}" class="btn btn-outline-light w-100">Ver Informes</a>
-    </div>
-    <div class="col mb-2">
-      <a href="{{ url_for('admin.admin_panel') }}" class="btn btn-outline-light w-100">Ajustes</a>
-    </div>
-    <div class="col mb-2">
-      <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light w-100">Cerrar sesión</a>
-    </div>
-  </div>
-</div>
-
 
 <!-- Modal para ver la imagen -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
@@ -169,44 +117,34 @@ Sección de administración
     <p>Solo los administradores pueden acceder a esta página.</p>
   </div>
 {% endif %}
+
+<!-- Botones adicionales para la administración -->
 <div class="container mt-5">
   <div class="d-flex flex-wrap justify-content-center gap-3">
-      
-      <!-- Botón Volver -->
-      <a href="javascript:history.back()" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Volver</a>
 
-      <!-- Botón Perfil -->
-      <a href="{{ url_for('tasks.dashboard') }}" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Mi Perfil</a>
+    <!-- Botón Volver -->
+    <a href="javascript:history.back()" class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+       style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;">
+       Volver
+    </a>
 
-      <!-- Botón Reservar -->
-      <a href="{{ url_for('reservamiento.reservar') }}" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Reservar Sesión</a>
+    <!-- Botón Perfil -->
+    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+       style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;">
+       Mi Perfil
+    </a>
 
-      <!-- Botón Ver Reservas -->
-      <a href="{{ url_for('reservamiento.ver_reserva') }}" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Ver Reservas</a>
+    <!-- Botón Reservar -->
+    <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+       style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;">
+       Reservar Sesión
+    </a>
+
+    <!-- Botón Ver Reservas -->
+    <a href="{{ url_for('reservamiento.ver_reserva') }}" class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+       style="font-family: 'Permanent Marker', sans-serif; color: #3730a3; border-color: #3730a3; transition: all 0.3s;">
+       Ver Reservas
+    </a>
   </div>
 </div>
 

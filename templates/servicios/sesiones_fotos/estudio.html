@@ -1,30 +1,55 @@
-{% extends "base.html" %}
-
-{% block title %}Sesión de Estudio{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center">Sesión de Estudio</h1>
-    <p class="text-center">Capturamos tu mejor versión en un estudio profesional.</p>
-
-    <div class="text-center mt-4">
-        {% if current_user.is_authenticated %}
-        <a href="{{ url_for('pago.pagar_bizum', servicio='sesiones_estudio') }}" class="btn btn-primary btn-lg">
-            Proceder al Pago con Bizum
-        </a>
-        
-        {% else %}
-            <a href="{{ url_for('auth.login') }}" class="btn btn-warning btn-lg">
-                Iniciar Sesión para Reservar
-            </a>
-            <p class="mt-2">¿No tienes cuenta? 
-                <a href="{{ url_for('auth.register') }}" class="text-decoration-none text-primary fw-bold">
-                    Regístrate aquí
-                </a>
-            </p>
-        {% endif %}
+<header id="frame-panel" class="bg-black text-white py-5">
+    <div class="container text-center">
+        <h1 class="text-4xl font-bold mt-6" style="font-family: 'Montserrat', sans-serif; color: #fff;">Escuela de Fotografía</h1>
+        <p class="text-lg text-gray-300" style="font-family: 'Poppins', sans-serif;">Explora nuestros cursos y sesiones de estudio, desde nivel principiante hasta avanzado. ¡Desarrolla tus habilidades con nosotros!</p>
     </div>
-</div>
+</header>
+
+<section class="study-session-container bg-gray-100 py-8">
+    <div class="container text-center">
+        <h2 class="text-3xl font-bold mb-4" style="font-family: 'Montserrat', sans-serif; color: #2d3748;">¡Reserva tu Sesión de Estudio Personalizada!</h2>
+        <p class="text-lg text-gray-600 mb-6" style="font-family: 'Poppins', sans-serif;">Consigue Retratos inolvidables.</p>
+        <a href="{{ url_for('reservamiento.reservar') }}" 
+           class="btn btn-primary btn-lg text-uppercase fw-bold px-6 py-3" 
+           style="font-family: 'Poppins', sans-serif; color: #fff; background-color: #2d3748; border-color: #2d3748; transition: all 0.3s ease-in-out;">
+           Reservar Sesión de Estudio
+        </a>
+    </div>
+</section>
+
+<section class="courses-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 bg-white">
+    <!-- Fotografía para Principiantes -->
+    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+        <img src="/static/images/mujer/m16.jpg" alt="Técnicas de Iluminación" style="width: 600px;">
+        <div class="p-4">
+            <h2 class="text-xl font-semibold text-black">Fotografía beauty</h2>
+            <p class="text-gray-600">Aprende los fundamentos de la fotografía y captura imágenes impresionantes.</p>
+        </div>
+    </div>
+    
+    <!-- Técnicas de Iluminación -->
+    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+        <img src="/static/images/Hombre/h12.png" alt="Técnicas de Iluminación" style="width: 600px;">
+
+        <div class="p-4">
+            <h2 class="text-xl font-semibold text-black">Fotografia Cinematica</h2>
+            <p class="text-gray-600">Domina la luz natural y artificial para mejorar la calidad de tus fotos.</p>
+        </div>
+    </div>
+    
+    <!-- Fotografía Avanzada -->
+    <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+        <img src="/static/images/mujer/m.13.jpeg" alt="Fotografía Avanzada" class="w-full h-48 object-cover rounded-t-xl">
+        <div class="p-4">
+            <h2 class="text-xl font-semibold text-black">Fotografía de Estudio para Magazine</h2>
+            <p class="text-gray-600">Perfecciona tu técnica con composición avanzada y postproducción profesional.</p>
+        </div>
+    </div>
+</section>
+
 
 <div class="container mt-5">
     <div class="d-flex flex-wrap justify-content-center gap-3">

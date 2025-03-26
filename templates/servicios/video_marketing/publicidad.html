@@ -4,189 +4,120 @@
 
 {% block content %}
 <!-- Sección de encabezado -->
-<section class="hero bg-dark text-white py-5" style="background-image: url('{{ url_for('static', filename='images/hero_video_publicidad.jpg') }}'); background-size: cover; background-position: center;">
-  <div class="container text-center">
-    <h1 class="display-4 ewert-regular" style="font-family: 'Permanent Marker', sans-serif;">Transforma tu Marca con Videos Publicitarios Impactantes</h1>
-    <p class="lead" style="font-family: 'Oswald', sans-serif; color: #f8f9fa;">Nos especializamos en crear videos publicitarios que cautivan, comunican y convierten. Llevamos tu mensaje a tu audiencia de manera eficaz y profesional.</p>
-    <a href="#nuestros-servicios" class="btn btn-light btn-lg mt-3" style="font-family: 'Permanent Marker', sans-serif;">Ver nuestros servicios</a>
-  </div>
-</section>
-
+<!-- Sección de encabezado -->
+<section class="hero bg-white text-dark py-5">
+    <div class="container text-center">
+      <h1 class="display-4" style="font-family: 'Playfair Display', serif; font-weight: bold; font-size: 3rem;">Transforma tu Marca con Videos Publicitarios Impactantes</h1>
+      <p class="lead" style="font-family: sans-serif; color: #000;">Nos especializamos en crear videos publicitarios que cautivan, comunican y convierten. Llevamos tu mensaje a tu audiencia de manera eficaz y profesional.</p>
+      <a class=" btn btn-dark btn-lg mt-3" style="font-family: sans-serif;" href="{{ url_for('tasks.servicios') }}">Ver Nuestros Servicios</a>
+    </div>
+  </section>
+  
 <!-- Sección de Introducción -->
-<section class="py-5 text-center" id="introduccion">
-  <div class="container">
-    <h2 class="display-4 mb-4" style="font-family: 'Oswald', sans-serif;">¿Por qué un Video Publicitario?</h2>
-    <p class="lead" style="font-family: 'Oswald', sans-serif; color: #333;">
-      En el mundo digital actual, los videos publicitarios son la forma más efectiva de captar la atención y conectar con tu público. No se trata solo de crear contenido visualmente atractivo, sino de contar una historia que resuene con las emociones de tu audiencia y deje una impresión duradera.
-    </p>
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4 shadow-sm border-0">
-          <img src="{{ url_for('static', filename='images/video_effectiveness.jpg') }}" class="card-img-top" alt="Eficacia de los Videos Publicitarios">
-          <div class="card-body">
-            <h5 class="card-title">Eficacia Probada</h5>
-            <p class="card-text">Estudios demuestran que el 80% de los consumidores recuerdan un anuncio en video, mientras que solo el 20% recuerda anuncios estáticos.</p>
-          </div>
+<div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4 shadow-sm border-0" style="background-color: #1f1f1f; color: white;">
+        <iframe width="100%" height="450" 
+                src="https://www.youtube.com/embed/B0voMDz4pdg?si=QBZ7-7zE2N4FMeA4&controls=0&autoplay=1&start=6" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="card-body">
+          <h5 class="card-title" style="font-family: 'Luxurious Roman', sans-serif; color: #fff;">Eficacia Probada 1</h5>
+          <p class="card-text" style="font-family: 'Luxurious Roman', sans-serif; color: #ccc;">Estudios demuestran que el 80% de los consumidores recuerdan un anuncio en video, mientras que solo el 20% recuerda anuncios estáticos.</p>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="card mb-4 shadow-sm border-0">
-          <img src="{{ url_for('static', filename='images/engagement_video.jpg') }}" class="card-img-top" alt="Engagement de Videos">
-          <div class="card-body">
-            <h5 class="card-title">Engagement Garantizado</h5>
-            <p class="card-text">Los videos generan un 1200% más de compartidos en redes sociales que el texto y las imágenes combinadas. ¡Deja que tu mensaje llegue a más personas!</p>
-          </div>
+    </div>
+  
+    <div class="col-lg-4">
+      <div class="card mb-4 shadow-sm border-0" style="background-color: #1f1f1f; color: white;">
+        <iframe width="100%" height="450" 
+                src="https://www.youtube.com/embed/rIUOFcHKvAU?si=ZlWwGMoqAN_ycWE6&controls=0&autoplay=1&start=6" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="card-body">
+          <h5 class="card-title" style="font-family: 'Luxurious Roman', sans-serif; color: #fff;">Eficacia Probada 2</h5>
+          <p class="card-text" style="font-family: 'Luxurious Roman', sans-serif; color: #ccc;">El 80% de los consumidores prefieren anuncios en video que muestran productos o servicios en acción.</p>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="card mb-4 shadow-sm border-0">
-          <img src="{{ url_for('static', filename='images/video_conversion.jpg') }}" class="card-img-top" alt="Videos que convierten">
-          <div class="card-body">
-            <h5 class="card-title">Videos que Convierten</h5>
-            <p class="card-text">Un video bien producido aumenta la tasa de conversión de un sitio web hasta en un 80%. ¡Conviértete en la opción preferida de tu audiencia!</p>
-          </div>
+    </div>
+  
+    <div class="col-lg-4">
+      <div class="card mb-4 shadow-sm border-0" style="background-color: #1f1f1f; color: white;">
+        <iframe width="100%" height="450" 
+                src="https://www.youtube.com/embed/xPPLbEFbCAo?si=Vlr4Bt3VATMslt_L&controls=0&autoplay=1&start=6" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="card-body">
+          <h5 class="card-title" style="font-family: 'Luxurious Roman', sans-serif; color: #fff;">Eficacia Probada 3</h5>
+          <p class="card-text" style="font-family: 'Luxurious Roman', sans-serif; color: #ccc;">El contenido visual y en video tiene un impacto mucho mayor en la memoria y la retención de información.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-lg-4">
+      <div class="card mb-4 shadow-sm border-0" style="background-color: #1f1f1f; color: white;">
+        <iframe width="100%" height="450" 
+                src="https://www.youtube.com/embed/qvFnf2EEd20?si=O46eNS1CfTfy0GOU&controls=0&autoplay=1&start=6" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="card-body">
+          <h5 class="card-title" style="font-family: 'Luxurious Roman', sans-serif; color: #fff;">Eficacia Probada 4</h5>
+          <p class="card-text" style="font-family: 'Luxurious Roman', sans-serif; color: #ccc;">El 70% de los consumidores prefieren ver videos de productos antes de tomar una decisión de compra.</p>
         </div>
       </div>
     </div>
   </div>
+  
 </section>
 
-<!-- Sección de Nuestros Servicios -->
-<section id="nuestros-servicios" class="bg-light py-5">
-  <div class="container text-center">
-    <h2 class="display-4 mb-4" style="font-family: 'Oswald', sans-serif;">Nuestros Servicios de Video Publicitario</h2>
-    <p class="lead" style="font-family: 'Oswald', sans-serif; color: #333;">
-      Cada proyecto que emprendemos es único. Trabajamos contigo para crear videos publicitarios que reflejen tu visión y aumenten el alcance de tu marca. Conoce nuestros servicios destacados:
-    </p>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm border-0">
-          <img src="{{ url_for('static', filename='images/video_corporativo.jpg') }}" class="card-img-top" alt="Video Corporativo">
-          <div class="card-body">
-            <h5 class="card-title">Video Corporativo</h5>
-            <p class="card-text">Crea una impresión duradera con videos que resalten los valores y la misión de tu empresa. Establece una conexión genuina con tu público.</p>
-            <a href="#contacto" class="btn btn-primary">Solicitar más información</a>
+<<!-- Sección de Testimonios -->
+<section class="py-5" style="background-color: #1f1f1f;">
+    <div class="container text-center">
+      <h2 class="display-4 mb-4" style="font-family: 'Luxurious Roman', sans-serif; color: #fff;">TESTIMONIOS</h2>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="testimonial bg-dark p-4 shadow-sm rounded d-flex flex-column align-items-center" style="color: white; height: 100%;">
+            <img src="{{ url_for('static', filename='images/mujer/m39.jpeg') }}" class="img-fluid rounded-circle mb-3" width="250" height="250" alt="Cliente 1" style="object-fit: cover; border: 4px solid #004b87;">
+            <p class="lead" style="font-family: 'Luxurious Roman', sans-serif;">"Gracias a su increíble video publicitario, nuestra marca logró aumentar la visibilidad y ventas en un 50% en solo 3 meses."</p>
+            <h5 style="font-family: 'Luxurious Roman', sans-serif;">Juana Santaolaya</h5>
+            <p class="text-muted" style="font-family: 'Luxurious Roman', sans-serif;">CEO, Marca XYZ</p>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm border-0">
-          <img src="{{ url_for('static', filename='images/video_productos.jpg') }}" class="card-img-top" alt="Video de Producto">
-          <div class="card-body">
-            <h5 class="card-title">Video de Producto</h5>
-            <p class="card-text">Muestra las características de tu producto de manera dinámica y atractiva. Un video de calidad puede ser el factor clave para generar ventas.</p>
-            <a href="#contacto" class="btn btn-primary">Solicitar más información</a>
+        <div class="col-md-4 mb-4">
+          <div class="testimonial bg-dark p-4 shadow-sm rounded d-flex flex-column align-items-center" style="color: white; height: 100%;">
+            <img src="{{ url_for('static', filename='images/mujer/m38.jpeg') }}" class="img-fluid rounded-circle mb-3" width="250" height="250" alt="Cliente 2" style="object-fit: cover; border: 4px solid #004b87;">
+            <p class="lead" style="font-family: 'Luxurious Roman', sans-serif;">"El equipo supo captar nuestra esencia y transmitirla perfectamente a través del video. ¡Recomiendo ampliamente sus servicios!"</p>
+            <h5 style="font-family: 'Luxurious Roman', sans-serif;">Ana Torres</h5>
+            <p class="text-muted" style="font-family: 'Luxurious Roman', sans-serif;">Directora de Marketing, BrandCo</p>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm border-0">
-          <img src="{{ url_for('static', filename='images/video_publicitario_digital.jpg') }}" class="card-img-top" alt="Publicidad Digital">
-          <div class="card-body">
-            <h5 class="card-title">Publicidad Digital</h5>
-            <p class="card-text">Maximiza el impacto de tu marca con videos publicitarios creados específicamente para plataformas sociales como Facebook, Instagram, YouTube y más.</p>
-            <a href="#contacto" class="btn btn-primary">Solicitar más información</a>
+        <div class="col-md-4 mb-4">
+          <div class="testimonial bg-dark p-4 shadow-sm rounded d-flex flex-column align-items-center" style="color: white; height: 100%;">
+            <img src="{{ url_for('static', filename='images/mujer/m36.jpeg') }}" class="img-fluid rounded-circle mb-3" width="250" height="250" alt="Cliente 3" style="object-fit: cover; border: 4px solid #004b87;">
+            <p class="lead" style="font-family: 'Luxurious Roman', sans-serif;">"Los resultados fueron impresionantes. Logramos llegar a nuestra audiencia objetivo de manera mucho más efectiva. ¡Estamos encantados!"</p>
+            <h5 style="font-family: 'Luxurious Roman', sans-serif;">Alejandra Santa Maria</h5>
+            <p class="text-muted" style="font-family: 'Luxurious Roman', sans-serif;">Fundador, TechSolutions</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Sección de Testimonios -->
-<section class="py-5" style="background-color: #f8f9fa;">
-  <div class="container text-center">
-    <h2 class="display-4 mb-4" style="font-family: 'Oswald', sans-serif;">Lo que Dicen Nuestros Clientes</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="testimonial bg-white p-4 shadow-sm rounded">
-          <img src="{{ url_for('static', filename='images/mujer/m39.jpeg') }}" class="img-fluid rounded-circle mb-3" width="250" height="250" alt="Cliente 1" style="object-fit: cover; border: 4px solid #007bff;">
-          <p class="lead">"Gracias a su increíble video publicitario, nuestra marca logró aumentar la visibilidad y ventas en un 50% en solo 3 meses."</p>
-          <h5>Juan Pérez</h5>
-          <p class="text-muted">CEO, Marca XYZ</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial bg-white p-4 shadow-sm rounded">
-          <img src="{{ url_for('static', filename='images/mujer/m38.jpeg') }}" class="img-fluid rounded-circle mb-3" width="250" height="250" alt="Cliente 2" style="object-fit: cover; border: 4px solid #007bff;">
-          <p class="lead">"El equipo supo captar nuestra esencia y transmitirla perfectamente a través del video. ¡Recomiendo ampliamente sus servicios!"</p>
-          <h5>Ana Torres</h5>
-          <p class="text-muted">Directora de Marketing, BrandCo</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial bg-white p-4 shadow-sm rounded">
-          <img src="{{ url_for('static', filename='images/mujer/m36.jpeg') }}" class="img-fluid rounded-circle mb-3" width="250" height="250" alt="Cliente 3" style="object-fit: cover; border: 4px solid #007bff;">
-          <p class="lead">"Los resultados fueron impresionantes. Logramos llegar a nuestra audiencia objetivo de manera mucho más efectiva. ¡Estamos encantados!"</p>
-          <h5>Pedro Gómez</h5>
-          <p class="text-muted">Fundador, TechSolutions</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+  
 
 <!-- Sección de Contacto -->
-<section id="contacto" class="bg-primary text-white py-5">
+<section id="contacto" class="bg-dark text-white py-5">
   <div class="container text-center">
-    <h2 class="display-4 mb-4" style="font-family: 'Oswald', sans-serif;">¿Estás listo para crear tu Video Publicitario?</h2>
-    <p class="lead mb-4" style="font-family: 'Oswald', sans-serif;">Contáctanos y hablemos sobre cómo podemos ayudar a impulsar tu marca con un video publicitario profesional.</p>
-    <a href="mailto:contacto@tuservicio.com" class="btn btn-light btn-lg" style="font-family: 'Permanent Marker', sans-serif;">Contáctanos Ahora</a>
+    <h2 class="display-4 mb-4" style="font-family: 'Luxurious Roman', sans-serif;">¿Estás listo para crear tu Video Publicitario?</h2>
+    <p class="lead mb-4" style="font-family: 'Luxurious Roman', sans-serif;">Contáctanos y hablemos sobre cómo podemos ayudar a impulsar tu marca con un video publicitario profesional.</p>
+    <a href="mailto:contacto@tuservicio.com" class="btn btn-light btn-lg" style="font-family: 'Luxurious Roman', sans-serif;">Contáctanos Ahora</a>
   </div>
 </section>
 
 
-
-<!-- Sección de Contacto -->
-<section id="contacto" class="bg-primary text-white py-5">
-  <div class="container text-center">
-    <h2 class="display-4 mb-4" style="font-family: 'Oswald', sans-serif;">¿Estás listo para crear tu Video Publicitario?</h2>
-    <p class="lead mb-4" style="font-family: 'Oswald', sans-serif;">Contáctanos y hablemos sobre cómo podemos ayudar a impulsar tu marca con un video publicitario profesional.</p>
-    <a href="mailto:contacto@tuservicio.com" class="btn btn-light btn-lg" style="font-family: 'Permanent Marker', sans-serif;">Contáctanos Ahora</a>
-  </div>
-</section>
-
-
-<div class="container mt-5">
-    <div class="d-flex flex-wrap justify-content-center gap-3">
-        
-        <!-- Botón Volver -->
-        <a href="javascript:history.back()" 
-           class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Volver</a>
-
-        <!-- Botón Perfil -->
-        <a href="{{ url_for('tasks.dashboard') }}" 
-           class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Mi Perfil</a>
-
-        <!-- Botón Reservar -->
-        <a href="{{ url_for('reservamiento.reservar') }}" 
-           class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Reservar Sesión</a>
-
-        <!-- Botón Ver Reservas -->
-        <a href="{{ url_for('reservamiento.ver_reserva') }}" 
-           class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-           style="font-family: 'Permanent Marker', sans-serif; 
-                  color: #3730a3; 
-                  border-color: #3730a3; 
-                  transition: all 0.3s;"
-           >Ver Reservas</a>
-    </div>
-</div>
 
 <!-- Estilos adicionales para mejorar la responsividad -->
 <style>
