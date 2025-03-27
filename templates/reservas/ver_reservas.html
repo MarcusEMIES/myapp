@@ -49,39 +49,44 @@
             {% if current_user.role == 'admin' %}
                 <!-- Si es admin, mostrar todas las reservas -->
                 {% if reservas %}
-                    <div class="row">
-                        {% for reserva in reservas %}
-                        <div class="col-lg-6 mb-4">
-                            <div class="card shadow-sm border-0" style="border-left: 8px solid #28a745;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success">📷 Sesión Reservada</h5>
-                                    <p class="card-text"><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
-                                    <p class="card-text"><strong>Duración:</strong> 3 horas</p>
-                                    <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
-                                    <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
-
-                                    <!-- Mostrar nombre de la reserva -->
-                                    <p class="card-text"><strong>Nombre de la reserva:</strong> 
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Duración</th>
+                                    <th scope="col">Ubicación</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Nombre de la reserva</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reserva in reservas %}
+                                <tr>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td>{{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</td>
+                                    <td>3 horas</td>
+                                    <td>{{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</td>
+                                    <td>€{{ reserva.precio }}</td>
+                                    <td>
                                         {% if reserva.nombre %}
                                             {{ reserva.nombre }}
                                         {% else %}
                                             Nombre desconocido
                                         {% endif %}
-                                    </p>
-
-                                    <!-- Botones de acción solo si el usuario es admin -->
-                                    {% if current_user.role == 'admin' %}
-                                    <div class="d-flex justify-content-between">
+                                    </td>
+                                    <td>
                                         <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
                                            class="btn btn-warning btn-sm">✏️ Editar</a>
                                         <a href="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" 
                                            class="btn btn-danger btn-sm">🗑️ Eliminar</a>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 {% else %}
                     <p class="text-center text-muted">No hay reservas registradas.</p>
@@ -89,39 +94,44 @@
             {% else %}
                 <!-- Si no es admin, mostrar solo las reservas del usuario -->
                 {% if reservas %}
-                    <div class="row">
-                        {% for reserva in reservas %}
-                        <div class="col-lg-6 mb-4">
-                            <div class="card shadow-sm border-0" style="border-left: 8px solid #28a745;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success">📷 Sesión Reservada</h5>
-                                    <p class="card-text"><strong>Fecha:</strong> {{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</p>
-                                    <p class="card-text"><strong>Duración:</strong> 3 horas</p>
-                                    <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
-                                    <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
-
-                                    <!-- Mostrar nombre de la reserva -->
-                                    <p class="card-text"><strong>Nombre de la reserva:</strong> 
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Duración</th>
+                                    <th scope="col">Ubicación</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Nombre de la reserva</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reserva in reservas %}
+                                <tr>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td>{{ reserva.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</td>
+                                    <td>3 horas</td>
+                                    <td>{{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</td>
+                                    <td>€{{ reserva.precio }}</td>
+                                    <td>
                                         {% if reserva.nombre %}
                                             {{ reserva.nombre }}
                                         {% else %}
                                             Nombre desconocido
                                         {% endif %}
-                                    </p>
-
-                                    <!-- Solo mostrar botones de acción si el usuario es admin o si la reserva es del propio usuario -->
-                                    {% if current_user.role == 'admin' or reserva.user_id == current_user.id %}
-                                    <div class="d-flex justify-content-between">
+                                    </td>
+                                    <td>
+                                        {% if current_user.role == 'admin' or reserva.user_id == current_user.id %}
                                         <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
                                            class="btn btn-warning btn-sm">✏️ Editar</a>
-
-                                        
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 {% else %}
                     <p class="text-center text-muted">No tienes reservas registradas.</p>
@@ -135,6 +145,7 @@
 <p class="text-center text-danger">⚠️ Debes iniciar sesión para ver tus reservas.</p>
 {% endif %}
 
+<!-- Botones debajo -->
 <div class="container mt-5">
     <div class="d-flex flex-wrap justify-content-center gap-3">
         <!-- Botón Volver -->
@@ -168,7 +179,7 @@
         </a>
 
         <!-- Botón Ver Reservas -->
-        <a href="{{ url_for('reservamiento.ver_reserva') }}" 
+        <a href="{{ url_for('reservamiento.ver_reservas') }}" 
            class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
            style="font-family: 'Permanent Marker', sans-serif; 
                   color: #3730a3; 
@@ -190,7 +201,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     // Personalizar la confirmación con SweetAlert
     $('form').on('submit', function(e) {
@@ -210,6 +220,5 @@
         });
     });
 </script>
-
 
 {% endblock %}

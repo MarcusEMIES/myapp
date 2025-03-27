@@ -38,29 +38,37 @@ init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Ruta principal de la aplicación
+
+
+# Ruta para la página de inicio (index)
 @app.route('/')
+@login_required  # Esto asegura que solo los usuarios autenticados puedan acceder
 def index():
-    # Si no existe la clave 'expires' en la sesión y el usuario está autenticado,
-    # se establece un tiempo de expiración para la sesión (2 minutos en este caso).
-    if 'expires' not in session and current_user.is_authenticated:
-        session['expires'] = (datetime.now() + timedelta(minutes=2)).isoformat()
-    return render_template('index.html')
+    # Si el usuario está autenticado, se muestra la página principal
+    return render_template('index.html', user=current_user)
+# # Ruta principal de la aplicación
+# @app.route('/')
+# def index():
+#     # Si no existe la clave 'expires' en la sesión y el usuario está autenticado,
+#     # se establece un tiempo de expiración para la sesión (2 minutos en este caso).
+#     if 'expires' not in session and current_user.is_authenticated:
+#         session['expires'] = (datetime.now() + timedelta(minutes=2)).isoformat()
+#     return render_template('index.html')
 
-# Verifica si la sesión ha expirado antes de cada solicitud
-@app.before_request
-def check_session_expiration():
-    # Si existe la clave 'expires' en la sesión, comprueba si la fecha de expiración es mayor que la hora actual
-    if 'expires' in session:
-        expiration_time = datetime.fromisoformat(session['expires'])
-        if datetime.now() > expiration_time:
-            flash("Tu sesión ha expirado.", "warning")
-            return redirect(url_for('auth.login'))  # Redirige al login si la sesión ha expirado
+# # Verifica si la sesión ha expirado antes de cada solicitud
+# @app.before_request
+# def check_session_expiration():
+#     # Si existe la clave 'expires' en la sesión, comprueba si la fecha de expiración es mayor que la hora actual
+#     if 'expires' in session:
+#         expiration_time = datetime.fromisoformat(session['expires'])
+#         if datetime.now() > expiration_time:
+#             flash("Tu sesión ha expirado.", "warning")
+#             return redirect(url_for('auth.login'))  # Redirige al login si la sesión ha expirado
 
-# Establece la sesión como permanente antes de cada solicitud
-@app.before_request
-def make_session_permanent():
-    session.permanent = True  # Establece la duración de la sesión como permanente
+# # Establece la sesión como permanente antes de cada solicitud
+# @app.before_request
+# def make_session_permanent():
+#     session.permanent = True  # Establece la duración de la sesión como permanente
 
 # Crear la base de datos si no existe
 # Se usa `app.app_context()` para acceder al contexto de la aplicación y crear las tablas de la base de datos

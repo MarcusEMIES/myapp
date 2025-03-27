@@ -28,7 +28,7 @@ class User(UserMixin, db.Model):
     nombre = db.Column(db.String(120), nullable=True)    # Nombre del usuario
     apellidos = db.Column(db.String(120), nullable=True)  # Apellidos del usuario
     telefono = db.Column(db.String(20), nullable=True)    # Teléfono del usuario
-    direccion = db.Column(db.String(255), nullable=True)  # Dirección del usuario
+    direccion = db.Column(db.String(255), nullable=True)  # Dirección del usuario de tipo string con una longitud 
     ciudad = db.Column(db.String(120), nullable=True)     # Ciudad del usuario
     pais = db.Column(db.String(120), nullable=True)       # País del usuario
     foto = db.Column(db.String(255), nullable=True)       # Foto del usuario (se guarda como ruta)

@@ -37,10 +37,10 @@ class Config:
     REDSYS_SECRET_KEY = corregir_base64("TuClaveSecretaEnBase64")  # Clave secreta codificada en Base64.
     REDSYS_URL = "https://sis-t.redsys.es:25443/sis/realizarPago"  # URL de REDSYS para realizar el pago.
 
-    # 🔹 Configuración de sesiones (para manejar la sesión de usuario).
-    SESSION_TYPE = 'filesystem'  # El tipo de sesión se guardará en el sistema de archivos.
-    PERMANENT_SESSION_LIFETIME = timedelta(days=7)  # Duración de la sesión permanente de 7 días.
-    REMEMBER_COOKIE_DURATION = timedelta(days=7)  # Duración de la cookie "recordarme" (7 días).
+    # # 🔹 Configuración de sesiones (para manejar la sesión de usuario).
+    # SESSION_TYPE = 'filesystem'  # El tipo de sesión se guardará en el sistema de archivos.
+    # PERMANENT_SESSION_LIFETIME = timedelta(days=7)  # Duración de la sesión permanente de 7 días.
+    # REMEMBER_COOKIE_DURATION = timedelta(days=7)  # Duración de la cookie "recordarme" (7 días).
 
     # 🔹 Configuración de correo electrónico (utiliza Flask-Mail para enviar correos).
     # Parámetros del servidor de correo, como el servidor SMTP y las credenciales de acceso.

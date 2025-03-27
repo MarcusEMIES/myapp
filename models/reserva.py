@@ -1,5 +1,6 @@
 # Importamos el objeto db para interactuar con la base de datos de SQLAlchemy
 from models import db
+from sqlalchemy.exc import SQLAlchemyError
 
 # Definimos la clase Reserva, que representará la tabla 'reserva' en la base de datos
 class Reserva(db.Model):
@@ -47,3 +48,92 @@ class Reserva(db.Model):
     # Método especial para representar el objeto de forma legible en el registro de la base de datos
     def __repr__(self):
         return f"<Reserva {self.nombre} en {self.fecha_hora}>"
+
+
+    # # Métodos de eliminación
+
+    # @classmethod
+    # def eliminar_reserva_por_id(cls, reserva_id):
+    #     try:
+    #         reserva = cls.query.get(reserva_id)
+    #         if reserva:
+    #             db.session.delete(reserva)
+    #             db.session.commit()
+    #             return True  # Reserva eliminada
+    #         else:
+    #             return False  # Reserva no encontrada
+    #     except SQLAlchemyError as e:
+    #         db.session.rollback()
+    #         print(f"Error al eliminar la reserva: {e}")
+    #         return False
+
+    # @classmethod
+    # def eliminar_descripcion_por_id(cls, reserva_id):
+    #     try:
+    #         reserva = cls.query.get(reserva_id)
+    #         if reserva:
+    #             reserva.description = None  # Eliminar descripción
+    #             db.session.commit()
+    #             return True
+    #         else:
+    #             return False
+    #     except SQLAlchemyError as e:
+    #         db.session.rollback()
+    #         print(f"Error al eliminar la descripción: {e}")
+    #         return False
+    
+    # @classmethod
+    # def eliminar_imagen_por_id(cls, reserva_id):
+    #     try:
+    #         reserva = cls.query.get(reserva_id)
+    #         if reserva:
+    #             reserva.image_url = None  # Eliminar URL de la imagen
+    #             db.session.commit()
+    #             return True
+    #         else:
+    #             return False
+    #     except SQLAlchemyError as e:
+    #         db.session.rollback()
+    #         print(f"Error al eliminar la imagen: {e}")
+    #         return False
+
+    # @classmethod
+    # def eliminar_disponibilidad_por_id(cls, reserva_id):
+    #     try:
+    #         reserva = cls.query.get(reserva_id)
+    #         if reserva:
+    #             reserva.disponibilidad = 0  # Poner disponibilidad a 0
+    #             db.session.commit()
+    #             return True
+    #         else:
+    #             return False
+    #     except SQLAlchemyError as e:
+    #         db.session.rollback()
+    #         print(f"Error al eliminar la disponibilidad: {e}")
+    #         return False
+
+    # @classmethod
+    # def eliminar_reservas_por_tipo_sesion(cls, tipo_sesion):
+    #     try:
+    #         reservas = cls.query.filter_by(tipo_sesion=tipo_sesion).all()
+    #         for reserva in reservas:
+    #             db.session.delete(reserva)
+    #         db.session.commit()
+    #         return len(reservas)
+    #     except SQLAlchemyError as e:
+    #         db.session.rollback()
+    #         print(f"Error al eliminar reservas por tipo de sesión: {e}")
+    #         return 0
+
+    # @classmethod
+    # def eliminar_reservas_por_lugar(cls, lugar):
+    #     try:
+    #         reservas = cls.query.filter_by(lugar=lugar).all()
+    #         for reserva in reservas:
+    #             db.session.delete(reserva)
+    #         db.session.commit()
+    #         return len(reservas)
+    #     except SQLAlchemyError as e:
+    #         db.session.rollback()
+    #         print(f"Error al eliminar reservas por lugar: {e}")
+    #         return 0

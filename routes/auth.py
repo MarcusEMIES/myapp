@@ -31,7 +31,7 @@ def login():
             return redirect(url_for('tasks.dashboard'))
         
         # Si las credenciales son incorrectas, se muestra un mensaje de error.
-        flash("Credenciales incorrectas.", "danger")
+        flash("Usuario y contraseña no existen, verifique sus datos o registrese", "danger")
 
     # Si la petición es 'GET' o si hay un error, se renderiza la plantilla de login.
     return render_template('login.html')

@@ -8,3 +8,4 @@ with app.app_context():
 
 
 # Si quieres eliminar la base de datos ejecuta en la consola python eliminardb.py
+

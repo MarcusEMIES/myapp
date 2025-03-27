@@ -171,4 +171,6 @@ Para simular un pago con Stripe, usa la tarjeta de prueba:
 👥 **Contacto:** alumno311emies@gmail.com
 ```
 
-# Hinestroza-C
+# Hinestroza Torres Marcus-C
+usuario administrador 
+admin@mht.com   password: admin3428
