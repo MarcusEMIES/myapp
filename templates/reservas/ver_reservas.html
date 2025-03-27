@@ -60,12 +60,12 @@
                                     <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
                                     <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
 
-                                    <!-- Datos del usuario que hizo la reserva -->
-                                    <p class="card-text"><strong>Usuario que reservó:</strong> 
-                                        {% if reserva.user %}
-                                            {{ reserva.user.nombre }} {{ reserva.user.apellidos }}
+                                    <!-- Mostrar nombre de la reserva -->
+                                    <p class="card-text"><strong>Nombre de la reserva:</strong> 
+                                        {% if reserva.nombre %}
+                                            {{ reserva.nombre }}
                                         {% else %}
-                                            Usuario desconocido
+                                            Nombre desconocido
                                         {% endif %}
                                     </p>
 
@@ -74,7 +74,7 @@
                                     <div class="d-flex justify-content-between">
                                         <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
                                            class="btn btn-warning btn-sm">✏️ Editar</a>
-                                        <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
+                                        <a href="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" 
                                            class="btn btn-danger btn-sm">🗑️ Eliminar</a>
                                     </div>
                                     {% endif %}
@@ -100,12 +100,12 @@
                                     <p class="card-text"><strong>Ubicación:</strong> {{ reserva.lugar if reserva.lugar else 'Estudio o Exteriores' }}</p>
                                     <p class="card-text"><strong>Precio:</strong> €{{ reserva.precio }}</p>
 
-                                    <!-- Mostrar datos del usuario que hizo la reserva -->
-                                    <p class="card-text"><strong>Usuario que reservó:</strong> 
-                                        {% if reserva.user %}
-                                            {{ reserva.user.nombre }} {{ reserva.user.apellidos }}
+                                    <!-- Mostrar nombre de la reserva -->
+                                    <p class="card-text"><strong>Nombre de la reserva:</strong> 
+                                        {% if reserva.nombre %}
+                                            {{ reserva.nombre }}
                                         {% else %}
-                                            Usuario desconocido
+                                            Nombre desconocido
                                         {% endif %}
                                     </p>
 
@@ -114,8 +114,11 @@
                                     <div class="d-flex justify-content-between">
                                         <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
                                            class="btn btn-warning btn-sm">✏️ Editar</a>
-                                        <a href="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" 
-                                           class="btn btn-danger btn-sm">🗑️ Eliminar</a>
+                                           <form action="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" method="POST" style="display:inline;">
+                                            {{ csrf_token() }}  <!-- Si usas Flask-WTF, esta línea agrega un token CSRF -->
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta reserva?')">🗑️ Eliminar</button>
+                                        </form>
+                                        
                                     </div>
                                     {% endif %}
                                 </div>
@@ -188,4 +191,28 @@
         </a>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Personalizar la confirmación con SweetAlert
+    $('form').on('submit', function(e) {
+        e.preventDefault(); // Evitar el envío automático del formulario
+        const form = this;
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esta acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); // Si el usuario confirma, enviamos el formulario
+            }
+        });
+    });
+</script>
+
+
 {% endblock %}

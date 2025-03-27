@@ -25,10 +25,8 @@
 
                     <!-- Formulario para editar la reserva -->
                     <form method="POST" enctype="multipart/form-data">
-                        <!-- Nombre del usuario autenticado (no editable) -->
+                        <!-- Nombre y correo del usuario autenticado (no editable) -->
                         <input type="hidden" name="nombre" value="{{ current_user.username }}">
-
-                        <!-- Correo (no editable) -->
                         <input type="hidden" name="correo" value="{{ current_user.email }}">
 
                         <!-- Fecha y Hora -->
@@ -72,9 +70,9 @@
                             <label for="image_url" class="form-label">Subir Imagen</label>
                             <input type="file" class="form-control" name="image_url">
                             {% if reserva.image_url %}
-                            <div class="mt-3">
-                                <img src="{{ url_for('static', filename='uploads/' + reserva.image_url) }}" alt="Imagen de reserva" class="img-thumbnail" width="200">
-                            </div>
+                                <div class="mt-3">
+                                    <img src="{{ url_for('static', filename='uploads/' + reserva.image_url) }}" alt="Imagen de reserva" class="img-thumbnail" width="200">
+                                </div>
                             {% endif %}
                         </div>
 
