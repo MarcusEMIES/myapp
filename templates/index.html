@@ -3,25 +3,102 @@
 {% block content %}
 
 <!-- Carrusel de imágenes -->
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="margin-bottom: 0;">
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide"
+  data-bs-ride="carousel"
+  style="margin-bottom: 0 ; "
+>
   <div class="carousel-inner">
-    <!-- Carrusel de imágenes -->
     <div class="carousel-item active">
-      <img src="{{ url_for('static', filename='images/Coches/c26.jpg') }}" class="d-fluid w-100 img-fluid" alt="Carrousel3" style="object-position: 50% 90%; object-fit: cover; height: 500px" />
+      <img
+        src="{{ url_for('static', filename='images/Coches/c26.jpg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Carrousel3"
+        style="object-position: 50% 90%; object-fit: cover; height: 500px"
+      />
     </div>
-    <!-- Aquí seguirían las demás imágenes del carrusel... -->
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/Coches/c30.jpg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Carrousel4"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/Port1.jpeg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Port1"
+        style="object-position: 0 20%; height: 500px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/Port.jpeg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Port"
+        style="object-position: 50% 20%; object-fit: cover; height: 500px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/mujer/m9.jpg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Port5"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/hombre/h13.jpeg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Port8"
+        style="object-position: 50% 20%; object-fit: cover; height: 500px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/Hombre/h5.jpeg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Port8"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/Coches/c15.jpeg') }}"
+        class="d-fluid w-100 img-fluid"
+        alt="Port8"
+        style="object-position: 50% 90%; object-fit: cover; height: 500px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='images/Port7.jpeg') }}"
+        class="d-fluid w-50 img-fluid"
+        alt="Port8"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+      />
+    </div>
   </div>
 </div>
 
 <!-- Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black; padding: 1.5rem;" id="lemonade-mid-nav">
   <div class="container-fluid">
+    <!-- Logo de la marca o nombre del perfil -->
     <a class="navbar-brand" href="{{ url_for('tasks.dashboard') }}" style="font-family: 'Luxurious Roman', serif; font-weight: bold; font-size: 1.5rem; color: white;">
       Mi Perfil
     </a>
+
+    <!-- Botón de Toggler para pantallas pequeñas -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Menú de navegación que se colapsa -->
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
       <ul class="navbar-nav w-100 d-flex justify-content-between">
         <li class="nav-item flex-grow-1 text-center">
@@ -47,113 +124,159 @@
   </div>
 </nav>
 
-<!-- Contenido de noticias -->
-<div class="container-fluid pl-0">
-  <div class="row">
-    <div class="col-12 col-md-3 mb-4">
-      <div class="side-container">
-        <h2 class="elegant-title text-center" style="font-family: 'Luxurious Roman', serif; font-weight: bold;">Noticias sobre Fotografía y Cámaras de Video - Sony</h2>
-        <div class="news-container">
-          <div class="news-item mb-4">
-            <div class="card shadow-lg border-0 rounded">
-              <div class="card-body">
-                <h3 class="news-title">Última noticia sobre cámaras Sony</h3>
-                <p class="news-text">
-                  Sony ha lanzado una nueva cámara revolucionaria que cambiará la industria de la fotografía.
-                </p>
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" width="100%" height="300" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-          <!-- Más noticias aquí -->
-        </div>
-      </div>
-    </div>
-    <!-- Columna central y lateral derecho -->
-    <div class="col-12 col-md-6 mb-4">
-      <!-- Aquí iría contenido adicional de noticias o tarjetas -->
-    </div>
-    <div class="col-12 col-md-3 mb-4">
-      <!-- Aquí iría contenido adicional de noticias o tarjetas -->
-    </div>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS + Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+
+
+<header id="frame-panel" class="bg-black text-white py-5">
+  <div class="container text-center">
+      <h1 class="text-4xl font-bold mt-6" style="font-family: 'Montserrat', sans-serif; color: #fff;">Escuela de Fotografía</h1>
+      <p class="text-lg text-gray-300" style="font-family: 'Poppins', sans-serif;">Explora nuestros cursos y sesiones de estudio, desde nivel principiante hasta avanzado. ¡Desarrolla tus habilidades con nosotros!</p>
   </div>
-</div>
-
-<!-- Video de Pinterest -->
-<div class="container mt-5">
-  <h2 class="text-center">Mujer Modelando - Video de Pinterest</h2>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/[ID_DEL_VIDEO]" width="100%" height="400" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
-</div>
-
-<div class="col-12 col-md-6 mb-4">
-  <div class="card epic-card shadow-lg border-0 rounded">
-    <div class="card-body">
-      <h3 class="epic-title">"La fotografía es la única lengua que puede ser entendida en todo el mundo."</h3>
-      <p class="epic-text">Bruno Barbey</p>
-    </div>
-  </div>
-</div>
-
-<!-- Estilo de la tarjeta épica -->
-<style>
-  .epic-card {
-    background-color: #000; /* Fondo negro */
-    color: white; /* Texto en blanco */
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Estilo del título épico */
-  .epic-title {
-    font-family: 'Luxurious Roman', cursive;
-    font-size: 2rem;
-    font-weight: bold; /* Título en negrita */
-    text-align: center;
-    color: white; /* Blanco para el texto */
-    margin-bottom: 1rem;
-  }
-
-  /* Estilo del texto de la cita */
-  .epic-text {
-    font-family: 'Luxurious Roman', cursive;
-    font-size: 1.25rem;
-    text-align: center;
-    color: #d3d3d3; /* Gris claro para el texto */
-  }
-
-  .video-container {
-    margin: 0 auto;
-    max-width: 900px;
-    padding: 2rem 0;
-  }
+</header>
+<body>
+  <h1>PATROCINADO POR ACADEMIA LOGISTICA DE CALATAYUD</h1>
+  <div style="text-align: center;">
+    <video width="640" height="360" controls autoplay muted>
+      <source src="{{ url_for('static', filename='video/aclog.mp4') }}" type="video/mp4">
+      Tu navegador no soporta la etiqueta de video.
+  </video>
   
-  .course-card {
-    margin-bottom: 30px;
+</div>
+  </div>
+<section class="study-session-container bg-gray-100 py-8">
+  <div class="container text-center">
+      <h2 class="text-3xl font-bold mb-4" style="font-family: 'Montserrat', sans-serif; color:rgb(211, 214, 219);">¡Reserva tu Sesión de Estudio Personalizada!</h2>
+      <p class="text-lg text-gray-600 mb-6" style="font-family: 'Poppins', sans-serif;">Consigue Retratos inolvidables.</p>
+      <a href="{{ url_for('reservamiento.reservar') }}" 
+         class="btn btn-primary btn-lg text-uppercase fw-bold px-6 py-3" 
+         style="font-family: 'Poppins', sans-serif; color: #fff; background-color:rgb(205, 209, 217); border-color: #2d3748; transition: all 0.3s ease-in-out;">
+         Reservar Sesión de Estudio
+      </a>
+  </div>
+</section>
+
+<section class="courses-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 bg-white">
+  <!-- Fotografía para Principiantes -->
+  <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+      <img src="/static/images/mujer/m16.jpg" alt="Técnicas de Iluminación" style="width: 600px;">
+      <div class="p-4">
+          <h2 class="text-xl font-semibold text-black">Fotografía beauty</h2>
+          <p class="text-gray-600">Aprende los fundamentos de la fotografía y captura imágenes impresionantes.</p>
+      </div>
+  </div>
+  
+  <!-- Técnicas de Iluminación -->
+  <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+      <img src="/static/images/Hombre/h12.png" alt="Técnicas de Iluminación" style="width: 600px;">
+
+      <div class="p-4">
+          <h2 class="text-xl font-semibold text-black">Fotografia Cinematica</h2>
+          <p class="text-gray-600">Domina la luz natural y artificial para mejorar la calidad de tus fotos.</p>
+      </div>
+  </div>
+  
+  <!-- Fotografía Avanzada -->
+  <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
+      <img src="/static/images/mujer/m.13.jpeg" alt="Fotografía Avanzada" class="w-full h-48 object-cover rounded-t-xl">
+      <div class="p-4">
+          <h2 class="text-xl font-semibold text-black">Fotografía de Estudio para Magazine</h2>
+          <p class="text-gray-600">Perfecciona tu técnica con composición avanzada y postproducción profesional.</p>
+      </div>
+  </div>
+</section>
+
+
+<div class="container mt-5">
+  <div class="d-flex flex-wrap justify-content-center gap-3">
+      
+      <!-- Botón Volver -->
+      <a href="javascript:history.back()" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Volver</a>
+
+      <!-- Botón Perfil -->
+      <a href="{{ url_for('tasks.dashboard') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Mi Perfil</a>
+
+      <!-- Botón Reservar -->
+      <a href="{{ url_for('reservamiento.reservar') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Reservar Sesión</a>
+
+      <!-- Botón Ver Reservas -->
+      <a href="{{ url_for('reservamiento.ver_reserva') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Ver Reservas</a>
+      <!-- Botón Ver Formacion -->
+      <a href="{{ url_for('tasks.servicios') }}" 
+         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
+         style="font-family: 'Permanent Marker', sans-serif; 
+                color: #3730a3; 
+                border-color: #3730a3; 
+                transition: all 0.3s;"
+         >Formación</a>
+  </div>
+</div>
+
+<!-- Estilos adicionales para mejorar la responsividad -->
+<style>
+  @media (max-width: 768px) {
+      .btn {
+          font-size: 1rem;  /* Reduce el tamaño del texto en pantallas medianas */
+          padding: 0.5rem 1rem;
+      }
   }
 
-  /* Estilo para tarjetas de cursos */
-  .course-card {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    border: none;
-    transition: all 0.3s ease-in-out;
+  @media (max-width: 576px) {
+      .d-flex {
+          flex-direction: column;  /* Botones en columna en pantallas pequeñas */
+          align-items: center;
+      }
+
+      .btn {
+          width: 100%;  /* Botones ocupan todo el ancho */
+          text-align: center;
+          font-size: 0.9rem;  
+      }
   }
 
-  .course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Alineación de tarjetas en el contenedor */
-  .courses-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+  /* Efecto hover: color de fondo lleno */
+  .btn:hover {
+      background-color: #3730a3 !important;  
+      color: white !important;
+      border-color: #3730a3 !important;
   }
 </style>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS + Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
 
 {% endblock %}

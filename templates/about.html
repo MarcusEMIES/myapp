@@ -1,10 +1,84 @@
-{% extends 'base.html' %} {% block title %}Presets{%
-    endblock %} {% block content %}
-    
-    <div class="container text-center mt-5">
-      <h1>Acerca de mi </h1>
-      <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
-    
+{% extends "base.html" %}
+
+{% block title %}Acerca de Marcus Hinestroza{% endblock %}
+
+{% block header_title %}Acerca de Marcus Hinestroza{% endblock %}
+
+{% block header_description %}
+    Descubre la pasión detrás de cada captura y el enfoque artístico que define a Marcus como fotógrafo.
+{% endblock %}
+
+{% block content %}
+<section class="about-container bg-gray-100 py-8">
+    <div class="container text-center">
+        <h2 class="text-3xl font-bold mb-4" style="font-family: 'Luxury Roman', serif; color: #2d3748">
+            Conoce a Marcus Hinestroza
+        </h2>
+        <p class="text-lg text-gray-600 mb-6" style="font-family: 'Poppins', sans-serif">
+            Marcus es un fotógrafo profesional con un enfoque único y una pasión incansable por capturar momentos inolvidables.
+        </p>
+
+        <div class="flex justify-center items-center mb-6">
+            <img src="/static/images/marcus.jpg" alt="Marcus Hinestroza" class="w-48 h-48 rounded-full border-4 border-gray-300 mb-6" />
+        </div>
+
+        <p class="text-lg text-gray-600" style="font-family: 'Poppins', sans-serif">
+            Con años de experiencia y una visión artística que ha sido apreciada en múltiples publicaciones, Marcus es reconocido por su habilidad para combinar técnicas de iluminación innovadoras con una estética visual única.
+        </p>
     </div>
-    {% endblock %}
-    
+</section>
+
+<section class="career-container bg-white py-8">
+    <div class="container text-center">
+        <h2 class="text-3xl font-bold mb-4" style="font-family: 'Luxury Roman', serif; color: #2d3748">
+            Trayectoria Profesional
+        </h2>
+        <p class="text-lg text-gray-600 mb-6" style="font-family: 'Poppins', sans-serif">
+            A lo largo de su carrera, Marcus ha trabajado con clientes de diversos sectores, incluyendo moda, publicidad y retratos de alto nivel.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
+            <!-- Tarjeta 1 -->
+            <div class="career-card shadow-lg rounded-xl overflow-hidden transition-all transform hover:scale-105 border border-gray-300 p-4 bg-white">
+                <img src="/static/images/marc.jpg" alt="Trabajo de Marcus" class="w-full object-cover rounded-t-xl" style="height: 300px" />
+                <h2 class="text-xl font-semibold text-black mt-4" style="font-family: 'Luxury Roman', serif">
+                    Trabajo en Moda
+                </h2>
+                <p class="text-gray-600 mt-2">Una de las especialidades de Marcus es la fotografía de moda, combinando iluminación dramática con una estética elegante.</p>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="career-card shadow-lg rounded-xl overflow-hidden transition-all transform hover:scale-105 border border-gray-300 p-4 bg-white">
+                <img src="/static/images/h14.jpg" alt="Trabajo Publicitario" class="w-full object-cover rounded-t-xl" style="height: 300px" />
+                <h2 class="text-xl font-semibold text-black mt-4" style="font-family: 'Luxury Roman', serif">
+                    Publicidad
+                </h2>
+                <p class="text-gray-600 mt-2">Marcus ha trabajado con marcas reconocidas, capturando la esencia de productos y campañas a través de su lente creativa.</p>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="career-card shadow-lg rounded-xl overflow-hidden transition-all transform hover:scale-105 border border-gray-300 p-4 bg-white">
+                <img src="/static/images/marc1.jpg" alt="Retratos de Estudio" class="w-full object-cover rounded-t-xl" style="height: 300px" />
+                <h2 class="text-xl font-semibold text-black mt-4" style="font-family: 'Luxury Roman', serif">
+                    Retratos de Estudio
+                </h2>
+                <p class="text-gray-600 mt-2">Con su habilidad para crear ambientes únicos, sus retratos de estudio son una mezcla perfecta de técnica y creatividad.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-container bg-gray-100 py-8">
+    <div class="container text-center">
+        <h2 class="text-3xl font-bold mb-4" style="font-family: 'Luxury Roman', serif; color: #2d3748">
+            ¡Contáctame para tu Sesión de Fotografía!
+        </h2>
+        <p class="text-lg text-gray-600 mb-6" style="font-family: 'Poppins', sans-serif">
+            Si estás listo para capturar tus momentos más especiales o aprender más sobre la fotografía, no dudes en contactar a Marcus.
+        </p>
+        <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-primary btn-lg text-uppercase fw-bold px-6 py-3"
+            style="font-family: 'Poppins', sans-serif; color: #fff; background-color: #2d3748; border-color: #2d3748; transition: all 0.3s ease-in-out;">Reservar Sesión</a>
+    </div>
+</section>
+
+{% endblock %}

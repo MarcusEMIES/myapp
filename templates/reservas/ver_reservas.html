@@ -114,10 +114,7 @@
                                     <div class="d-flex justify-content-between">
                                         <a href="{{ url_for('reservamiento.editar_reserva', reserva_id=reserva.id) }}" 
                                            class="btn btn-warning btn-sm">✏️ Editar</a>
-                                           <form action="{{ url_for('reservamiento.eliminar_reserva', reserva_id=reserva.id) }}" method="POST" style="display:inline;">
-                                            {{ csrf_token() }}  <!-- Si usas Flask-WTF, esta línea agrega un token CSRF -->
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta reserva?')">🗑️ Eliminar</button>
-                                        </form>
+
                                         
                                     </div>
                                     {% endif %}

@@ -1,10 +1,129 @@
-{% extends 'base.html' %} {% block title %}Presets{%
-  endblock %} {% block content %}
-  
-  <div class="container text-center mt-5">
-    <h1>Preguntas Frecuentes</h1>
-    <p>Desde aquí puedes gestionar usuarios y ver estadísticas.</p>
-  
-  </div>
-  {% endblock %}
-  
+{% extends "base.html" %}
+
+{% block title %}Preguntas Frecuentes - Marcus Hinestroza{% endblock %}
+
+{% block header_title %}Preguntas Frecuentes sobre Fotografía y Servicios{% endblock %}
+
+{% block header_description %}
+    Aquí encontrarás respuestas a las preguntas más comunes sobre la fotografía y los servicios que ofrecemos.
+{% endblock %}
+
+{% block content %}
+<section class="faq-container bg-gray-100 py-8">
+    <div class="container text-center">
+        <h2 class="text-3xl font-bold mb-4" style="font-family: 'Luxury Roman', serif; color: #000000">
+            Preguntas Frecuentes
+        </h2>
+        <p class="text-lg text-gray-600 mb-6" style="font-family: 'Luxury Roman', serif; color: #000000">
+            Resuelve tus dudas sobre el proceso de fotografía y los servicios disponibles.
+        </p>
+
+        <div class="faq-accordion">
+            <!-- Pregunta 1 -->
+            <div class="faq-item mb-4">
+                <button class="faq-question bg-black text-white font-semibold w-full text-left py-4 px-5 rounded-lg transition-all hover:bg-gray-800"
+                        style="font-family: 'Luxury Roman', serif; font-weight: bold; font-size: 1.1rem;">
+                    ¿Qué tipo de fotografía ofreces?
+                </button>
+                <div class="faq-answer p-4 text-gray-600 bg-gray-50 rounded-lg shadow-md hidden" style="font-family: 'Poppins', sans-serif; color: #333333;">
+                    <p>
+                        Ofrecemos una variedad de servicios de fotografía, incluyendo retratos de estudio, fotografía de moda, fotografía publicitaria, y sesiones personalizadas para eventos. Cada sesión está diseñada para capturar momentos únicos con una visión creativa y profesional.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="faq-item mb-4">
+                <button class="faq-question bg-black text-white font-semibold w-full text-left py-4 px-5 rounded-lg transition-all hover:bg-gray-800"
+                        style="font-family: 'Luxury Roman', serif; font-weight: bold; font-size: 1.1rem;">
+                    ¿Cómo puedo reservar una sesión de fotografía?
+                </button>
+                <div class="faq-answer p-4 text-gray-600 bg-gray-50 rounded-lg shadow-md hidden" style="font-family: 'Poppins', sans-serif; color: #333333;">
+                    <p>
+                        Puedes reservar tu sesión fácilmente a través de nuestra página web en la sección de "Reservar Sesión". Una vez confirmada tu reserva, recibirás detalles específicos sobre la fecha, hora y ubicación de la sesión.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="faq-item mb-4">
+                <button class="faq-question bg-black text-white font-semibold w-full text-left py-4 px-5 rounded-lg transition-all hover:bg-gray-800"
+                        style="font-family: 'Luxury Roman', serif; font-weight: bold; font-size: 1.1rem;">
+                    ¿Qué debo llevar a mi sesión de fotos?
+                </button>
+                <div class="faq-answer p-4 text-gray-600 bg-gray-50 rounded-lg shadow-md hidden" style="font-family: 'Poppins', sans-serif; color: #333333;">
+                    <p>
+                        Recomendamos llevar ropa que te haga sentir cómodo y seguro. Si es una sesión de moda o publicitaria, podemos discutir previamente las opciones de vestuario. Además, si tienes algún accesorio especial que quieras incluir en tus fotos, ¡no dudes en traerlo!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="faq-item mb-4">
+                <button class="faq-question bg-black text-white font-semibold w-full text-left py-4 px-5 rounded-lg transition-all hover:bg-gray-800"
+                        style="font-family: 'Luxury Roman', serif; font-weight: bold; font-size: 1.1rem;">
+                    ¿Cuánto tiempo dura una sesión de fotografía?
+                </button>
+                <div class="faq-answer p-4 text-gray-600 bg-gray-50 rounded-lg shadow-md hidden" style="font-family: 'Poppins', sans-serif; color: #333333;">
+                    <p>
+                        La duración de la sesión depende del tipo de servicio que elijas. Por lo general, una sesión de retrato dura entre 1 a 2 horas, mientras que una sesión más compleja, como la fotografía publicitaria, puede durar más. Te daremos un horario estimado al momento de reservar.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="faq-item mb-4">
+                <button class="faq-question bg-black text-white font-semibold w-full text-left py-4 px-5 rounded-lg transition-all hover:bg-gray-800"
+                        style="font-family: 'Luxury Roman', serif; font-weight: bold; font-size: 1.1rem;">
+                    ¿Puedo elegir la ubicación para mi sesión?
+                </button>
+                <div class="faq-answer p-4 text-gray-600 bg-gray-50 rounded-lg shadow-md hidden" style="font-family: 'Poppins', sans-serif; color: #333333;">
+                    <p>
+                        ¡Sí! Ofrecemos sesiones tanto en nuestro estudio como en ubicaciones exteriores que elijas. Si prefieres un lugar específico, podemos coordinar una sesión en el sitio de tu elección, siempre que sea viable para el tipo de sesión que desees realizar.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="faq-item mb-4">
+                <button class="faq-question bg-black text-white font-semibold w-full text-left py-4 px-5 rounded-lg transition-all hover:bg-gray-800"
+                        style="font-family: 'Luxury Roman', serif; font-weight: bold; font-size: 1.1rem;">
+                    ¿Entregarán las fotos editadas?
+                </button>
+                <div class="faq-answer p-4 text-gray-600 bg-gray-50 rounded-lg shadow-md hidden" style="font-family: 'Poppins', sans-serif; color: #333333;">
+                    <p>
+                        Sí, todas las fotos que entregamos pasan por un proceso de edición profesional para asegurar que tengan el mejor acabado posible. Después de la sesión, te enviaremos un enlace con las imágenes finales para que las puedas descargar en alta calidad.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 7 -->
+            <div class="faq-item mb-4">
+                <button class="faq-question bg-black text-white font-semibold w-full text-left py-4 px-5 rounded-lg transition-all hover:bg-gray-800"
+                        style="font-family: 'Luxury Roman', serif; font-weight: bold; font-size: 1.1rem;">
+                    ¿Cuál es el costo de una sesión de fotografía?
+                </button>
+                <div class="faq-answer p-4 text-gray-600 bg-gray-50 rounded-lg shadow-md hidden" style="font-family: 'Poppins', sans-serif; color: #333333;">
+                    <p>
+                        Los costos varían dependiendo del tipo de sesión, duración y otros detalles específicos. Te invitamos a contactar con nosotros o consultar la sección de precios en nuestra página para obtener una cotización personalizada.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-container bg-gray-100 py-8">
+    <div class="container text-center">
+        <h2 class="text-3xl font-bold mb-4" style="font-family: 'Luxury Roman', serif; color: #000000">
+            ¿Tienes más preguntas?
+        </h2>
+        <p class="text-lg text-gray-600 mb-6" style="font-family: 'Luxury Roman', serif; color: #000000">
+            Si no has encontrado la respuesta que buscas, no dudes en ponerte en contacto con nosotros. ¡Estamos aquí para ayudarte!
+        </p>
+        <a href="{{ url_for('reservamiento.reservar') }}" class="btn btn-primary btn-lg text-uppercase fw-bold px-6 py-3"
+            style="font-family: 'Luxury Roman', serif; color: #fff; background-color: #2d3748; border-color: #2d3748; transition: all 0.3s ease-in-out;">Contáctanos</a>
+    </div>
+</section>
+
+{% endblock %}

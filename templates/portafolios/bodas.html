@@ -497,16 +497,38 @@
 
 </div>
 
-<!-- Modal para ver la imagen -->
+<!-- Modal para mostrar la imagen ampliada -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-dialog modal-lg"> <!-- Define el tamaño del modal -->
     <div class="modal-content">
       <div class="modal-body">
-        <!-- Imagen en el modal -->
-        <img id="modalImage" class="img-fluid" src="" alt="Imagen ampliada">
+        <!-- Imagen que se actualizará dinámicamente -->
+        <img src="" class="img-fluid" id="modalImage" alt="Imagen Modal">
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  // Obtener el elemento de la imagen dentro del modal
+  const modalImage = document.getElementById('modalImage');
+
+  // Obtener el modal en sí
+  const imageModal = document.getElementById('imageModal');
+  
+  // Agregar un evento cuando el modal se va a mostrar (es decir, cuando el usuario hace clic para abrir el modal)
+  imageModal.addEventListener('show.bs.modal', function (event) {
+    
+    // Obtener el botón que disparó el evento (es el que contiene la imagen en miniatura)
+    const button = event.relatedTarget;
+
+    // Obtener la URL de la imagen de la propiedad 'data-bs-image' del botón
+    const imageUrl = button.getAttribute('data-bs-image');
+    
+    // Establecer la fuente de la imagen en el modal a la URL obtenida
+    modalImage.src = imageUrl;
+  });
+</script>
+
 
 {% endblock %}
