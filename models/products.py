@@ -28,7 +28,12 @@ class Product(db.Model):
 
     # image_url: La URL de la imagen del producto, si existe. Puede ser nula si no se proporciona una imagen
     image_url = db.Column(db.String(255), nullable=True)
+    
+    video_url = db.Column(db.String(255), nullable=True)
+    
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # Si hay un vínculo con el usuario
 
     # Método especial para representar el objeto de forma legible en el registro de la base de datos
     def __repr__(self):
         return f"<Product {self.name}>"
+

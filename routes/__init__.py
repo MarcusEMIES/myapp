@@ -5,6 +5,10 @@ from routes.servicios import servicioso  # Importa el blueprint 'servicioso' (se
 from routes.pago import pago  # Importa el blueprint 'pago' (pago)
 from routes.clientes import cliente_navegando  # Importa el blueprint 'cliente_navegando' (clientes)
 from routes.reservando import reservamiento  # Importa el blueprint 'reservamiento' (reservas)
+from routes.portcliente import portafolio
+
+
+# Aqui definimos los blueprints
 
 def init_app(app):
     """Registrar todos los blueprints en la aplicación."""
@@ -29,3 +33,6 @@ def init_app(app):
     
     # Registra el blueprint 'reservamiento' para manejar las reservas de los clientes
     app.register_blueprint(reservamiento)
+    
+    # Registra el blueprint 'portafolio' para manejar las cargas de prductos finales para los clientes
+    app.register_blueprint(portafolio)

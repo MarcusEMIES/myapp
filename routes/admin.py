@@ -5,6 +5,7 @@ from models.users import User
 from models import db
 import os
 from config import Config
+from models.products import Product
 
 # Crear el Blueprint para la parte administrativa
 admin = Blueprint('admin', __name__)
@@ -169,3 +170,57 @@ def administracion_base_datos():
 @login_required
 def reports():
     return render_template('tareas_admin/printreport.html')  # Mostrar la plantilla de reportes
+
+
+# Aqui definiremos las rutas admin para añadir los productos finales para el cliente 
+
+# Ruta para agregar productos
+@admin.route('/admin/productos', methods=['GET', 'POST'])
+@login_required
+def agregar_producto():
+    if current_user.role != 'admin':
+        flash('No tienes permiso para acceder a esta página', 'danger')
+        return redirect(url_for('main.index'))  # Redirigir si no es admin
+
+    if request.method == 'POST':
+        # Obtener los datos del formulario
+        name = request.form.get('name')
+        description = request.form.get('description')
+        price = float(request.form.get('price'))
+        image = request.files.get('image')
+        video = request.files.get('video')
+
+        # Subir los archivos si se proporcionan
+        if image:
+            image_filename = secure_filename(image.filename)
+            image.save(f'instance/static/uploads/{image_filename}')
+            image_url = f'uploads/{image_filename}'
+        else:
+            image_url = None
+
+        if video:
+            video_filename = secure_filename(video.filename)
+            video.save(f'instance/static/uploads/{video_filename}')
+            video_url = f'uploads/{video_filename}'
+        else:
+            video_url = None
+
+        # Crear un nuevo producto en la base de datos
+        new_product = Product(
+            name=name,
+            description=description,
+            price=price,
+            image_url=image_url,
+            video_url=video_url,
+            user_id=current_user.id  # Asumiendo que el producto está asociado al usuario actual
+        )
+
+        # Agregar el producto a la base de datos
+        db.session.add(new_product)
+        db.session.commit()
+
+        flash('Producto agregado correctamente', 'success')
+        return redirect(url_for('admin.agregar_producto'))  # Redirigir después de agregar el producto
+
+    return render_template('admin/agregar_producto.html')
+
