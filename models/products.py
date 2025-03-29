@@ -31,7 +31,8 @@ class Product(db.Model):
     video_url = db.Column(db.String(255), nullable=True)
 
     # Relación con el usuario al que se le asigna el producto
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, nullable=False) 
 
 
 

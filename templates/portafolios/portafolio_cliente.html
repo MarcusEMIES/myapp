@@ -1,69 +1,205 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <header class="text-center mt-5 mb-5">
-    <h2 class="text-light mb-0" 
-        style="font-family: 'Permanent Marker', sans-serif; font-size: 3rem; font-weight: bold; letter-spacing: 2px; text-align: center;">
-        Portafolio Personalizado
-    </h2>
-    <p class="lead text-muted">Accede a tus fotos y videos privados después de ingresar la contraseña.</p>
+  <h2
+    class="text-light mb-0"
+    style="
+      font-family: 'Permanent Marker', sans-serif;
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-align: center;
+    "
+  >
+    Portafolio Personalizado
+  </h2>
+  <p class="lead text-muted">
+    Accede a tus fotos y videos privados después de ingresar la contraseña.
+  </p>
 </header>
 
 {% if current_user.is_authenticated %}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <h3 class="mt-4">¡Bienvenido de nuevo, {{ current_user.username }}!</h3>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <h3 class="mt-4">¡Bienvenido de nuevo, {{ current_user.username }}!</h3>
 
-                {% if current_user.role == 'admin' or content_access %}
-                    <!-- Mostrar contenido directamente si es admin o ingresó contraseña -->
-                    <h4 class="mt-4">¡Ahora puedes ver y descargar tu contenido!</h4>
-                    <div class="row">
-                        {% for archivo in archivos %}
-                            {% if archivo.user_id == current_user.id %}
-                                <div class="col-sm-6 col-md-4 mb-4">
-                                    <div class="card">
-                                        <img src="{{ url_for('static', filename=archivo.url_imagen) }}" class="card-img-top img-fluid" alt="Imagen de portafolio">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ archivo.nombre }}</h5>
-                                            <a href="{{ url_for('static', filename=archivo.url_video) }}" class="btn btn-secondary btn-sm" download>Descargar Video</a>
-                                            <a href="{{ url_for('static', filename=archivo.url_imagen) }}" class="btn btn-secondary btn-sm" download>Descargar Foto</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+      {% if current_user.role == 'admin' or content_access %}
+      <h4 class="mt-4">¡Ahora puedes ver y descargar tu contenido!</h4>
+      <div class="row">
+        {% for archivo in archivos %} {% if archivo.user_id == current_user.id
+        %}
+        <div class="col-sm-6 col-md-4 mb-4">
+          <div class="card">
+            {% if archivo.image_urls %} {% for img in
+            archivo.image_urls.split(';') %}
+            <img
+              src="{{ url_for('static', filename=img.strip()) }}"
+              class="card-img-top img-fluid mb-2"
+              alt="Imagen del portafolio"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              data-bs-image="{{ url_for('static', filename=img.strip()) }}"
+            />
+            {% endfor %} {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ archivo.name }}</h5>
 
-                    {% if current_user.role == 'admin' %}
-                    <!-- Botón para ir a cargar productos (solo admin) -->
-                    <div class="text-center my-4">
-                        <a href="{{ url_for('admin.cargar_productos') }}" class="btn btn-success">
-                            ➕ Cargar imágenes o videos al portafolio
-                        </a>
-                    </div>
-                {% endif %}
-
-                {% else %}
-                    <!-- Mostrar formulario de contraseña -->
-                    <p class="text-muted">Por favor, ingresa la contraseña para acceder a tu contenido:</p>
-                    <form method="POST" action="{{ url_for('portafolio.ingresar_contraseña') }}">
-                        <div class="form-group">
-                            <label for="password">Contraseña:</label>
-                            <input type="password" name="password" id="password" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3">Acceder</button>
-                    </form>
-                    {% if error %}
-                        <div class="alert alert-danger mt-3">
-                            Contraseña incorrecta. Inténtalo de nuevo.
-                        </div>
-                    {% endif %}
-                {% endif %}
+              {% if archivo.video_urls %} {% for vid in
+              archivo.video_urls.split(';') %}
+              <a
+                href="{{ url_for('static', filename=vid.strip()) }}"
+                class="btn btn-secondary btn-sm d-block mb-1"
+                download
+                >Descargar Video</a
+              >
+              {% endfor %} {% endif %} {% if archivo.image_urls %} {% for img in
+              archivo.image_urls.split(';') %}
+              <a
+                href="{{ url_for('static', filename=img.strip()) }}"
+                class="btn btn-secondary btn-sm d-block mb-1"
+                download
+                >Descargar Foto</a
+              >
+              {% endfor %} {% endif %} {% if current_user.role == 'admin' or
+              content_access %}
+              <div class="text-end my-3">
+                <a
+                  href="{{ url_for('portafolio.descargar_todo') }}"
+                  class="btn btn-outline-dark btn-lg"
+                >
+                  📦 Descargar zip
+                </a>
+              </div>
+              {% endif %}
             </div>
+          </div>
         </div>
+        {% endif %} {% endfor %}
+      </div>
+
+      {% if current_user.role == 'admin' %}
+      <div class="text-center my-4">
+        <a
+          href="{{ url_for('admin.cargar_productos') }}"
+          class="btn btn-success"
+        >
+          ➕ Cargar imágenes o videos al portafolio
+        </a>
+      </div>
+      {% endif %} {% else %}
+      <p class="text-muted">
+        Por favor, ingresa la contraseña para acceder a tu contenido:
+      </p>
+      <form
+        method="POST"
+        action="{{ url_for('portafolio.ingresar_contraseña') }}"
+      >
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Acceder</button>
+      </form>
+
+      {% if error %}
+      <div class="alert alert-danger mt-3">{{ error }}</div>
+      {% endif %} {% endif %}
     </div>
+  </div>
+</div>
 {% else %}
-    <p class="text-center text-danger">⚠️ Debes iniciar sesión para ver tu portafolio.</p>
+<p class="text-center text-danger">
+  ⚠️ Debes iniciar sesión para ver tu portafolio.
+</p>
 {% endif %}
+
+<div class="container mt-5">
+  <div class="d-flex flex-wrap justify-content-center gap-3">
+    <a
+      href="javascript:history.back()"
+      class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2"
+      style="
+        font-family: 'Permanent Marker', sans-serif;
+        color: #3730a3;
+        border-color: #3730a3;
+      "
+      >Volver</a
+    >
+    <a
+      href="{{ url_for('tasks.dashboard') }}"
+      class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2"
+      style="
+        font-family: 'Permanent Marker', sans-serif;
+        color: #3730a3;
+        border-color: #3730a3;
+      "
+      >Mi Perfil</a
+    >
+    <a
+      href="{{ url_for('reservamiento.reservar') }}"
+      class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2"
+      style="
+        font-family: 'Permanent Marker', sans-serif;
+        color: #3730a3;
+        border-color: #3730a3;
+      "
+      >Reservar Sesión</a
+    >
+    <a
+      href="{{ url_for('reservamiento.ver_reservas') }}"
+      class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2"
+      style="
+        font-family: 'Permanent Marker', sans-serif;
+        color: #3730a3;
+        border-color: #3730a3;
+      "
+      >Ver Reservas</a
+    >
+    <a
+      href="{{ url_for('tasks.servicios') }}"
+      class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2"
+      style="
+        font-family: 'Permanent Marker', sans-serif;
+        color: #3730a3;
+        border-color: #3730a3;
+      "
+      >Formación</a
+    >
+  </div>
+</div>
+
+<!-- Modal para ampliar imagen -->
+<div
+  class="modal fade"
+  id="imageModal"
+  tabindex="-1"
+  aria-labelledby="imageModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="" class="img-fluid" id="modalImage" alt="Imagen ampliada" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script para activar modal con la imagen -->
+<script>
+  const modalImage = document.getElementById("modalImage");
+  const imageModal = document.getElementById("imageModal");
+
+  imageModal.addEventListener("show.bs.modal", function (event) {
+    const trigger = event.relatedTarget;
+    const imageUrl = trigger.getAttribute("data-bs-image");
+    modalImage.src = imageUrl;
+  });
+</script>
 {% endblock %}

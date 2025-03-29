@@ -177,6 +177,7 @@ def reports():
 
 #Entrega de productos al cliente
 
+# Ruta de subida de archivos
 UPLOAD_FOLDER = Config.UPLOAD_FOLDER_PRODUCTS
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -186,16 +187,17 @@ def cargar_productos():
     if current_user.role != 'admin':
         abort(403)
 
-    users = User.query.all()
-
     if request.method == 'GET':
+        users = User.query.all()
         return render_template('tareas_admin/cargar_productos.html', users=users)
 
+    # POST - procesar el formulario
     nombre = request.form.get('nombre')
     user_id = request.form.get('user_id')
     password = request.form.get('password')
 
-    imagenes = request.files.getlist('imagen')
+    # 🔸 Capturar múltiples archivos
+    imagenes = request.files.getlist('imagen')  # ✅ Aquí está el getlist
     videos = request.files.getlist('video')
 
     image_paths = []
@@ -204,15 +206,18 @@ def cargar_productos():
     for imagen in imagenes:
         if imagen and imagen.filename != '':
             filename_img = secure_filename(imagen.filename)
-            imagen.save(os.path.join(UPLOAD_FOLDER, filename_img))
+            imagen_path = os.path.join(UPLOAD_FOLDER, filename_img)
+            imagen.save(imagen_path)
             image_paths.append(f'uploads/products/{filename_img}')
 
     for video in videos:
         if video and video.filename != '':
             filename_vid = secure_filename(video.filename)
-            video.save(os.path.join(UPLOAD_FOLDER, filename_vid))
+            video_path = os.path.join(UPLOAD_FOLDER, filename_vid)
+            video.save(video_path)
             video_paths.append(f'uploads/products/{filename_vid}')
 
+    # Crear el nuevo producto con rutas múltiples
     nuevo_producto = Product(
         name=nombre,
         description="Contenido subido por admin",
