@@ -81,29 +81,53 @@
 </div>
 
 <!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3" id="lemonade-mid-nav">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{{ url_for('tasks.dashboard') }}" style="font-family: 'Luxurious Roman', serif;">Mi Perfil</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <!-- Logo o marca -->
+    <a class="navbar-brand fw-bold" href="{{ url_for('tasks.dashboard') }}" 
+       style="font-family: 'Luxurious Roman', serif; font-size: 1.5rem;">
+      Mi Perfil
+    </a>
+
+    <!-- Botón para colapsar el menú en móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav">
-        {% for item in [
-          ('Coches', 'tasks.coches'),
-          ('Retratos Masculinos', 'tasks.retratosh'),
-          ('Retratos Femeninos', 'tasks.retratosm'),
-          ('Gastronómica', 'tasks.comida'),
-          ('Bodas', 'tasks.bodas'),
-          ('Urbana', 'tasks.urbana')] %}
-        <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="{{ url_for(item[1]) }}" style="font-family: 'Luxurious Roman', serif;">{{ item[0] }}</a>
+
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex flex-wrap justify-content-center w-100">
+        {% set enlaces = [
+          ('tasks.coches', 'Coches'),
+          ('tasks.retratosh', 'Retratos Masculinos'),
+          ('tasks.retratosm', 'Retratos Femeninos'),
+          ('tasks.comida', 'Gastronómica'),
+          ('tasks.bodas', 'Bodas'),
+          ('tasks.urbana', 'Urbana')
+        ] %}
+        {% for url, label in enlaces %}
+        <li class="nav-item text-center flex-grow-1">
+          <a class="nav-link text-white fw-bold"
+             style="font-family: 'Luxurious Roman', serif; font-size: 1.1rem;" 
+             href="{{ url_for(url) }}">{{ label }}</a>
         </li>
         {% endfor %}
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- Header de bienvenida -->
+<header id="frame-panel" class="bg-black text-white py-5 text-center">
+  <div class="container">
+    <h1 class="display-5 fw-bold" style="font-family: 'Montserrat', sans-serif;">Escuela de Fotografía</h1>
+    <p class="lead text-light" style="font-family: 'Poppins', sans-serif;">
+      Explora nuestros cursos y sesiones de estudio. Desde nivel principiante hasta avanzado. ¡Desarrolla tus habilidades con nosotros!
+    </p>
+  </div>
+</header>
+
 
 <!-- Hero Section -->
 <header class="bg-black text-white py-5 text-center">
