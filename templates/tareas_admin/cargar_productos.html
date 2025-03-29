@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4 text-center">📤 Cargar contenido al portafolio</h2>
+
+  <form action="{{ url_for('admin.cargar_productos') }}" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del contenido:</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="imagen" class="form-label">Seleccionar imagen (opcional):</label>
+      <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" multiple>
+    </div>
+
+    <div class="mb-3">
+      <label for="video" class="form-label">Seleccionar video (opcional):</label>
+      <input class="form-control" type="file" id="video" name="video" accept="video/*" multiple>
+    </div>
+
+    <div class="mb-3">
+      <label for="user_id" class="form-label">Asignar a usuario:</label>
+      <select class="form-control" id="user_id" name="user_id" required>
+        {% for user in users %}
+          <option value="{{ user.id }}">{{ user.username }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña de acceso al portafolio:</label>
+      <input type="text" class="form-control" id="password" name="password" required>
+      <small class="form-text text-muted">El usuario deberá usar esta contraseña para ver su portafolio privado.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar contenido</button>
+  </form>
+</div>
+{% endblock %}

@@ -55,6 +55,9 @@ class Config:
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))  # Directorio base del proyecto.
     INSTANCE_FOLDER = os.path.join(BASE_DIR, 'instance')  # Carpeta de instancia donde se almacenan archivos de configuración.
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')  # Carpeta para subir archivos como imágenes.
+    # config.py
+    UPLOAD_FOLDER_PRODUCTS = os.path.join(BASE_DIR, 'static', 'uploads', 'products')
+
 
     # Especificamos las extensiones de archivo permitidas para las subidas.
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}

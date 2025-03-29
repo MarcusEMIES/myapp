@@ -6,6 +6,8 @@ from models import db
 import os
 from config import Config
 from models.products import Product
+from flask import abort
+from config import Config
 
 # Crear el Blueprint para la parte administrativa
 admin = Blueprint('admin', __name__)
@@ -172,55 +174,60 @@ def reports():
     return render_template('tareas_admin/printreport.html')  # Mostrar la plantilla de reportes
 
 
-# Aqui definiremos las rutas admin para añadir los productos finales para el cliente 
 
-# Ruta para agregar productos
-@admin.route('/admin/productos', methods=['GET', 'POST'])
+#Entrega de productos al cliente
+
+UPLOAD_FOLDER = Config.UPLOAD_FOLDER_PRODUCTS
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+@admin.route('/cargar-productos', methods=['GET', 'POST'])
 @login_required
-def agregar_producto():
+def cargar_productos():
     if current_user.role != 'admin':
-        flash('No tienes permiso para acceder a esta página', 'danger')
-        return redirect(url_for('main.index'))  # Redirigir si no es admin
+        abort(403)
 
-    if request.method == 'POST':
-        # Obtener los datos del formulario
-        name = request.form.get('name')
-        description = request.form.get('description')
-        price = float(request.form.get('price'))
-        image = request.files.get('image')
-        video = request.files.get('video')
+    users = User.query.all()
 
-        # Subir los archivos si se proporcionan
-        if image:
-            image_filename = secure_filename(image.filename)
-            image.save(f'instance/static/uploads/{image_filename}')
-            image_url = f'uploads/{image_filename}'
-        else:
-            image_url = None
+    if request.method == 'GET':
+        return render_template('tareas_admin/cargar_productos.html', users=users)
 
-        if video:
-            video_filename = secure_filename(video.filename)
-            video.save(f'instance/static/uploads/{video_filename}')
-            video_url = f'uploads/{video_filename}'
-        else:
-            video_url = None
+    nombre = request.form.get('nombre')
+    user_id = request.form.get('user_id')
+    password = request.form.get('password')
 
-        # Crear un nuevo producto en la base de datos
-        new_product = Product(
-            name=name,
-            description=description,
-            price=price,
-            image_url=image_url,
-            video_url=video_url,
-            user_id=current_user.id  # Asumiendo que el producto está asociado al usuario actual
-        )
+    imagenes = request.files.getlist('imagen')
+    videos = request.files.getlist('video')
 
-        # Agregar el producto a la base de datos
-        db.session.add(new_product)
-        db.session.commit()
+    image_paths = []
+    video_paths = []
 
-        flash('Producto agregado correctamente', 'success')
-        return redirect(url_for('admin.agregar_producto'))  # Redirigir después de agregar el producto
+    for imagen in imagenes:
+        if imagen and imagen.filename != '':
+            filename_img = secure_filename(imagen.filename)
+            imagen.save(os.path.join(UPLOAD_FOLDER, filename_img))
+            image_paths.append(f'uploads/products/{filename_img}')
 
-    return render_template('admin/agregar_producto.html')
+    for video in videos:
+        if video and video.filename != '':
+            filename_vid = secure_filename(video.filename)
+            video.save(os.path.join(UPLOAD_FOLDER, filename_vid))
+            video_paths.append(f'uploads/products/{filename_vid}')
 
+    nuevo_producto = Product(
+        name=nombre,
+        description="Contenido subido por admin",
+        price=0.0,
+        stock=0,
+        image_url=image_paths[0] if image_paths else None,
+        video_url=video_paths[0] if video_paths else None,
+        image_urls=';'.join(image_paths) if image_paths else None,
+        video_urls=';'.join(video_paths) if video_paths else None,
+        contraseña_producto=password,
+        user_id=user_id
+    )
+
+    db.session.add(nuevo_producto)
+    db.session.commit()
+
+    flash("Contenido guardado correctamente", "success")
+    return redirect(url_for('admin.cargar_productos'))
