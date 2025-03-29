@@ -30,8 +30,11 @@ class Product(db.Model):
     # video_url: URL de un video del producto (ya no obligatorio si usamos múltiples)
     video_url = db.Column(db.String(255), nullable=True)
 
-    # user_id: Relación con el usuario al que se le asigna el producto
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    # Relación con el usuario al que se le asigna el producto
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+
+
 
     # ✅ NUEVOS CAMPOS:
 

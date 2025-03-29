@@ -8,7 +8,7 @@ from flask_migrate import Migrate  # Importa la extensión para migraciones de b
 from datetime import datetime, timedelta  # Importa funciones para manejar fechas
 import os  # Para manejar la creación de carpetas
 from flask_login import current_user, login_required  # Para manejo de usuarios y control de sesiones
-
+from models.products import Product
 # Crear las carpetas necesarias si no existen
 # Estas carpetas se usarán para almacenar archivos e instancias de la app, como bases de datos o archivos subidos
 os.makedirs(Config.INSTANCE_FOLDER, exist_ok=True)
