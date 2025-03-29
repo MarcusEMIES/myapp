@@ -1,282 +1,219 @@
-{% extends 'base.html' %} 
-{% block title %}Inicio Home {% endblock %} 
-{% block content %}
+{% extends 'base.html' %}
+{% block title %}Inicio Home {% endblock %}
 
+{% block content %}
 <!-- Carrusel de imágenes -->
-<div
-  id="carouselExampleSlidesOnly"
-  class="carousel slide"
-  data-bs-ride="carousel"
-  style="margin-bottom: 0 ; "
->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="margin-bottom: 0;">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
         src="{{ url_for('static', filename='images/Coches/c26.jpg') }}"
-        class="d-fluid w-100 img-fluid"
-        alt="Carrousel3"
-        style="object-position: 50% 90%; object-fit: cover; height: 500px"
+        class="d-block w-100 img-fluid custom-img"
+        alt="Carrousel1"
+        style="object-position: 50% 90%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/Coches/c30.jpg') }}"
-        class="d-fluid w-100 img-fluid"
-        alt="Carrousel4"
-        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+        class="d-block w-100 img-fluid custom-img"
+        alt="Carrousel2"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/Port1.jpeg') }}"
-        class="d-fluid w-100 img-fluid"
+        class="d-block w-100 img-fluid custom-img"
         alt="Port1"
-        style="object-position: 0 20%; height: 500px"
+        style="object-position: 0 20%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/Port.jpeg') }}"
-        class="d-fluid w-100 img-fluid"
+        class="d-block w-100 img-fluid custom-img"
         alt="Port"
-        style="object-position: 50% 20%; object-fit: cover; height: 500px"
+        style="object-position: 50% 20%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/mujer/m9.jpg') }}"
-        class="d-fluid w-100 img-fluid"
+        class="d-block w-100 img-fluid custom-img"
         alt="Port5"
-        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/hombre/h13.jpeg') }}"
-        class="d-fluid w-100 img-fluid"
-        alt="Port8"
-        style="object-position: 50% 20%; object-fit: cover; height: 500px"
+        class="d-block w-100 img-fluid custom-img"
+        alt="Port6"
+        style="object-position: 50% 20%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/Hombre/h5.jpeg') }}"
-        class="d-fluid w-100 img-fluid"
-        alt="Port8"
-        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+        class="d-block w-100 img-fluid custom-img"
+        alt="Port7"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/Coches/c15.jpeg') }}"
-        class="d-fluid w-100 img-fluid"
+        class="d-block w-100 img-fluid custom-img"
         alt="Port8"
-        style="object-position: 50% 90%; object-fit: cover; height: 500px"
+        style="object-position: 50% 90%; object-fit: cover; height: 500px;"
       />
     </div>
     <div class="carousel-item">
       <img
         src="{{ url_for('static', filename='images/Port7.jpeg') }}"
-        class="d-fluid w-50 img-fluid"
-        alt="Port8"
-        style="object-position: 50% 50%; object-fit: cover; height: 500px"
+        class="d-block w-100 img-fluid custom-img"
+        alt="Port9"
+        style="object-position: 50% 50%; object-fit: cover; height: 500px;"
       />
     </div>
   </div>
 </div>
 
 <!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black; padding: 1.5rem;" id="lemonade-mid-nav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3">
   <div class="container-fluid">
-    <!-- Logo de la marca o nombre del perfil -->
-    <a class="navbar-brand" href="{{ url_for('tasks.dashboard') }}" style="font-family: 'Luxurious Roman', serif; font-weight: bold; font-size: 1.5rem; color: white;">
-      Mi Perfil
-    </a>
-
-    <!-- Botón de Toggler para pantallas pequeñas -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="{{ url_for('tasks.dashboard') }}" style="font-family: 'Luxurious Roman', serif;">Mi Perfil</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Menú de navegación que se colapsa -->
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav w-100 d-flex justify-content-between">
-        <li class="nav-item flex-grow-1 text-center">
-          <a class="nav-link text-white" href="{{ url_for('tasks.coches') }}" style="font-family: 'Luxurious Roman', serif; font-size: 1.5rem; font-weight: bold;">Coches</a>
+      <ul class="navbar-nav">
+        {% for item in [
+          ('Coches', 'tasks.coches'),
+          ('Retratos Masculinos', 'tasks.retratosh'),
+          ('Retratos Femeninos', 'tasks.retratosm'),
+          ('Gastronómica', 'tasks.comida'),
+          ('Bodas', 'tasks.bodas'),
+          ('Urbana', 'tasks.urbana')] %}
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="{{ url_for(item[1]) }}" style="font-family: 'Luxurious Roman', serif;">{{ item[0] }}</a>
         </li>
-        <li class="nav-item flex-grow-1 text-center">
-          <a class="nav-link text-white" href="{{ url_for('tasks.retratosh') }}" style="font-family: 'Luxurious Roman', serif; font-size: 1.5rem; font-weight: bold;">Retratos Masculinos</a>
-        </li>
-        <li class="nav-item flex-grow-1 text-center">
-          <a class="nav-link text-white" href="{{ url_for('tasks.retratosm') }}" style="font-family: 'Luxurious Roman', serif; font-size: 1.5rem; font-weight: bold;">Retratos Femeninos</a>
-        </li>
-        <li class="nav-item flex-grow-1 text-center">
-          <a class="nav-link text-white" href="{{ url_for('tasks.comida') }}" style="font-family: 'Luxurious Roman', serif; font-size: 1.5rem; font-weight: bold;">Gastronómica</a>
-        </li>
-        <li class="nav-item flex-grow-1 text-center">
-          <a class="nav-link text-white" href="{{ url_for('tasks.bodas') }}" style="font-family: 'Luxurious Roman', serif; font-size: 1.5rem; font-weight: bold;">Bodas</a>
-        </li>
-        <li class="nav-item flex-grow-1 text-center">
-          <a class="nav-link text-white" href="{{ url_for('tasks.urbana') }}" style="font-family: 'Luxurious Roman', serif; font-size: 1.5rem; font-weight: bold;">Urbana</a>
-        </li>
+        {% endfor %}
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap JS + Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-
-
-<header id="frame-panel" class="bg-black text-white py-5">
-  <div class="container text-center">
-      <h1 class="text-4xl font-bold mt-6" style="font-family: 'Montserrat', sans-serif; color: #fff;">Escuela de Fotografía</h1>
-      <p class="text-lg text-gray-300" style="font-family: 'Poppins', sans-serif;">Explora nuestros cursos y sesiones de estudio, desde nivel principiante hasta avanzado. ¡Desarrolla tus habilidades con nosotros!</p>
+<!-- Hero Section -->
+<header class="bg-black text-white py-5 text-center">
+  <div class="container">
+    <h1 class="display-5 fw-bold">Escuela de Fotografía</h1>
+    <p class="lead">Explora nuestros cursos desde principiante hasta avanzado. ¡Desarrolla tus habilidades con nosotros!</p>
   </div>
 </header>
-<body>
-  <h1>PATROCINADO POR ACADEMIA LOGISTICA DE CALATAYUD</h1>
-  <div style="text-align: center;">
-    <video width="640" height="360" controls autoplay muted>
-      <source src="{{ url_for('static', filename='video/aclog.mp4') }}" type="video/mp4">
-      Tu navegador no soporta la etiqueta de video.
+
+<!-- Video Patrocinado -->
+<section class="text-center my-5">
+  <h2 class="fw-bold">PATROCINADO POR ACADEMIA LOGÍSTICA DE CALATAYUD</h2>
+  <video class="img-fluid" controls autoplay muted style="max-width: 100%; height: auto;">
+    <source src="{{ url_for('static', filename='video/aclog.mp4') }}" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
   </video>
-  
-</div>
-  </div>
-<section class="study-session-container bg-gray-100 py-8">
-  <div class="container text-center">
-      <h2 class="text-3xl font-bold mb-4" style="font-family: 'Montserrat', sans-serif; color:rgb(211, 214, 219);">¡Reserva tu Sesión de Estudio Personalizada!</h2>
-      <p class="text-lg text-gray-600 mb-6" style="font-family: 'Poppins', sans-serif;">Consigue Retratos inolvidables.</p>
-      <a href="{{ url_for('reservamiento.reservar') }}" 
-         class="btn btn-primary btn-lg text-uppercase fw-bold px-6 py-3" 
-         style="font-family: 'Poppins', sans-serif; color: #fff; background-color:rgb(205, 209, 217); border-color: #2d3748; transition: all 0.3s ease-in-out;">
-         Reservar Sesión de Estudio
-      </a>
+</section>
+
+<!-- Sección de Cursos -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">¡Reserva tu Sesión de Estudio!</h2>
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/static/images/mujer/m16.jpg" class="card-img-top" alt="Curso 1">
+          <div class="card-body">
+            <h5 class="card-title">Fotografía Beauty</h5>
+            <p class="card-text">Aprende los fundamentos y captura imágenes profesionales.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/static/images/Hombre/h12.png" class="card-img-top" alt="Curso 2">
+          <div class="card-body">
+            <h5 class="card-title">Fotografía Cinemática</h5>
+            <p class="card-text">Domina la luz natural y artificial con estilo cinematográfico.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/static/images/mujer/m.13.jpeg" class="card-img-top" alt="Curso 3">
+          <div class="card-body">
+            <h5 class="card-title">Fotografía de Estudio para Magazine</h5>
+            <p class="card-text">Perfecciona técnicas avanzadas y estilo editorial.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<section class="courses-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 bg-white">
-  <!-- Fotografía para Principiantes -->
-  <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
-      <img src="/static/images/mujer/m16.jpg" alt="Técnicas de Iluminación" style="width: 600px;">
-      <div class="p-4">
-          <h2 class="text-xl font-semibold text-black">Fotografía beauty</h2>
-          <p class="text-gray-600">Aprende los fundamentos de la fotografía y captura imágenes impresionantes.</p>
-      </div>
-  </div>
-  
-  <!-- Técnicas de Iluminación -->
-  <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
-      <img src="/static/images/Hombre/h12.png" alt="Técnicas de Iluminación" style="width: 600px;">
-
-      <div class="p-4">
-          <h2 class="text-xl font-semibold text-black">Fotografia Cinematica</h2>
-          <p class="text-gray-600">Domina la luz natural y artificial para mejorar la calidad de tus fotos.</p>
-      </div>
-  </div>
-  
-  <!-- Fotografía Avanzada -->
-  <div class="course-card shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 border border-gray-300">
-      <img src="/static/images/mujer/m.13.jpeg" alt="Fotografía Avanzada" class="w-full h-48 object-cover rounded-t-xl">
-      <div class="p-4">
-          <h2 class="text-xl font-semibold text-black">Fotografía de Estudio para Magazine</h2>
-          <p class="text-gray-600">Perfecciona tu técnica con composición avanzada y postproducción profesional.</p>
-      </div>
-  </div>
-</section>
-
-
-<div class="container mt-5">
+<!-- Botones de Navegación -->
+<div class="container my-5">
   <div class="d-flex flex-wrap justify-content-center gap-3">
-      
-      <!-- Botón Volver -->
-      <a href="javascript:history.back()" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Volver</a>
-
-      <!-- Botón Perfil -->
-      <a href="{{ url_for('tasks.dashboard') }}" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Mi Perfil</a>
-
-      <!-- Botón Reservar -->
-      <a href="{{ url_for('reservamiento.reservar') }}" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Reservar Sesión</a>
-
-      <!-- Botón Ver Reservas -->
-      <a href="{{ url_for('reservamiento.ver_reservas') }}" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Ver Reservas</a>
-      <!-- Botón Ver Formacion -->
-      <a href="{{ url_for('tasks.servicios') }}" 
-         class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2" 
-         style="font-family: 'Permanent Marker', sans-serif; 
-                color: #3730a3; 
-                border-color: #3730a3; 
-                transition: all 0.3s;"
-         >Formación</a>
+    {% for btn in [
+      ('Volver', 'javascript:history.back()'),
+      ('Mi Perfil', url_for('tasks.dashboard')),
+      ('Reservar Sesión', url_for('reservamiento.reservar')),
+      ('Ver Reservas', url_for('reservamiento.ver_reservas')),
+      ('Formación', url_for('tasks.servicios'))] %}
+    <a href="{{ btn[1] }}" class="btn btn-outline-primary btn-lg text-uppercase fw-bold px-4 py-2"
+       style="font-family: 'Permanent Marker', sans-serif;">{{ btn[0] }}</a>
+    {% endfor %}
+  </div>
+</div>
+<!-- Modal para mostrar la imagen ampliada -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> <!-- Define el tamaño del modal -->
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- Imagen que se actualizará dinámicamente -->
+        <img src="" class="img-fluid" id="modalImage" alt="Imagen Modal">
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Estilos adicionales para mejorar la responsividad -->
+<script>
+  // Obtener el elemento de la imagen dentro del modal
+  const modalImage = document.getElementById('modalImage');
+
+  // Obtener el modal en sí
+  const imageModal = document.getElementById('imageModal');
+  
+  // Agregar un evento cuando el modal se va a mostrar (es decir, cuando el usuario hace clic para abrir el modal)
+  imageModal.addEventListener('show.bs.modal', function (event) {
+    
+    // Obtener el botón que disparó el evento (es el que contiene la imagen en miniatura)
+    const button = event.relatedTarget;
+
+    // Obtener la URL de la imagen de la propiedad 'data-bs-image' del botón
+    const imageUrl = button.getAttribute('data-bs-image');
+    
+    // Establecer la fuente de la imagen en el modal a la URL obtenida
+    modalImage.src = imageUrl;
+  });
+</script>
 <style>
   @media (max-width: 768px) {
-      .btn {
-          font-size: 1rem;  /* Reduce el tamaño del texto en pantallas medianas */
-          padding: 0.5rem 1rem;
-      }
-  }
-
-  @media (max-width: 576px) {
-      .d-flex {
-          flex-direction: column;  /* Botones en columna en pantallas pequeñas */
-          align-items: center;
-      }
-
-      .btn {
-          width: 100%;  /* Botones ocupan todo el ancho */
-          text-align: center;
-          font-size: 0.9rem;  
-      }
-  }
-
-  /* Efecto hover: color de fondo lleno */
-  .btn:hover {
-      background-color: #3730a3 !important;  
-      color: white !important;
-      border-color: #3730a3 !important;
+    .custom-img {
+      object-position: center center !important;
+      height: 300px !important;
+    }
   }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap JS + Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-
 {% endblock %}
